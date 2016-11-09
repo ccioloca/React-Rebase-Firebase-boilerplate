@@ -1,20 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Container from './components/Container';
+import NewChat from './components/NewChat';
+import base from './config';
+import { Grid, Row } from 'react-bootstrap';
+
+console.log('Please change to your own firebase address in src/App.js');
 
 class App extends Component {
-  render() {
+  constructor(props){
+    super(props);
+    this.state = {
+      messages: []
+    };
+  }
+  componentWillMount(){
+  /*
+   * Here we call 'bindToState', which will update
+   * our local 'messages' state whenever our 'chats'
+   * Firebase endpoint changes.
+   */
+    base.bindToState('chats', {
+      context: this,
+      state: 'messages',
+      asArray: true
+    });
+  }
+  render(){
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <Grid>
+        <Row>
+          <NewChat chats={ this.state.messages } />
+        </Row>
+        <Row>
+          <Container />
+        </Row>
+      </Grid>
+    )
   }
 }
 
