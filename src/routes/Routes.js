@@ -15,6 +15,7 @@ const Routes =  (props) => {
             <Route path="login" component={Login} />
             <Route path="logout" component={Logout} />
             <Route path="loggedin" component={Index} onEnter={requireAuth} />
+            <Route path="*" component={Test}/>
           </Route>
         </Router>
     )
