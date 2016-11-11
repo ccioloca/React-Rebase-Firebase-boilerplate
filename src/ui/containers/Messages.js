@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import Message from './Message.js';
-import base from '../config';
-import { Col } from 'react-bootstrap';
+import Message from '../pure/Message.js';
+import base from '../../rebase.config.js';
+import { Block } from 'jsxstyle';
+import Loading from 'react-loading';
 
 console.log('Please change to your own firebase address in components/Container.js');
 
-class Container extends Component {
+class Messages extends Component {
   constructor(props){
     super(props);
     this.state = {
       messages: [],
-      show: null
+      show: null,
+      loading: true
     }
   }
   componentWillMount(){
@@ -29,7 +31,12 @@ class Container extends Component {
     this.ref = base.syncState('chats', {
       context: this,
       state: 'messages',
-      asArray: true
+      asArray: true,
+      then: () => {
+          this.setState({
+            loading: false
+          });
+      }
     });
   }
   componentWillUnmount(){
@@ -76,19 +83,21 @@ class Container extends Component {
         <Message
           thread={ item }
           show={ this.state.show === index }
-          removeMessage={ this._removeMessage.bind(this, index) }
-          handleClick={ this._toggleView.bind(this, index) }
+          removeMessage={ () => this._removeMessage.bind(this, index) }
+          handleClick={ () => this._toggleView.bind(this, index) }
           key={ index } />
       );
     });
 
     return (
-      <Col xs={12}>
-          <h1>{ (this.state.messages.length || 0) + ' messages' }</h1>
-          <ul>{ messages }</ul>
-      </Col>
+        this.state.loading
+        ? <Loading type='spinningBubbles' color='#6CA6CD' />
+        : <Block>
+            <h1>{ (this.state.messages.length || 0) + ' messages' }</h1>
+            <ul>{ messages }</ul>
+          </Block>
     );
   }
 }
 
-export default Container
+export default Messages

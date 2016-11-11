@@ -4,10 +4,10 @@ import { Button } from 'react-bootstrap';
 const Message = (props) => {
   return (
     <li
-      onClick={ props.handleClick.bind(null) }
+      onClick={ props.handleClick }
       className={ props.show ? 'bg-warning' : 'bg-info'}>
         <Button
-          onClick={ props.removeMessage.bind(null) }
+          onClick={ props.removeMessage }
           bsStyle={'danger'}>X
         </Button>
           { props.thread.title }

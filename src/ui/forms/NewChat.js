@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import base from '../config';
-import { Col, FormGroup, FormControl, Button, ControlLabel} from 'react-bootstrap';
+import base from '../../rebase.config.js';
+import { FormGroup, FormControl, Button, ControlLabel} from 'react-bootstrap';
 
 console.log('Please change to your own firebase address in components/NewChat.js');
-
 
 class NewChat extends Component {
   _newChat(e){
@@ -43,7 +42,6 @@ class NewChat extends Component {
   }
   render(){
     return (
-      <Col xs={12}>
         <form onSubmit={ this._newChat.bind(this) }>
           <FormGroup>
             <ControlLabel>Title:</ControlLabel>
@@ -55,7 +53,6 @@ class NewChat extends Component {
           </FormGroup>
           <Button type='submit' className='btn btn-success'>Submit</Button>
         </form>
-      </Col>
     )
   }
 }

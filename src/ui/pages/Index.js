@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Container from './components/Container';
-import NewChat from './components/NewChat';
-import base from './config';
-import { Grid, Row } from 'react-bootstrap';
+import Container from '../containers/Messages';
+import NewChat from '../forms/NewChat';
+import base from '../../rebase.config.js';
+import { Grid, Row, Col } from 'react-bootstrap';
 
-console.log('Please change to your own firebase address in src/App.js');
+console.log('Please change to your own firebase address in src/Chat.js');
 
-class App extends Component {
+class Index extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -29,14 +29,18 @@ class App extends Component {
     return (
       <Grid>
         <Row>
-          <NewChat chats={ this.state.messages } />
+          <Col xs={12}>
+            <NewChat chats={ this.state.messages } />
+          </Col>
         </Row>
         <Row>
-          <Container />
+            <Col xs={12}>
+                <Container />
+            </Col>
         </Row>
       </Grid>
     )
   }
 }
 
-export default App;
+export default Index;

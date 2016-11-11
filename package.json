@@ -1,5 +1,5 @@
 {
-  "name": "howtojavascript",
+  "name": "reactfirebaserebaseboilerplate",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -10,7 +10,10 @@
     "re-base": "^2.2.0",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.6",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-loading": "^0.0.9",
+    "react-router": "^3.0.0",
+    "react-router-bootstrap": "^0.23.1"
   },
   "scripts": {
     "start": "react-scripts start",
