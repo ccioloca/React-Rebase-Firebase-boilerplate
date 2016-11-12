@@ -13,18 +13,21 @@ const AppNavigation = (props) => {
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <LinkContainer to="/loggedin">
+        <LinkContainer to="loggedin">
             <NavItem eventKey={1}>Loggedin</NavItem>
         </LinkContainer>
-        <LinkContainer to="/loggedin">
-            <NavItem eventKey={2} href="/login">Login</NavItem>
+        <LinkContainer to="login">
+            <NavItem eventKey={2}>Login</NavItem>
         </LinkContainer>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        <LinkContainer to="logout">
+            <NavItem eventKey={3}>Logout</NavItem>
+        </LinkContainer>
+        <NavDropdown eventKey={4} title="Dropdown" id="basic-nav-dropdown">
+          <MenuItem eventKey={4.1}>Action</MenuItem>
+          <MenuItem eventKey={4.2}>Another action</MenuItem>
+          <MenuItem eventKey={4.3}>Something else here</MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={3.3}>Separated link</MenuItem>
+          <MenuItem eventKey={4.4}>Separated link</MenuItem>
         </NavDropdown>
       </Nav>
       <Nav pullRight>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Container from '../containers/Messages';
 import NewChat from '../forms/NewChat';
 import base from '../../rebase.config.js';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { Block } from 'jsxstyle';
 
 console.log('Please change to your own firebase address in src/Chat.js');
 
@@ -27,18 +28,18 @@ class Index extends Component {
   }
   render(){
     return (
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            <NewChat chats={ this.state.messages } />
-          </Col>
-        </Row>
-        <Row>
-            <Col xs={12}>
-                <Container />
-            </Col>
-        </Row>
-      </Grid>
+        <Block>
+            <Row>
+              <Col xs={12}>
+                <NewChat chats={ this.state.messages } />
+              </Col>
+            </Row>
+            <Row>
+                <Col xs={12}>
+                    <Container />
+                </Col>
+            </Row>
+        </Block>
     )
   }
 }

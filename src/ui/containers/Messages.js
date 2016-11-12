@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Message from '../pure/Message.js';
 import base from '../../rebase.config.js';
 import { Block } from 'jsxstyle';
-import Loading from 'react-loading';
+import LoadingAnimation from '../pure/LoadingAnimation';
 
 console.log('Please change to your own firebase address in components/Container.js');
 
@@ -91,7 +91,7 @@ class Messages extends Component {
 
     return (
         this.state.loading
-        ? <Loading type='spinningBubbles' color='#6CA6CD' />
+        ? <LoadingAnimation />
         : <Block>
             <h1>{ (this.state.messages.length || 0) + ' messages' }</h1>
             <ul>{ messages }</ul>

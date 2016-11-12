@@ -1,58 +1,67 @@
-import React, { Component } from 'react';
-import base from '../../rebase.config.js';
+import React, { Component } from 'react'
+import base from '../../rebase.config.js'
+import { Row, Col, Button } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
+import LoadingAnimation from '../pure/LoadingAnimation'
 
 class Login extends Component {
-
-    contextTypes: {
-        router: React.PropTypes.object.isRequired
+    constructor(props){
+      super(props);
+      this.state = {
+        loading: true
+      };
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        var email = this.refs.email.value;
-        var pw    = this.refs.pw.value;
-
-        const authHandler = function(error, user) {
-          if(error) console.log(error);
-          this.redirectUserToIndex(user);
-        }
-
-        // Simple email/password authentication
-        base.authWithPassword({
-            email    : email,
-            password : pw
-        }, authHandler);
+    componentDidMount() {
+        base.auth().onAuthStateChanged(firebaseUser => {
+            if (firebaseUser !== null) {
+                browserHistory.push('/loggedin')
+            } else {
+                this.setState({
+                    loading:false
+                })
+            }
+        })
     }
 
-    redirectUserToIndex(user) {
-        var location = this.props.location
-        if (location.state && location.state.nextPathname) {
-            this.context.router.replace(location.state.nextPathname)
-        } else {
-            this.context.router.replace('/index')
-        }
-        // User signed in!
-        console.log('User signed in!');
-        // var uid = result.user.uid;
+    componentWillUnmount() {
+        var unsubscribe = base.auth().onAuthStateChanged(function (user) {
+            // handle it
+        });
+        unsubscribe();
+
+    }
+
+    _loginWithOAuthRedirect(provider) {
+        base.authWithOAuthRedirect(provider, this._authHandler)
+    }
+
+    _authHandler(error) {
+      if(error) {
+          console.log(error)
+      }
+      // noop if redirect is successful
+      return;
     }
 
     render() {
+        const providers = ['google', 'twitter', 'facebook', 'github']
+        const loginButtons = providers.map( (provider, index) => {
+          return (
+              <Col sm={3} key={index}>
+                  <Button   onClick={() => this._loginWithOAuthRedirect(provider).bind(this)}
+                            bsSize="large"
+                            className='btn btn-primary'>Login With {provider}</Button>
+              </Col>
+          );
+        });
         return (
-            <div className="col-sm-6 col-sm-offset-3">
-                <h1> Login </h1>
-                <form onSubmit={() => this.handleSubmit.bind(this)}>
-                    <div className="form-group">
-                        <label> Email </label>
-                        <input className="form-control" ref="email" placeholder="Email"/>
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input ref="pw" type="password" className="form-control" placeholder="Password" />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
-                </form>
-            </div>
-        );
+            this.state.loading
+            ? <LoadingAnimation />
+            : <Row>
+                {loginButtons}
+              </Row>
+        )
     }
 }
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
+import { Block } from 'jsxstyle';
 import AppNavigation from '../containers/AppNavigation.js';
 
 const App = ({ children }) => (
-  <div>
+  <Block>
     <AppNavigation />
     <Grid>
       { children }
     </Grid>
-  </div>
+  </Block>
 );
 
 App.propTypes = {
