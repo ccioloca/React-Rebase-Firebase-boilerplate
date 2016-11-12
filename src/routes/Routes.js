@@ -3,22 +3,22 @@ import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 
 import App from '../ui/layouts/App'
 import Index from "../ui/pages/Index"
-import Test from "../ui/pages/Test"
 import Login from "../ui/pages/Login"
 import Logout from '../ui/pages/Logout'
+import Dashboard from '../ui/pages/Dashboard'
 
 import requireAuth from '../utils/authenticated'
 
 const Routes =  (props) => {
     return (
         <Router history={browserHistory}>
-          <Route path='/' component={App}>
-            <IndexRoute component={Test} />
-            <Route path="login" component={Login} />
-            <Route path="logout" component={Logout} />
-            <Route path="loggedin" component={Index} onEnter={requireAuth} />
-            <Route path="*" component={Test}/>
-          </Route>
+            <Route path='/' component={App}>
+                <IndexRoute component={Index} />
+                <Route path="login" component={Login} />
+                <Route path="logout" component={Logout} />
+                <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+                <Route path="*" component={Index}/>
+            </Route>
         </Router>
     )
 }
