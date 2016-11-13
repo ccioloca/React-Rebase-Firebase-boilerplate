@@ -42,7 +42,7 @@ class NewChat extends Component {
   }
   render(){
     return (
-        <form onSubmit={ this._newChat.bind(this) }>
+        <form onSubmit={ () => this._newChat() }>
           <FormGroup>
             <ControlLabel>Title:</ControlLabel>
             <FormControl type="text" ref='title' placeholder='Title' />

@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import OAuthLogin from '../containers/OAuthLogin'
 import { Block } from 'jsxstyle'
-import EmailLogin from '../forms/EmailLogin'
+import RegisterWithEmail from '../forms/RegisterWithEmail'
 
-class Login extends Component {
+class Register extends Component {
     render() {
         return (
             <Block>
-                <OAuthLogin />
-                <EmailLogin />
+                <RegisterWithEmail />
             </Block>
         )
     }
 }
 
-export default Login
+export default Register

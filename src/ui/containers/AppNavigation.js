@@ -19,15 +19,18 @@ const AppNavigation = () => {
                     <LinkContainer to="login">
                         <NavItem eventKey={2}>Login</NavItem>
                     </LinkContainer>
-                    <LinkContainer to="logout">
-                        <NavItem eventKey={3}>Logout</NavItem>
+                    <LinkContainer to="register">
+                        <NavItem eventKey={3}>Signup</NavItem>
                     </LinkContainer>
-                    <NavDropdown eventKey={4} title="Dropdown" id="basic-nav-dropdown">
-                      <MenuItem eventKey={4.1}>Action</MenuItem>
-                      <MenuItem eventKey={4.2}>Another action</MenuItem>
-                      <MenuItem eventKey={4.3}>Something else here</MenuItem>
+                    <LinkContainer to="logout">
+                        <NavItem eventKey={4}>Logout</NavItem>
+                    </LinkContainer>
+                    <NavDropdown eventKey={5} title="Dropdown" id="basic-nav-dropdown">
+                      <MenuItem eventKey={5.1}>Action</MenuItem>
+                      <MenuItem eventKey={5.2}>Another action</MenuItem>
+                      <MenuItem eventKey={5.3}>Something else here</MenuItem>
                       <MenuItem divider />
-                      <MenuItem eventKey={4.4}>Separated link</MenuItem>
+                      <MenuItem eventKey={5.4}>Separated link</MenuItem>
                     </NavDropdown>
                 </Nav>
                 <Nav pullRight>

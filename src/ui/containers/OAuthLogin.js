@@ -8,8 +8,7 @@ class OAuthLogin extends Component {
     constructor(props){
         super(props);
         this.state = {
-          loading: true,
-          errors: null
+          loading: true
         };
     }
 
@@ -24,7 +23,6 @@ class OAuthLogin extends Component {
 
         this.authListener = base.auth().onAuthStateChanged(firebaseUser => {
             if (firebaseUser !== null) {
-                debugger;
                 browserHistory.push('/dashboard')
             } else {
               this.setState({
@@ -68,9 +66,13 @@ class OAuthLogin extends Component {
     render() {
         return (
             this.state.loading
-            ? <LoadingAnimation />
+            ? <Row>
+                  <Col sm={12}>
+                      <LoadingAnimation />
+                  </Col>
+              </Row>
             : <Row>
-                {this._renderLoginButtons()}
+                  {this._renderLoginButtons()}
               </Row>
         )
     }
