@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import base from '../../rebase.config.js'
 import { Row, Col, FormControl, Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
-import { validateEmail } from '../../utils/helpers.js'
 
 class EmailLogin extends Component {
     constructor(props){
@@ -22,7 +21,13 @@ class EmailLogin extends Component {
 
         let authHandler = (error, user) => {
             if(error) this.setState({error: error.message})
-            if(user) browserHistory.push('/dashboard')
+            if(user) {
+              if (user.emailVerified) {
+                  browserHistory.push('/dashboard')
+              } else {
+                  this.setState({error: 'Please verify your email'})
+              }
+            }
         }
 
         base.authWithPassword({
@@ -38,24 +43,26 @@ class EmailLogin extends Component {
     render() {
         let error = this.state.error ? <p> {this.state.error} </p> : undefined
         return (
-            <Row>
-                <Col sm={6} smOffset={3}>
-                    <form onSubmit={this._loginWithEmail.bind(this)}>
-                      <FormControl  ref="txtEmail"
-                                    type="email"
-                                    placeholder="Email" />
-                      <FormControl  ref="txtPassword"
-                                    type="password"
-                                    placeholder="Password" />
-                      <Button type="submit"
-                              className='btn btn-primary'>Login</Button>
-                      <Button type="button"
-                              className='btn btn-secondary'
-                              onClick={() => this._navigateToSignupPage() }>Signup</Button>
-                      {error}
-                    </form>
-                </Col>
-            </Row>
+            this.props.loading
+            ? null
+            : <Row>
+                  <Col sm={6} smOffset={3}>
+                      <form onSubmit={this._loginWithEmail.bind(this)}>
+                        <FormControl  ref="txtEmail"
+                                      type="email"
+                                      placeholder="Email" />
+                        <FormControl  ref="txtPassword"
+                                      type="password"
+                                      placeholder="Password" />
+                        <Button type="submit"
+                                className='btn btn-primary'>Login</Button>
+                        <Button type="button"
+                                className='btn btn-secondary'
+                                onClick={() => this._navigateToSignupPage() }>Signup</Button>
+                        {error}
+                      </form>
+                  </Col>
+              </Row>
         )
     }
 }

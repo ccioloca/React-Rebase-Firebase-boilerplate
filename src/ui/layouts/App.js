@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 import { Block } from 'jsxstyle';
-import AppNavigation from '../containers/AppNavigation.js';
+import AppNavigation from '../pure/AppNavigation.js';
 
 const App = ({ children }) => (
   <Block>

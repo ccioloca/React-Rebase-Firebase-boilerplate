@@ -9,7 +9,8 @@ class RegisterWithEmail extends Component {
     constructor(props){
         super(props)
         this.state = {
-          error: null
+          error: null,
+          registered: false
         }
     }
 
@@ -18,21 +19,36 @@ class RegisterWithEmail extends Component {
     }
 
     _registerWithEmail(e) {
-        e.preventDefault();
+        e.preventDefault()
+        let email = ReactDOM.findDOMNode(this.refs.txtEmail).value
+        let password = ReactDOM.findDOMNode(this.refs.txtPassword).value
 
         let userHandler = (error, user) => {
             if(error) this.setState({error: error.message})
-            if(user) browserHistory.push('/login')
+            if(user) {
+                user.sendEmailVerification().then(() => {
+                this.setState({registered: true,
+                                error: null})
+                }, (error) => {
+                    this.setState({error: error})
+                })
+            }
         }
 
-        base.createUser({
-            email    : ReactDOM.findDOMNode(this.refs.txtEmail).value,
-            password : ReactDOM.findDOMNode(this.refs.txtPassword).value
-        }, userHandler);
+        if ( validateEmail(email) ) {
+            base.createUser({
+                email    : email,
+                password : password
+            }, userHandler);
+        } else {
+            this.setState({error: 'invalid email address'})
+        }
+
     }
 
     render() {
         let error = this.state.error ? <p> {this.state.error} </p> : undefined
+        let registered = this.state.registered ? <p> Please verify your email address </p> : undefined
         return (
             <Row>
                 <Col sm={6} smOffset={3}>
@@ -46,6 +62,7 @@ class RegisterWithEmail extends Component {
                         <Button type="submit"
                                 className='btn btn-primary'>Register</Button>
                         {error}
+                        {registered}
                     </form>
                 </Col>
             </Row>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import OAuthLogin from '../containers/OAuthLogin'
 import { Block } from 'jsxstyle'
 import RegisterWithEmail from '../forms/RegisterWithEmail'
 

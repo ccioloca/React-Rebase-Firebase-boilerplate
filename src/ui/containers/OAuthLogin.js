@@ -5,12 +5,6 @@ import { browserHistory } from 'react-router'
 import LoadingAnimation from '../pure/LoadingAnimation'
 
 class OAuthLogin extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          loading: true
-        };
-    }
 
     componentWillMount() {
 
@@ -22,18 +16,16 @@ class OAuthLogin extends Component {
         base.authGetOAuthRedirectResult(onRedirectBack)
 
         this.authListener = base.auth().onAuthStateChanged(firebaseUser => {
-            if (firebaseUser !== null) {
+            if (firebaseUser !== null && firebaseUser.emailVerified === true) {
                 browserHistory.push('/dashboard')
             } else {
-              this.setState({
-                  loading: false
-              })
+                this.props.switchLoadingState()
             }
         })
     }
 
     componentWillUnmount() {
-        this.authListener && this.authListener();
+        this.authListener();
         this.authListener = null;
     }
 
@@ -65,12 +57,8 @@ class OAuthLogin extends Component {
 
     render() {
         return (
-            this.state.loading
-            ? <Row>
-                  <Col sm={12}>
-                      <LoadingAnimation />
-                  </Col>
-              </Row>
+            this.props.loading
+            ? <LoadingAnimation />
             : <Row>
                   {this._renderLoginButtons()}
               </Row>
