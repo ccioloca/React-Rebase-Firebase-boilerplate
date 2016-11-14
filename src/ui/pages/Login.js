@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import OAuthLogin from '../smart/OAuthLogin'
+import OAuthLogin from '../container/OAuthLogin'
 import { Block } from 'jsxstyle'
 import EmailLogin from '../forms/EmailLogin'
 

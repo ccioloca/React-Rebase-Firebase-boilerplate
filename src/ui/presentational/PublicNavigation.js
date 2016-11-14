@@ -5,10 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 const PublicNavigation = () => {
     return (
       <Navbar.Collapse>
-          <Nav>
-              <LinkContainer to="Dashboard">
-                  <NavItem eventKey={1}>Dashboard</NavItem>
-              </LinkContainer>
+          <Nav pullRight>
               <LinkContainer to="login">
                   <NavItem eventKey={2}>Login</NavItem>
               </LinkContainer>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import base from '../../rebase.config.js'
 import { Row, Col, Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
-import LoadingAnimation from '../pure/LoadingAnimation'
+import LoadingAnimation from '../presentational/LoadingAnimation'
 
 class OAuthLogin extends Component {
 
@@ -58,7 +58,7 @@ class OAuthLogin extends Component {
     render() {
         return (
             this.props.loading
-            ? <LoadingAnimation />
+            ? <LoadingAnimation height={window.innerHeight + 'px'}/>
             : <Row>
                   {this._renderLoginButtons()}
               </Row>
