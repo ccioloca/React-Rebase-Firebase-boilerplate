@@ -1,15 +1,15 @@
-import React from 'react';
-import { Grid } from 'react-bootstrap';
-import { Block } from 'jsxstyle';
-import AppNavigation from '../pure/AppNavigation.js';
+import React from 'react'
+import { Grid } from 'react-bootstrap'
+import { Block } from 'jsxstyle'
+import AppNavigation from '../smart/AppNavigation.js'
 
 const App = ({ children }) => (
-  <Block>
-    <AppNavigation />
-    <Grid>
-      { children }
-    </Grid>
-  </Block>
+    <Block>
+        <AppNavigation />
+        <Grid>
+            { children }
+        </Grid>
+    </Block>
 );
 
 App.propTypes = {

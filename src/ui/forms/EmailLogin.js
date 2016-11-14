@@ -17,7 +17,9 @@ class EmailLogin extends Component {
     }
 
     _loginWithEmail(e) {
-        e.preventDefault();
+        e.preventDefault()
+        let email = ReactDOM.findDOMNode(this.refs.txtEmail).value
+        let password = ReactDOM.findDOMNode(this.refs.txtPassword).value
 
         let authHandler = (error, user) => {
             if(error) this.setState({error: error.message})
@@ -31,8 +33,7 @@ class EmailLogin extends Component {
         }
 
         base.authWithPassword({
-            email    : ReactDOM.findDOMNode(this.refs.txtEmail).value,
-            password : ReactDOM.findDOMNode(this.refs.txtPassword).value
+            email, password
         }, authHandler);
     }
 

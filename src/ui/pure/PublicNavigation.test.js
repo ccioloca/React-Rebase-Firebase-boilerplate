@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OAuthLogin from './OAuthLogin';
+import PublicNavigation from './PublicNavigation';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<OAuthLogin />, div);
+  ReactDOM.render(<PublicNavigation />, div);
 });

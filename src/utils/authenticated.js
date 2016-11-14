@@ -1,12 +1,11 @@
 import base from '../rebase.config.js';
 
 export const isLoggedIn = () => {
-
+    console.log(base.auth().currentUser)
     if (null === base.auth().currentUser || false === base.auth().currentUser.emailVerified ) {
         return false
     }
     return true
-    
 }
 
 const requireAuth = (nextState, replace) => {

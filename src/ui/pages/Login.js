@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import OAuthLogin from '../containers/OAuthLogin'
+import OAuthLogin from '../smart/OAuthLogin'
 import { Block } from 'jsxstyle'
 import EmailLogin from '../forms/EmailLogin'
 
@@ -12,7 +12,6 @@ class Login extends Component {
     }
 
     _switchLoadingState() {
-        console.log('inside')
         this.setState({ loading: false})
     }
 
