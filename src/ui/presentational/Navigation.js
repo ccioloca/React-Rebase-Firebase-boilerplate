@@ -1,26 +1,33 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { Nav, Navbar, MenuItem, NavItem, NavDropdown } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
 import AuthenticatedNavigation from './AuthenticatedNavigation'
 import PublicNavigation from './PublicNavigation'
 
 const Navigation = (props) => {
-    const brandLink = props.hasUser ? '/dashboard' : '/'
+
     const renderNavigation = props.hasUser ? <AuthenticatedNavigation photoURL={props.photoURL}/> : <PublicNavigation />
 
     return (
         props.loading
         ? null
-        : <Navbar inverse collapseOnSelect>
-              <Navbar.Header>
-                  <Navbar.Brand>
-                      <Link to={brandLink}>React Bootstrap</Link>
-                  </Navbar.Brand>
-                  <Navbar.Toggle />
-              </Navbar.Header>
+        : <header className='header'>
+              <div className='header__container l-container'>
+                <div>
+                  <div className="logo">
+                    <svg width="50" height="50">
+                      <circle cx="25" cy="25" r="20" stroke="green" strokeWidth="4" fill="#2A5157" />
+                    </svg>
+                  </div>
+                  <nav className="header__navigation">
+                    <div className="breadcrumbs">
+                      <span className="breadcrumbs__item ">
+                        Boilerplate
+                      </span>
+                    </div>
+                  </nav>
+                </div>
+              </div>
               {renderNavigation}
-          </Navbar>
+          </header>
     )
 }
 

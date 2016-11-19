@@ -1,24 +1,27 @@
 import React from 'react'
-import { Nav, Navbar, MenuItem, NavItem, NavDropdown } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Link } from 'react-router'
 import Avatar from './Avatar'
 
-const AuthenticatedNavigation = (props) => {
+const AuthenticatedNavigation = ({photoURL}) => {
     return (
-      <Navbar.Collapse>
-          <Nav pullRight className='hidden-xs'>
-              <NavDropdown eventKey={1} title={<Avatar size="50px" photoURL={props.photoURL} />} id="basic-nav-dropdown">
-                  <LinkContainer to="logout">
-                      <MenuItem eventKey={1.1}>Logout</MenuItem>
-                  </LinkContainer>
-              </NavDropdown>
-          </Nav>
-          <Nav pullRight className='visible-xs'>
-              <LinkContainer to="logout">
-                  <NavItem eventKey={2}>Logout</NavItem>
-              </LinkContainer>
-          </Nav>
-      </Navbar.Collapse>
+      <div className="dd-menu dd-menu-center user-dropdown__items">
+        <button type="button" className="btn--unstyled user-dropdown__header">
+          <div className="user-dropdown__wrapper">
+            <div className="user-dropdown__label">Paul Hayes</div>
+            <Avatar photoURL={photoURL} size={'50px'}/>
+          </div>
+        </button>
+        <div className="dd-menu-items">
+          <ul className="dd-items-center">
+            <li className="user-dropdown__item">
+              <Link className="user-dropdown__link" to="/profile">My Profile</Link>
+            </li>
+            <li className="user-dropdown__item">
+              <Link className="user-dropdown__link" to="/logout">Logout</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     )
 }
 

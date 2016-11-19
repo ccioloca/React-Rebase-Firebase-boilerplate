@@ -1,0 +1,34 @@
+$grid-gutter: size(large);
+
+@include sensibleGrid (
+  $modern:               true,
+  $gutter:               $grid-gutter,
+  $gutter-type:          padding,
+  $gutter-direction:     left,
+  $gutter-modifiers:     (
+    "narrow" : 1rem,
+    "collapsed": 0
+  ),
+  $base-font-size:       1rem,
+  $slug:                 "l-",
+  $push-classes:         false,
+  $grid-widths:          (
+    "one-whole"       : 100%,
+    "one-half"        : 50%,
+    "one-quarter"     : 25%,
+    "three-quarters"  : 75%,
+    "one-third"       : 33.333%,
+    "two-thirds"      : 66.666%,
+    "one-fifth"       : 20%,
+		"two-fifths"      : 40%,
+		"three-fifths"    : 60%,
+    "four-fifths"     : 80%,
+    "one-sixth"       : 16.666%,
+    "five-sixths"     : 83.333%
+  ),
+  $grid-breakpoints:  "tablet" "mobile"
+);
+
+@include responsive-visibility("desktop" "tablet" "mobile", true);
+
+.l-grid--vr > .l-grid-cell { margin-bottom: $grid-gutter; }

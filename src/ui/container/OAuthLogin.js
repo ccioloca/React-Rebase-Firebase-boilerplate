@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import base from '../../rebase.config.js'
-import { Row, Col, Button } from 'react-bootstrap'
+import OneWhole from '../layout/OneWhole'
+import { Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import LoadingAnimation from '../presentational/LoadingAnimation'
 
@@ -45,11 +46,9 @@ class OAuthLogin extends Component {
         const providers = ['google', 'twitter', 'facebook', 'github']
         const loginButtons = providers.map( (provider, index) => {
             return (
-                <Col sm={3} key={index}>
                     <Button   onClick={() => this._loginWithOAuthRedirect(provider)}
                               bsSize="large"
                               className='btn btn-primary'>Login With {provider}</Button>
-                </Col>
             )
         })
         return loginButtons
@@ -59,9 +58,8 @@ class OAuthLogin extends Component {
         return (
             this.props.loading
             ? <LoadingAnimation height={window.innerHeight + 'px'}/>
-            : <Row>
-                  {this._renderLoginButtons()}
-              </Row>
+            : <div>{this._renderLoginButtons()}</div>
+
         )
     }
 }

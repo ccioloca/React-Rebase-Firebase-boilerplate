@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import OAuthLogin from '../container/OAuthLogin'
-import { Block } from 'jsxstyle'
 import EmailLogin from '../forms/EmailLogin'
 
 class Login extends Component {
@@ -17,10 +16,10 @@ class Login extends Component {
 
     render() {
         return (
-            <Block>
+            <div>
                 <OAuthLogin loading={ this.state.loading } switchLoadingState={ () => this._switchLoadingState() }/>
                 <EmailLogin loading={ this.state.loading } />
-            </Block>
+            </div>
         )
     }
 }

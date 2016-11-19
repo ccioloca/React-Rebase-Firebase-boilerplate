@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Grid } from 'react-bootstrap'
-import { Block } from 'jsxstyle'
+import Container from '../layout/Container'
 import Navigation from '../presentational/Navigation.js'
 import base from '../../rebase.config.js'
 
@@ -35,12 +34,12 @@ class App extends Component {
 
     render() {
         return (
-            <Block>
+            <div>
                 <Navigation hasUser={this.state.hasUser} loading={this.state.loading} photoURL={this.state.photoURL}/>
-                <Grid>
-                    { this.props.children }
-                </Grid>
-            </Block>
+                <Container size={'medium'}>
+                    {this.props.children}
+                </Container>
+            </div>
         )
     }
 }

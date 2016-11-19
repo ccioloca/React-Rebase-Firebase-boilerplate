@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Message from '../presentational/Message.js';
 import base from '../../rebase.config.js';
-import { Block } from 'jsxstyle';
 import LoadingAnimation from '../presentational/LoadingAnimation';
 
 console.log('Please change to your own firebase address in components/Container.js');
@@ -92,10 +91,10 @@ class Messages extends Component {
     return (
         this.state.loading
         ? <LoadingAnimation />
-        : <Block>
+        : <div>
             <h1>{ (this.state.messages.length || 0) + ' messages' }</h1>
             <ul>{ messages }</ul>
-          </Block>
+          </div>
     );
   }
 }

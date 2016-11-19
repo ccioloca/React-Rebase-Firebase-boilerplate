@@ -1,0 +1,21 @@
+.l-container {
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.l-container--medium {
+  max-width: 960px;
+}
+
+.l-container--small {
+  max-width: 500px;
+}
+
+.l-container--condensed {
+  padding-left: 0;
+  padding-right: 0;
+}
