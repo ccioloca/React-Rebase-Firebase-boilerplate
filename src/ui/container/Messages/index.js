@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Message from '../presentational/Message.js';
-import base from '../../rebase.config.js';
-import LoadingAnimation from '../presentational/LoadingAnimation';
+import Message from '../../presentational/Message';
+import base from '../../../rebase.config.js';
+import LoadingAnimation from '../../presentational/LoadingAnimation';
 
 console.log('Please change to your own firebase address in components/Container.js');
 
