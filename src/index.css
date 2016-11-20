@@ -762,6 +762,28 @@ textarea {
   width: 100%;
   height: auto; }
 
+.header {
+  background: #005b96;
+  color: #fff; }
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem; }
+  .header__logo {
+    display: inline-block; }
+  .header__circle {
+    stroke: #fff;
+    fill: #6497b1; }
+  .header__brand {
+    display: inline-block;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    line-height: 1; }
+  .header__right a {
+    color: #fff; }
+
 .avatar {
   border-radius: 50%;
   overflow: hidden; }

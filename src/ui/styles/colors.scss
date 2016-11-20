@@ -1,0 +1,34 @@
+// Color variables
+$white: #fff;
+$grey: #999;
+$grey-dark: #666;
+$black: #16161d;
+$blue: #005b96;
+$blue-light: #6497b1;
+
+$colors: (
+  white           : $white,
+  grey            : $grey,
+  grey-dark       : $grey-dark,
+  black           : $black,
+  blue            : $blue,
+  blue-light      : $blue-light
+);
+
+$gradients: (
+  light: (
+    from: $white,
+    to: $grey,
+    angle: 135deg
+  ),
+  normal: (
+    from: $grey,
+    to: $grey-dark,
+    angle: 135deg
+  ),
+  dark: (
+    from: $black,
+    to: #000,
+    angle: 135deg
+  )
+)

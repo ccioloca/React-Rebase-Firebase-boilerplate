@@ -9,11 +9,15 @@
   "bonescss/1.base",
   "bonescss/2.layout";
 
-  // your modules or main CSS styles here
+// Your global styles go here
 @import "ui/layout/grid";
 @import "ui/layout/container";
 @import "ui/styles/objects";
+@import "ui/styles/colors";
+
+// your component styles go here
 @import "ui/presentational/Breadcrumbs/style";
+@import "ui/presentational/Header/style";
 @import "ui/presentational/Avatar/style";
 
 @import

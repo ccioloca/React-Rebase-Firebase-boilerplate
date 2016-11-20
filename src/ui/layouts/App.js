@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Container from '../layout/Container'
-import Navigation from '../presentational/Navigation'
+import Header from '../presentational/Header'
 import base from '../../rebase.config.js'
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navigation hasUser={this.state.hasUser} loading={this.state.loading} photoURL={this.state.photoURL}/>
+                <Header hasUser={this.state.hasUser} loading={this.state.loading} photoURL={this.state.photoURL}/>
                 <Container size={'medium'}>
                     {this.props.children}
                 </Container>
