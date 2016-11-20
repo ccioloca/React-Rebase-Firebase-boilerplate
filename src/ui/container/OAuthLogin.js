@@ -46,7 +46,8 @@ class OAuthLogin extends Component {
         const providers = ['google', 'twitter', 'facebook', 'github']
         const loginButtons = providers.map( (provider, index) => {
             return (
-                    <Button   onClick={() => this._loginWithOAuthRedirect(provider)}
+                    <Button   key={index}
+                              onClick={() => this._loginWithOAuthRedirect(provider)}
                               bsSize="large"
                               className='btn btn-primary'>Login With {provider}</Button>
             )

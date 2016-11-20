@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navigation from './Navigation';
+import Messages from './Messages';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Navigation />, div);
+  ReactDOM.render(<Messages />, div);
 });

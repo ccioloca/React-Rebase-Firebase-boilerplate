@@ -1,6 +1,6 @@
 import React from 'react'
-import AuthenticatedNavigation from './AuthenticatedNavigation'
-import PublicNavigation from './PublicNavigation'
+import AuthenticatedNavigation from '../AuthenticatedNavigation'
+import PublicNavigation from '../PublicNavigation'
 
 const Navigation = (props) => {
 

@@ -4,7 +4,8 @@
   "private": true,
   "devDependencies": {
     "npm-scripts-watcher": "^1.0.2",
-    "react-scripts": "0.6.1"
+    "react-scripts": "0.6.1",
+    "ttab": "^0.5.0"
   },
   "dependencies": {
     "bonescss": "^0.8.4",
@@ -24,6 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "magic": ". ./magic.sh",
     "compile-sass": "node-sass src/index.scss -o src --include-path node_modules",
     "watch": "npm-scripts-watcher",
     "test": "react-scripts test --env=jsdom",

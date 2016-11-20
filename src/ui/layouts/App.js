@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Container from '../layout/Container'
-import Navigation from '../presentational/Navigation.js'
+import Navigation from '../presentational/Navigation'
 import base from '../../rebase.config.js'
 
 class App extends Component {
@@ -16,7 +16,6 @@ class App extends Component {
 
     componentWillMount() {
         const authDataCallback = (user) => {
-            console.log(user)
             if (user) {
                 if (user.emailVerified) this.setState({hasUser: true, loading: false, photoURL: user.photoURL})
             } else {

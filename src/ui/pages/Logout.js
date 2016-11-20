@@ -16,9 +16,9 @@ class Logout extends Component {
 
     componentDidMount() {
         base.auth().signOut().then(function() {
-            console.log('Signed Out');
+            // do something with signed out user
         }, function(error) {
-            console.error('Sign Out Error', error);
+            // do something with error
         });
     }
 

@@ -5,17 +5,16 @@
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
-}
+  &--medium {
+    max-width: 960px;
+  }
 
-.l-container--medium {
-  max-width: 960px;
-}
+  &--small {
+    max-width: 500px;
+  }
 
-.l-container--small {
-  max-width: 500px;
-}
-
-.l-container--condensed {
-  padding-left: 0;
-  padding-right: 0;
+  &--condensed {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

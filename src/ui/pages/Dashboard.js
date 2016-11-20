@@ -5,8 +5,6 @@ import base from '../../rebase.config.js';
 import { Row, Col } from 'react-bootstrap';
 import { Block } from 'jsxstyle';
 
-console.log('Please change to your own firebase address in src/Chat.js');
-
 class Dashboard extends Component {
   constructor(props){
     super(props);

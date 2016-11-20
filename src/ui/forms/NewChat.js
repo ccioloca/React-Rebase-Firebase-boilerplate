@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import base from '../../rebase.config.js';
 import { FormGroup, FormControl, Button, ControlLabel} from 'react-bootstrap';
 
-console.log('Please change to your own firebase address in components/NewChat.js');
-
 class NewChat extends Component {
   _newChat(e){
     e.preventDefault();
