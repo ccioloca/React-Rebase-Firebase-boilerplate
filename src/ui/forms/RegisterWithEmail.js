@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import base from '../../rebase.config.js'
 import { Row, Col, FormControl, Button } from 'react-bootstrap'
-import { browserHistory } from 'react-router'
 import { validateEmail } from '../../utils/helpers.js'
 
 class RegisterWithEmail extends Component {

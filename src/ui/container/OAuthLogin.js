@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import base from '../../rebase.config.js'
-import OneWhole from '../layout/OneWhole'
 import { Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import LoadingAnimation from '../presentational/LoadingAnimation'
