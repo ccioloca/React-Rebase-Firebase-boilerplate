@@ -1,17 +1,19 @@
 import React from 'react'
-import AuthenticatedNavigation from '../AuthenticatedNavigation'
-import PublicNavigation from '../PublicNavigation'
+import UserDropdown from './UserDropdown'
+import PublicNavigation from './PublicNavigation'
 import Container from '../../layout/Container'
+import UserBreadcrumbs from '../Breadcrumbs'
 
 const Header = (props) => {
 
-    const renderNavigation = props.hasUser ? <AuthenticatedNavigation photoURL={props.photoURL}/> : <PublicNavigation />
-
+    const renderNavigation = props.hasUser ? <UserDropdown photoURL={props.photoURL}/> : <PublicNavigation />
+    console.log(props)
     return (
         props.loading
         ? null
         : <header className='header'>
-              <Container>
+            <Container>
+              <nav className="header__navigation">
                 <div className='header__container'>
                   <div className='header__left'>
                     <div className="header__logo">
@@ -22,20 +24,18 @@ const Header = (props) => {
                     <div className="header__brand">
                         Re-base Boilerplate
                     </div>
-                    <nav className="header__navigation">
-                      <div className="breadcrumbs">
-                        <span className="breadcrumbs__item ">
-
-                        </span>
-                      </div>
-                    </nav>
+                    <div className="breadcrumbs">
+                      <span className="breadcrumbs__item ">
+                        test breadcrumb
+                      </span>
+                    </div>
                   </div>
                   <div className='header__right'>
                     {renderNavigation}
                   </div>
                 </div>
-
-              </Container>
+              </nav>
+            </Container>
           </header>
     )
 }

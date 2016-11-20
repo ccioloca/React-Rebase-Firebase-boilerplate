@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AuthenticatedNavigation from './AuthenticatedNavigation';
+import UserDropdown from './UserDropdown';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AuthenticatedNavigation />, div);
+  ReactDOM.render(<UserDropdown />, div);
 });

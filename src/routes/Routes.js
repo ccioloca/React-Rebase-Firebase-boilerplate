@@ -13,13 +13,13 @@ import requireAuth from '../utils/authenticated'
 const Routes =  (props) => {
     return (
         <Router history={browserHistory}>
-            <Route path='/' component={App}>
-                <IndexRoute component={Index} />
-                <Route path="login" component={Login} />
-                <Route path="logout" component={Logout} />
-                <Route path="register" component={Register} />
-                <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-                <Route path="*" component={Index}/>
+            <Route path='/' component={App} name="App" >
+                <IndexRoute component={Index} name="Home" />
+                <Route path="login" component={Login} name="Login" />
+                <Route path="logout" component={Logout} name="Logout" />
+                <Route path="register" component={Register} name="Register" />
+                <Route path="dashboard" component={Dashboard} onEnter={requireAuth} name="Dashboard"/>
+                <Route path="*" component={Index} name="404: No Match for route"/>
             </Route>
         </Router>
     )
