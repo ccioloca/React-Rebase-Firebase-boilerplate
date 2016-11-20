@@ -1,8 +1,11 @@
 .avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  &--small {
+    height: 48px;
+    width: 48px;
+  }
   &__image {
-    &--small {
-      height: 48px;
-      width: 48px;
-    }
+
   }
 }

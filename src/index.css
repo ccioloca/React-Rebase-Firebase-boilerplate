@@ -750,16 +750,24 @@ textarea {
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px; }
+  .l-container--medium {
+    max-width: 960px; }
+  .l-container--small {
+    max-width: 500px; }
+  .l-container--condensed {
+    padding-left: 0;
+    padding-right: 0; }
 
-.l-container--medium {
-  max-width: 960px; }
+.o-img-responsive {
+  width: 100%;
+  height: auto; }
 
-.l-container--small {
-  max-width: 500px; }
-
-.l-container--condensed {
-  padding-left: 0;
-  padding-right: 0; }
+.avatar {
+  border-radius: 50%;
+  overflow: hidden; }
+  .avatar--small {
+    height: 48px;
+    width: 48px; }
 
 .t-selectable {
   user-select: text; }

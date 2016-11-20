@@ -8,7 +8,7 @@ const AuthenticatedNavigation = ({photoURL}) => {
         <button type="button" className="btn--unstyled user-dropdown__header">
           <div className="user-dropdown__wrapper">
             <div className="user-dropdown__label">Paul Hayes</div>
-            <Avatar photoURL={photoURL} size={'50px'}/>
+            <Avatar photoURL={photoURL} size={'small'}/>
           </div>
         </button>
         <div className="dd-menu-items">
