@@ -2,12 +2,12 @@ import React from 'react'
 import UserDropdown from './UserDropdown'
 import PublicNavigation from './PublicNavigation'
 import Container from '../../layout/Container'
-import UserBreadcrumbs from '../Breadcrumbs'
+import UserBreadcrumbs from './UserBreadcrumbs'
 
 const Header = (props) => {
+    const {hasUser, firebaseUser} = props
+    const renderNavigation = hasUser ? <UserDropdown firebaseUser={firebaseUser}/> : <PublicNavigation />
 
-    const renderNavigation = props.hasUser ? <UserDropdown photoURL={props.photoURL}/> : <PublicNavigation />
-    console.log(props)
     return (
         props.loading
         ? null

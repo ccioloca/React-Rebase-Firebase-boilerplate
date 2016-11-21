@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Avatar from '../Avatar'
+import base from '../../../rebase.config.js'
+import { browserHistory } from 'react-router'
 
 class UserDropdown extends Component {
 
@@ -9,28 +11,53 @@ class UserDropdown extends Component {
     this.state = {
       isOpen: false
     }
+    this.bound_clicked = this._clicked.bind(this);
   }
 
   _toggleDropdown() {
-    this.setState({isOpen: !this.state.isOpen})
+    let isOpen = !this.state.isOpen;
+    this.setState({ isOpen })
+    if (isOpen) {
+      window.addEventListener("click", this.bound_clicked, true)
+    } else {
+      window.removeEventListener("click", this.bound_clicked, true)
+    }
+  }
+
+  _clicked(e) {
+    if (e.srcElement !== 'div.user-dropdown__wrapper' && this.state.isOpen) {
+      window.removeEventListener("click", this.clicked, true);
+      this.setState({isOpen: false})
+    }
+  }
+
+  _logout() {
+    base.auth().signOut()
+    browserHistory.push('Login')
   }
 
   render() {
+
+    const {firebaseUser} = this.props
     const isOpen = this.state.isOpen ? 'is-visible' : 'is-hidden'
+
     return (
       <div className="user-dropdown">
         <button type="button"
                 className="btn--unstyled user-dropdown__header"
                 onClick={ this._toggleDropdown.bind(this) }>
           <div className="user-dropdown__wrapper">
-            <div className="user-dropdown__label">Paul Hayes</div>
-            <Avatar photoURL={this.props.photoURL} size={'small'}/>
+            <div className="user-dropdown__label">{firebaseUser.displayName}</div>
+            <Avatar photoURL={firebaseUser.photoURL} size={'small'}/>
           </div>
         </button>
         <div className={`user-dropdown__items ${isOpen}`}>
           <ul className="user-dropdown__items-list">
             <li className="user-dropdown__item">
-              <Link className="user-dropdown__link" to="/logout">Logout</Link>
+              <Link to="profile">My Profile</Link>
+            </li>
+            <li className="user-dropdown__item-logout">
+              <button className="user-dropdown__btn-logout btn--unstyled" onClick={this._logout.bind(this)}>Logout</button>
             </li>
           </ul>
         </div>

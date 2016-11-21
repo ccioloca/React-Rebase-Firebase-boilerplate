@@ -10,14 +10,14 @@ class App extends Component {
         this.state = {
             hasUser: false,
             loading: true,
-            photoURL: null
+            firebaseUser: null
         }
     }
 
     componentWillMount() {
         const authDataCallback = (user) => {
             if (user) {
-                if (user.emailVerified) this.setState({hasUser: true, loading: false, photoURL: user.photoURL})
+                if (user.emailVerified) this.setState({hasUser: true, loading: false, firebaseUser: user})
             } else {
                 this.setState({hasUser: false, loading: false})
             }
@@ -32,9 +32,10 @@ class App extends Component {
     }
 
     render() {
+        const {loading, hasUser, firebaseUser} = this.state
         return (
             <div>
-                <Header hasUser={this.state.hasUser} loading={this.state.loading} photoURL={this.state.photoURL}/>
+                <Header hasUser={hasUser} loading={loading} firebaseUser={firebaseUser}/>
                 <Container size={'medium'}>
                     {this.props.children}
                 </Container>
