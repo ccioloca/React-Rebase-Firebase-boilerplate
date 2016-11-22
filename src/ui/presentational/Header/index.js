@@ -1,12 +1,12 @@
 import React from 'react'
-import UserDropdown from './UserDropdown'
+import Dropdown from '../../containers/Dropdown'
 import PublicNavigation from './PublicNavigation'
 import Container from '../../layout/Container'
-import UserBreadcrumbs from './UserBreadcrumbs'
 
 const Header = (props) => {
-    const {hasUser, firebaseUser, logout} = props
-    const renderNavigation = hasUser ? <UserDropdown firebaseUser={firebaseUser} logout={logout}/> : <PublicNavigation />
+
+    const { hasUser, firebaseUser, logout } = props
+    const renderNavigation = hasUser ? <Dropdown firebaseUser={firebaseUser} logout={logout}/> : <PublicNavigation />
 
     return (
         props.loading
@@ -41,3 +41,9 @@ const Header = (props) => {
 }
 
 export default Header
+
+Header.propTypes = {
+  hasUser: React.PropTypes.bool,
+  firebaseUser: React.PropTypes.object,
+  logout: React.PropTypes.func
+}

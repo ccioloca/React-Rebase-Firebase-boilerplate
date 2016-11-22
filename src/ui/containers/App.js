@@ -21,6 +21,7 @@ class App extends Component {
                 if (user.emailVerified) this.setState({hasUser: true, loading: false, firebaseUser: user})
             } else {
                 this.setState({hasUser: false, loading: false})
+                browserHistory.replace('/login')
             }
         }
         // Listen to authentication
@@ -35,11 +36,13 @@ class App extends Component {
     onLogoutClicked(event) {
       base.auth().signOut()
       this.setState({hasUser: false})
-      browserHistory.push('/login')
+      browserHistory.replace('/login')
     }
 
     render() {
-        const {loading, hasUser, firebaseUser} = this.state
+
+        const { loading, hasUser, firebaseUser } = this.state
+
         return (
             <div>
                 <Header hasUser={hasUser} loading={loading} firebaseUser={firebaseUser} logout={ () => this.onLogoutClicked() }/>

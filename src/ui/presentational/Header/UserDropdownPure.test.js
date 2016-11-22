@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UserDropdown from './UserDropdown';
+import UserDropdownPure from './UserDropdownPure';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<UserDropdown />, div);
+  ReactDOM.render(<UserDropdownPure />, div);
 });
