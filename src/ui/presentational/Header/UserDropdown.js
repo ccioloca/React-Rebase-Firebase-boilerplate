@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Avatar from '../Avatar'
 import base from '../../../rebase.config.js'
-import { browserHistory } from 'react-router'
 
 class UserDropdown extends Component {
 
@@ -31,21 +30,16 @@ class UserDropdown extends Component {
     }
   }
 
-  _logout() {
-    base.auth().signOut()
-    browserHistory.push('Login')
-  }
-
   render() {
 
-    const {firebaseUser} = this.props
+    const {firebaseUser, logout} = this.props
     const isOpen = this.state.isOpen ? 'is-visible' : 'is-hidden'
 
     return (
       <div className="user-dropdown">
         <button type="button"
                 className="btn--unstyled user-dropdown__header"
-                onClick={ this._toggleDropdown.bind(this) }>
+                onClick={logout}>
           <div className="user-dropdown__wrapper">
             <div className="user-dropdown__label">{firebaseUser.displayName}</div>
             <Avatar photoURL={firebaseUser.photoURL} size={'small'}/>
@@ -57,7 +51,7 @@ class UserDropdown extends Component {
               <Link to="profile">My Profile</Link>
             </li>
             <li className="user-dropdown__item-logout">
-              <button className="user-dropdown__btn-logout btn--unstyled" onClick={this._logout.bind(this)}>Logout</button>
+              <button className="user-dropdown__btn-logout btn--unstyled" onClick={logout}>Logout</button>
             </li>
           </ul>
         </div>

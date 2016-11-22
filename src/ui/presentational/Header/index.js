@@ -5,8 +5,8 @@ import Container from '../../layout/Container'
 import UserBreadcrumbs from './UserBreadcrumbs'
 
 const Header = (props) => {
-    const {hasUser, firebaseUser} = props
-    const renderNavigation = hasUser ? <UserDropdown firebaseUser={firebaseUser}/> : <PublicNavigation />
+    const {hasUser, firebaseUser, logout} = props
+    const renderNavigation = hasUser ? <UserDropdown firebaseUser={firebaseUser} logout={logout}/> : <PublicNavigation />
 
     return (
         props.loading

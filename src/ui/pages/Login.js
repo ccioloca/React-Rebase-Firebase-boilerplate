@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import OAuthLogin from '../container/OAuthLogin'
+import OAuthLogin from '../containers/OAuthLogin'
 import EmailLogin from '../forms/EmailLogin'
 
 class Login extends Component {

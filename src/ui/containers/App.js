@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Container from '../layout/Container'
 import Header from '../presentational/Header'
 import base from '../../rebase.config.js'
+import { browserHistory } from 'react-router'
 
 class App extends Component {
 
@@ -31,11 +32,17 @@ class App extends Component {
         this.unsubscribeToAuthListener()
     }
 
+    onLogoutClicked(event) {
+      base.auth().signOut()
+      this.setState({hasUser: false})
+      browserHistory.push('/login')
+    }
+
     render() {
         const {loading, hasUser, firebaseUser} = this.state
         return (
             <div>
-                <Header hasUser={hasUser} loading={loading} firebaseUser={firebaseUser}/>
+                <Header hasUser={hasUser} loading={loading} firebaseUser={firebaseUser} logout={ () => this.onLogoutClicked() }/>
                 <Container size={'medium'}>
                     {this.props.children}
                 </Container>

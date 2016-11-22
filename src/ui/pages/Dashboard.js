@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Container from '../container/Messages';
+import Container from '../containers/Messages';
 import NewChat from '../forms/NewChat';
 import base from '../../rebase.config.js';
 import { Row, Col } from 'react-bootstrap';
