@@ -42,6 +42,7 @@ class App extends Component {
     render() {
 
         const { loading, hasUser, firebaseUser } = this.state
+        console.log(firebaseUser)
 
         return (
             <div>

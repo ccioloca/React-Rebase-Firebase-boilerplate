@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Avatar = (props) => {
+const AnonymousAvatar = (props) => {
+    const { size } = props
     return (
-      <svg height="48" width="48">
-        <rect fill="#a0d36a" x="0" y="0" height={props.size} width={props.size}></rect>
+      <svg className={`avatar-svg avatar-svg--${size}`}>
+        <rect fill="#a0d36a" x="0" y="0" className={`avatar-svg__rect avatar-svg__rect--${size}`}></rect>
         <text
         fill="#ffffff"
         font-size="12"
@@ -14,4 +15,8 @@ const Avatar = (props) => {
     )
 }
 
-export default Avatar
+export default AnonymousAvatar
+
+AnonymousAvatar.propTypes = {
+  size: React.PropTypes.string
+}

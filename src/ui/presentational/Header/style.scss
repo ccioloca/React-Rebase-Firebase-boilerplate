@@ -1,6 +1,9 @@
+$headerColor: $blue;
+$textColor: $white;
+
 .header {
-  background: $blue;
-  color: $white;
+  background: $headerColor;
+  color: $textColor;
 
   &__container {
     display: flex;
@@ -25,10 +28,19 @@
     font-size: 1rem;
     line-height: 1;
   }
+  &__left {
+    a {
+      color: $textColor;
+    }
+  }
 
   &__right {
+    min-width: 130px;
+    @include breakpoint(mobile) {
+      min-width: 0;
+    }
     a {
-      color: $white;
+      color: $textColor;
     }
   }
 
@@ -40,21 +52,11 @@
   }
 }
 
-.breadcrumbs {
-  margin-left: 1rem;
-  display: inline-block;
-
-  &__item {
-    display: inline-block;;
-  }
-}
-
 .user-dropdown {
     position: relative;
-
-  &__header {
-    position: relative;
-  }
+    @include breakpoint(mobile) {
+      position: initial;
+    }
 
   &__wrapper {
     display: flex;
@@ -65,31 +67,17 @@
   &__label {
     display: inline-block;
     margin-right: 1rem;
+    @include breakpoint(mobile) {
+      display:none;
+    }
   }
 
   &__wrapper .avatar {
     display: inline-block;
   }
 
-  &__items {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    margin-top: 0.5rem;
-  }
-
-  &__items-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 1px 2px rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-  }
-
   &__item a {
-    background: color(black);
+    background: $headerColor;
     display: block;
     padding: 1rem 0;
     width: 100%;
@@ -97,20 +85,34 @@
     cursor: pointer;
     &:hover,
     &:active {
-      background: lighten(color(black),10%);
+      background: lighten($headerColor,10%);
       text-decoration: none;
     }
   }
 
   &__btn-logout {
-    background: color(black);
+    background: $headerColor;
     display: block;
     padding: 1rem 0;
     width: 100%;
     text-align: center;
     &:hover,
     &:active {
-      background: lighten(color(black),10%);
+      background: lighten($headerColor,10%);
     }
   }
+}
+
+.dd-menu-items {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-top: 0.5rem;
+}
+
+.dd-items-center {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

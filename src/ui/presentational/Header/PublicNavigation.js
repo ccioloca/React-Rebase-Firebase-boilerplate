@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router'
+import Text from './translations'
 
 const PublicNavigation = () => {
     return (
       <div className="header__public-links-wrapper">
         <Link className="header__public-link" to="/login">
-          Login
+          {Text.en.login}
         </Link>
         <Link className="header__public-link header__public-link--last" to="/register">
-          Signup
+          {Text.en.signUp}
         </Link>
       </div>
     )

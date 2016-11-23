@@ -1,34 +1,33 @@
 import React from 'react'
-import Dropdown from '../../containers/Dropdown'
+import Dropdown from './Dropdown'
 import PublicNavigation from './PublicNavigation'
 import Container from '../../layout/Container'
+import {Link} from 'react-router'
+import Text from './translations'
 
-const Header = (props) => {
+const Header = ({ hasUser, firebaseUser, logout, loading }) => {
 
-    const { hasUser, firebaseUser, logout } = props
     const renderNavigation = hasUser ? <Dropdown firebaseUser={firebaseUser} logout={logout}/> : <PublicNavigation />
+    const brandLink = hasUser ? 'dashboard' : 'index'
 
     return (
-        props.loading
+        loading
         ? null
         : <header className='header'>
             <Container>
               <nav className="header__navigation">
                 <div className='header__container'>
                   <div className='header__left'>
-                    <div className="header__logo">
-                      <svg width="48" height="48">
-                        <circle className="header__circle" cx="25" cy="25" r="20" strokeWidth="4" />
-                      </svg>
-                    </div>
-                    <div className="header__brand">
-                        Re-base Boilerplate
-                    </div>
-                    <div className="breadcrumbs">
-                      <span className="breadcrumbs__item ">
-                        test breadcrumb
-                      </span>
-                    </div>
+                    <Link to={brandLink}>
+                      <div className="header__logo">
+                        <svg width="48" height="48">
+                          <circle className="header__circle" cx="25" cy="25" r="20" strokeWidth="4" />
+                        </svg>
+                      </div>
+                      <div className="header__brand">
+                          {Text.en.brandName}
+                      </div>
+                    </Link>
                   </div>
                   <div className='header__right'>
                     {renderNavigation}
@@ -43,7 +42,8 @@ const Header = (props) => {
 export default Header
 
 Header.propTypes = {
-  hasUser: React.PropTypes.bool,
+  hasUser: React.PropTypes.bool.isRequired,
   firebaseUser: React.PropTypes.object,
-  logout: React.PropTypes.func
+  logout: React.PropTypes.func.isRequired,
+  loading: React.PropTypes.bool.isRequired
 }

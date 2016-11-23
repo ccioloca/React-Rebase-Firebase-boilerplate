@@ -2,10 +2,10 @@ import React from 'react'
 import Loading from 'react-loading'
 import Center from '../layout/Center'
 
-const LoadingAnimation = (props) => {
+const LoadingAnimation = ({height}) => {
 
     return (
-        <Center height={props.height}
+        <Center height={height}
                 width='100%'>
             <Loading type='spinningBubbles'
                      color='#6CA6CD' />
@@ -14,3 +14,7 @@ const LoadingAnimation = (props) => {
 }
 
 export default LoadingAnimation
+
+LoadingAnimation.propTypes = {
+  height: React.PropTypes.string.isRequired
+}
