@@ -5,9 +5,9 @@ import Container from '../../layout/Container'
 import {Link} from 'react-router'
 import Text from './translations'
 
-const Header = ({ hasUser, firebaseUser, logout, loading }) => {
-
-    const renderNavigation = hasUser ? <Dropdown firebaseUser={firebaseUser} logout={logout}/> : <PublicNavigation />
+const Header = (props, context) => {
+    const {hasUser, loading} = context
+    const renderNavigation = hasUser ? <Dropdown /> : <PublicNavigation />
     const brandLink = hasUser ? 'dashboard' : 'index'
 
     return (
@@ -41,9 +41,7 @@ const Header = ({ hasUser, firebaseUser, logout, loading }) => {
 
 export default Header
 
-Header.propTypes = {
+Header.contextTypes = {
   hasUser: React.PropTypes.bool.isRequired,
-  firebaseUser: React.PropTypes.object,
-  logout: React.PropTypes.func.isRequired,
   loading: React.PropTypes.bool.isRequired
 }

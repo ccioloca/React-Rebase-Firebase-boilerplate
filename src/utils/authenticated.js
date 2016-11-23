@@ -1,6 +1,6 @@
 import base from '../rebase.config.js'
 
-const requireAuth = (nextState, replace) => {
+export const requireAuth = (nextState, replace) => {
 
     if(null === base.auth().currentUser || false === base.auth().currentUser.emailVerified ) {
         replace({
@@ -10,5 +10,3 @@ const requireAuth = (nextState, replace) => {
     }
 
 }
-
-export default requireAuth

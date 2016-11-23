@@ -4,5 +4,5 @@ import UserButton from './UserButton';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<UserButton />, div);
+  ReactDOM.render(<UserButton onClick={Function} displayName={'string'} />, div);
 });

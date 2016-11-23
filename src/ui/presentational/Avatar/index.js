@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Avatar = ({photoURL, size}) => {
+const Avatar = ({size}, context) => {
+    const photoURL = context.firebaseUser.photoURL
     return (
             <div className={`avatar avatar--${size}`}>
                 <img  src={photoURL}
@@ -13,6 +14,9 @@ const Avatar = ({photoURL, size}) => {
 export default Avatar
 
 Avatar.propTypes = {
-  size: React.PropTypes.string.isRequired,
-  photoURL: React.PropTypes.string.isRequired
+  size: React.PropTypes.string.isRequired
+}
+
+Avatar.contextTypes = {
+  firebaseUser: React.PropTypes.object
 }

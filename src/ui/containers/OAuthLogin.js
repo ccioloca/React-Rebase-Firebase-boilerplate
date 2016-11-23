@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import base from '../../rebase.config.js'
-import { Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import LoadingAnimation from '../presentational/LoadingAnimation'
 
@@ -45,10 +44,9 @@ class OAuthLogin extends Component {
         const providers = ['google', 'twitter', 'facebook', 'github']
         const loginButtons = providers.map( (provider, index) => {
             return (
-                    <Button   key={index}
+                    <button   key={index}
                               onClick={() => this._loginWithOAuthRedirect(provider)}
-                              bsSize="large"
-                              className='btn btn-primary'>Login With {provider}</Button>
+                              className='btn--unstyled'>Login With {provider}</button>
             )
         })
         return loginButtons

@@ -2,8 +2,9 @@ import React from 'react'
 import Avatar from '../Avatar'
 import Text from './translations'
 
-const UserButton = ({ onClick, displayName, photoURL }) => {
-
+const UserButton = ({ onClick }, context) => {
+  const {firebaseUser} = context
+  const {displayName, photoURL} = firebaseUser
   const label = displayName ? displayName : Text.en.anonymous
 
   return (
@@ -21,8 +22,10 @@ const UserButton = ({ onClick, displayName, photoURL }) => {
 
 export default UserButton
 
+UserButton.contextTypes = {
+  firebaseUser: React.PropTypes.object
+}
+
 UserButton.propTypes = {
-  displayName: React.PropTypes.string,
-  photoURL: React.PropTypes.string,
   onClick: React.PropTypes.func.isRequired
 }

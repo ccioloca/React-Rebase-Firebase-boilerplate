@@ -6,8 +6,8 @@ import { Row, Col } from 'react-bootstrap';
 import { Block } from 'jsxstyle';
 
 class Dashboard extends Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {
       messages: []
     };
@@ -25,11 +25,12 @@ class Dashboard extends Component {
     });
   }
   render(){
+    const { messages } = this.state
     return (
         <Block>
             <Row>
               <Col xs={12}>
-                <NewChat chats={ this.state.messages } />
+                <NewChat chats={ messages } />
               </Col>
             </Row>
             <Row>

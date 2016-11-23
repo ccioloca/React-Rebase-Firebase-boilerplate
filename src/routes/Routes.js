@@ -7,7 +7,7 @@ import Login from "../ui/pages/Login"
 import Dashboard from '../ui/pages/Dashboard'
 import Register from '../ui/pages/Register'
 
-import requireAuth from '../utils/authenticated'
+import { requireAuth } from '../utils/authenticated'
 
 const Routes =  (props) => {
     return (
@@ -17,7 +17,7 @@ const Routes =  (props) => {
                 <Route path="login" component={Login} name="Login" />
                 <Route path="register" component={Register} name="Register" />
                 <Route path="dashboard" component={Dashboard} onEnter={requireAuth} name="Dashboard"/>
-                <Route path="*" component={Index} name="404: No Match for route"/>
+                <Route path="*" component={Index} name="404: No Match for route" />
             </Route>
         </Router>
     )

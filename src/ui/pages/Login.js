@@ -17,7 +17,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <OAuthLogin loading={ this.state.loading } switchLoadingState={ () => this._switchLoadingState() }/>
+                <OAuthLogin loading={ this.state.loading } switchLoadingState={() => this._switchLoadingState() }/>
                 <EmailLogin loading={ this.state.loading } />
             </div>
         )

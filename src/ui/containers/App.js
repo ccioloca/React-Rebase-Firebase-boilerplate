@@ -39,16 +39,24 @@ class App extends Component {
       browserHistory.replace('/login')
     }
 
-    render() {
+    // Define how the context looks like
+    getChildContext() {
+      return {
+       hasUser: this.state.hasUser,
+       firebaseUser: this.state.firebaseUser,
+       logout: this.onLogoutClicked.bind(this),
+       loading: this.state.loading
+      }
+    }
 
-        const { loading, hasUser, firebaseUser } = this.state
-        console.log(firebaseUser)
+    render() {
+        const { children } = this.props
 
         return (
             <div>
-                <Header hasUser={hasUser} loading={loading} firebaseUser={firebaseUser} logout={ () => this.onLogoutClicked() }/>
+                <Header />
                 <Container size={'medium'}>
-                    {this.props.children}
+                    {children}
                 </Container>
             </div>
         )
@@ -60,3 +68,10 @@ App.propTypes = {
 }
 
 export default App
+
+App.childContextTypes = {
+     hasUser: React.PropTypes.bool.isRequired,
+     firebaseUser: React.PropTypes.object,
+     loading: React.PropTypes.bool.isRequired,
+     logout: React.PropTypes.func.isRequired
+}

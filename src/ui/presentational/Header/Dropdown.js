@@ -21,15 +21,19 @@ class Dropdown extends Component {
   }
 
   render() {
-    const {firebaseUser, logout} = this.props
+    const _displayName = this.context.firebaseUser.displayName
+    const _photoURL = this.context.firebaseUser.photoURL
+    const displayName = _displayName
+    const photoURL = _photoURL
     const {isMenuOpen} = this.state
+    const {logout} = this.context
 
     let menuOptions = {
       isOpen: isMenuOpen,
       close: this.close.bind(this),
       toggle: <UserButton onClick={this.toggle.bind(this)}
-                          displayName={firebaseUser.displayName}
-                          photoURL={firebaseUser.photoURL}/>
+                          displayName={displayName}
+                          photoURL={photoURL}/>
     }
 
     return (
@@ -48,7 +52,7 @@ class Dropdown extends Component {
 
 export default Dropdown
 
-Dropdown.propTypes = {
-  firebaseUser: React.PropTypes.object.isRequired,
+Dropdown.contextTypes = {
+  firebaseUser: React.PropTypes.object,
   logout: React.PropTypes.func.isRequired
 }

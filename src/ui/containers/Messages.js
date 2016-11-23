@@ -75,7 +75,8 @@ class Messages extends Component {
     });
   }
   render(){
-    const messages = this.state.messages.map( (item, index) => {
+    const { messages} = this.state
+    const mappedMessages = messages.map( (item, index) => {
       return (
         <Message
           thread={ item }
@@ -86,12 +87,13 @@ class Messages extends Component {
       );
     });
 
+
     return (
         this.state.loading
-        ? <LoadingAnimation />
+        ? <LoadingAnimation height='auto'/>
         : <div>
-            <h1>{ (this.state.messages.length || 0) + ' messages' }</h1>
-            <ul>{ messages }</ul>
+            <h1>{ (messages.length || 0) + ' messages' }</h1>
+            <ul>{ mappedMessages }</ul>
           </div>
     );
   }
