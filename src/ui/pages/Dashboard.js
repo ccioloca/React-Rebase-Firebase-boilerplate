@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Container from '../containers/Messages';
+import Messages from '../containers/Messages';
 import NewChat from '../forms/NewChat';
 import base from '../../rebase.config.js';
 import { Row, Col } from 'react-bootstrap';
@@ -35,7 +35,7 @@ class Dashboard extends Component {
             </Row>
             <Row>
                 <Col xs={12}>
-                    <Container />
+                    <Messages />
                 </Col>
             </Row>
         </Block>
