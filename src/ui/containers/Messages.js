@@ -4,7 +4,7 @@ import base from '../../rebase.config.js';
 import LoadingAnimation from '../presentational/LoadingAnimation';
 import Center from '../layout/Center'
 
-import NewChat from '../forms/NewChat';
+import NewChat from './NewChat';
 
 class Messages extends Component {
   constructor(props){

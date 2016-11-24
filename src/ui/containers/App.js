@@ -40,7 +40,7 @@ class App extends Component {
             <div>
                 <Header hasUser={hasUser} loading={loading}/>
                 <Container size={'medium'}>
-                    {children}
+                    { React.cloneElement(children, { hasUser: this.state.hasUser }) }
                 </Container>
             </div>
         )
