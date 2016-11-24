@@ -5,6 +5,7 @@ import App from './ui/containers/App'
 import Index from "./ui/pages/Index"
 import Login from "./ui/pages/Login"
 import Dashboard from './ui/pages/Dashboard'
+import Profile from './ui/pages/Profile'
 
 import { requireAuth } from './utils/authenticated'
 
@@ -15,6 +16,7 @@ const Routes =  (props) => {
                 <IndexRoute component={Index} name="Home" />
                 <Route path="login" component={Login} name="Login" />
                 <Route path="dashboard" component={Dashboard} onEnter={requireAuth} name="Dashboard"/>
+                <Route path="profile" component={Profile} onEnter={requireAuth} name="Profile"/>
                 <Route path="*" component={Index} name="404: No Match for route" />
             </Route>
         </Router>
