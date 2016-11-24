@@ -16,9 +16,22 @@ class Dropdown extends Component {
   }
 
   componentWillMount() {
-    const displayName = base.auth().currentUser.displayName
-    const photoURL = base.auth().currentUser.photoURL
-    this.setState({displayName, photoURL})
+      const authDataCallback = (user) => {
+          if (user) {
+              const {displayName, photoURL} = user
+              if (user.emailVerified) this.setState({displayName, photoURL})
+          } else {
+              this.setState({hasUser: false, loading: false})
+              browserHistory.replace('/login')
+          }
+      }
+      // Listen to authentication
+      this.unsubscribeToAuthListener = base.onAuth(authDataCallback)
+  }
+
+  componentWillUnmount() {
+      //to remove auth listener
+      this.unsubscribeToAuthListener()
   }
 
   toggle() {

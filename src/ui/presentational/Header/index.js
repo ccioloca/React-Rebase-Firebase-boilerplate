@@ -42,6 +42,6 @@ const Header = ({hasUser, loading}) => {
 export default Header
 
 Header.propTypes = {
-  loading: React.PropTypes.bool.isRequired,
-  hasUser: React.PropTypes.bool.isRequired
+  loading: React.PropTypes.bool,
+  hasUser: React.PropTypes.bool
 }
