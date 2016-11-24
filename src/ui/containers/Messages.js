@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Message from '../presentational/Message';
 import base from '../../rebase.config.js';
 import LoadingAnimation from '../presentational/LoadingAnimation';
+import Center from '../layout/Center'
+
+import NewChat from '../forms/NewChat';
 
 class Messages extends Component {
   constructor(props){
@@ -90,10 +93,12 @@ class Messages extends Component {
 
     return (
         this.state.loading
-        ? <LoadingAnimation height='auto'/>
+        ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
-            <h1>{ (messages.length || 0) + ' messages' }</h1>
-            <ul>{ mappedMessages }</ul>
+              <NewChat chats={ messages } />
+              <div>
+                <ul>{ mappedMessages }</ul>
+              </div>
           </div>
     );
   }

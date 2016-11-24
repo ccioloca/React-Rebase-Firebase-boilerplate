@@ -4,5 +4,5 @@ import Avatar from '../Avatar'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Avatar size={'string'}  />, div)
+  ReactDOM.render(<Avatar photoURL={'string'} size={'string'}  />, div)
 });

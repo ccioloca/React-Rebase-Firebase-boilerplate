@@ -14,6 +14,6 @@ const Avatar = ({size, photoURL}) => {
 export default Avatar
 
 Avatar.propTypes = {
-  size: React.PropTypes.string.isRequired,
-  photoURL: React.PropTypes.string.isRequired
+  size: React.PropTypes.string,
+  photoURL: React.PropTypes.string
 }

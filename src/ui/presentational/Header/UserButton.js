@@ -22,7 +22,7 @@ const UserButton = ({ onClick, displayName, photoURL}) => {
 export default UserButton
 
 UserButton.propTypes = {
-  onClick: React.PropTypes.func.isRequired,
-  displayName: React.PropTypes.string.isRequired,
-  photoURL: React.PropTypes.string.isRequired
+  onClick: React.PropTypes.func,
+  displayName: React.PropTypes.string,
+  photoURL: React.PropTypes.string
 }
