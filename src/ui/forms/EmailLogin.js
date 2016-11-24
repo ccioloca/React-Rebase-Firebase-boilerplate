@@ -25,7 +25,7 @@ class EmailLogin extends Component {
             if(error) this.setState({error: error.message})
             if(user) {
               if (user.emailVerified) {
-                  browserHistory.push('/dashboard')
+                  browserHistory.replace('/dashboard')
               } else {
                   this.setState({error: 'Please verify your email'})
               }
@@ -38,7 +38,7 @@ class EmailLogin extends Component {
     }
 
     _navigateToSignupPage() {
-        browserHistory.push('/register')
+        browserHistory.replace('/register')
     }
 
     render() {

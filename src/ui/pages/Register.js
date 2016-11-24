@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router'
 class Register extends Component {
 
     componentWillMount() {
-        if ( this._isLoggedIn() ) browserHistory.push('/dashboard')
+        if ( this._isLoggedIn() ) browserHistory.replace('/dashboard')
     }
 
     _isLoggedIn() {

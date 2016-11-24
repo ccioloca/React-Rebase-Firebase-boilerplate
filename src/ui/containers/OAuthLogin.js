@@ -9,14 +9,14 @@ class OAuthLogin extends Component {
 
         const onRedirectBack = function(error, authData){
             if(error) console.log(error)
-            if(authData.user) browserHistory.push('/dashboard')
+            if(authData.user) browserHistory.replace('/dashboard')
         }
 
         base.authGetOAuthRedirectResult(onRedirectBack)
 
         this.authListener = base.auth().onAuthStateChanged(firebaseUser => {
             if (firebaseUser !== null && firebaseUser.emailVerified === true) {
-                browserHistory.push('/dashboard')
+                browserHistory.replace('/dashboard')
             } else {
                 this.props.switchLoadingState()
             }
