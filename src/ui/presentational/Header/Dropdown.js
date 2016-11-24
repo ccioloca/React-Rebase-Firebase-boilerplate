@@ -9,8 +9,16 @@ class Dropdown extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        isMenuOpen: false
+        isMenuOpen: false,
+        displayName: null,
+        photoURL: null
       }
+  }
+
+  componentWillMount() {
+    const displayName = base.auth().currentUser.displayName
+    const photoURL = base.auth().currentUser.photoURL
+    this.setState({displayName, photoURL})
   }
 
   toggle() {
@@ -27,9 +35,8 @@ class Dropdown extends Component {
   }
 
   render() {
-    const {isMenuOpen} = this.state
-    const displayName = base.auth().currentUser.displayName
-    const photoURL = base.auth().currentUser.photoURL
+    const {isMenuOpen, displayName, photoURL} = this.state
+
     console.log(displayName)
 
     let menuOptions = {
