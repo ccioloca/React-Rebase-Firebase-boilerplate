@@ -1,14 +1,14 @@
 import base from '../rebase.config.js'
 
 export const requireAuth = (nextState, replace, cb) => {
-	const unsubscribeToListener = base.onAuth(user => {
-		if (!user) {
-			replace({
-				pathname: '/login',
-				state: { nextPathname: nextState.location.pathname }
-			});
-		}
-		unsubscribeToListener();
-		cb();
-	});
+  const unsubscribeToListener = base.onAuth(user => {
+    if (!user) {
+      replace({
+        pathname: '/login',
+        state: { nextPathname: nextState.location.pathname }
+      });
+    }
+    unsubscribeToListener();
+    cb();
+  });
 }
