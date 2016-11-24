@@ -5,8 +5,8 @@ import Container from '../../layout/Container'
 import {Link} from 'react-router'
 import Text from './translations'
 
-const Header = (props, context) => {
-    const {hasUser, loading} = context
+const Header = ({hasUser, loading}) => {
+
     const renderNavigation = hasUser ? <Dropdown /> : <PublicNavigation />
     const brandLink = hasUser ? 'dashboard' : 'index'
 
@@ -41,7 +41,7 @@ const Header = (props, context) => {
 
 export default Header
 
-Header.contextTypes = {
-  hasUser: React.PropTypes.bool.isRequired,
-  loading: React.PropTypes.bool.isRequired
+Header.propTypes = {
+  loading: React.PropTypes.bool.isRequired,
+  hasUser: React.PropTypes.bool.isRequired
 }

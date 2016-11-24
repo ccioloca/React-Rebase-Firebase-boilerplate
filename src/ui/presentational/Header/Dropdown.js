@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import DropdownMenu from 'react-dd-menu'
 import UserButton from './UserButton'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import Text from './translations'
+import base from '../../../rebase.config.js'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -20,13 +21,16 @@ class Dropdown extends Component {
     this.setState({ isMenuOpen: false })
   }
 
+  logout() {
+    base.unauth()
+    browserHistory.replace('/login')
+  }
+
   render() {
-    const _displayName = this.context.firebaseUser.displayName
-    const _photoURL = this.context.firebaseUser.photoURL
-    const displayName = _displayName
-    const photoURL = _photoURL
     const {isMenuOpen} = this.state
-    const {logout} = this.context
+    const displayName = base.auth().currentUser.displayName
+    const photoURL = base.auth().currentUser.photoURL
+    console.log(displayName)
 
     let menuOptions = {
       isOpen: isMenuOpen,
@@ -43,7 +47,7 @@ class Dropdown extends Component {
         </li>
         <li className="user-dropdown__item-logout">
           <button className="user-dropdown__btn-logout btn--unstyled"
-                  onClick={logout}>{Text.en.logout}</button>
+                  onClick={() => this.logout()}>{Text.en.logout}</button>
         </li>
       </DropdownMenu>
     );
@@ -51,8 +55,3 @@ class Dropdown extends Component {
 }
 
 export default Dropdown
-
-Dropdown.contextTypes = {
-  firebaseUser: React.PropTypes.object,
-  logout: React.PropTypes.func.isRequired
-}

@@ -10,15 +10,14 @@ class App extends Component {
         super(props);
         this.state = {
             hasUser: false,
-            loading: true,
-            firebaseUser: null
+            loading: true
         }
     }
 
     componentWillMount() {
         const authDataCallback = (user) => {
             if (user) {
-                if (user.emailVerified) this.setState({hasUser: true, loading: false, firebaseUser: user})
+                if (user.emailVerified) this.setState({hasUser: true, loading: false})
             } else {
                 this.setState({hasUser: false, loading: false})
                 browserHistory.replace('/login')
@@ -33,28 +32,13 @@ class App extends Component {
         this.unsubscribeToAuthListener()
     }
 
-    onLogoutClicked(event) {
-      base.auth().signOut()
-      this.setState({hasUser: false})
-      browserHistory.replace('/login')
-    }
-
-    // Define how the context looks like
-    getChildContext() {
-      return {
-       hasUser: this.state.hasUser,
-       firebaseUser: this.state.firebaseUser,
-       logout: this.onLogoutClicked.bind(this),
-       loading: this.state.loading
-      }
-    }
-
     render() {
         const { children } = this.props
+        const {hasUser, loading} = this.state
 
         return (
             <div>
-                <Header />
+                <Header hasUser={hasUser} loading={loading}/>
                 <Container size={'medium'}>
                     {children}
                 </Container>
@@ -68,10 +52,3 @@ App.propTypes = {
 }
 
 export default App
-
-App.childContextTypes = {
-     hasUser: React.PropTypes.bool.isRequired,
-     firebaseUser: React.PropTypes.object,
-     loading: React.PropTypes.bool.isRequired,
-     logout: React.PropTypes.func.isRequired
-}
