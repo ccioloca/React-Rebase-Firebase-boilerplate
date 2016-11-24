@@ -776,7 +776,7 @@ textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem; }
+    padding: 1rem 0rem; }
   .header__logo {
     display: inline-block; }
   .header__circle {
@@ -790,13 +790,13 @@ textarea {
     line-height: 1; }
   .header__left a {
     color: #fff; }
-  .header__right {
+  .header__right--has-user {
     min-width: 130px; }
     @media only screen and (max-width: 740px) {
-      .header__right {
+      .header__right--has-user {
         min-width: 0; } }
-    .header__right a {
-      color: #fff; }
+  .header__right a {
+    color: #fff; }
   .header__public-link {
     margin-right: 1rem; }
     .header__public-link--last {

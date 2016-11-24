@@ -19,10 +19,7 @@ class Dropdown extends Component {
       const authDataCallback = (user) => {
           if (user) {
               const {displayName, photoURL} = user
-              if (user.emailVerified) this.setState({displayName, photoURL})
-          } else {
-              this.setState({hasUser: false, loading: false})
-              browserHistory.replace('/login')
+              this.setState({displayName, photoURL})
           }
       }
       // Listen to authentication

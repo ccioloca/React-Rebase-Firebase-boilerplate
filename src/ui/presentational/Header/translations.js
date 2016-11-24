@@ -3,17 +3,13 @@ const Text = {
     brandName: '5,364',
     logout: 'Logout',
     login: 'Login',
-    myProfile: 'My Profile',
-    signUp: 'Sign Up',
-    anonymous: 'Anonymous'
+    myProfile: 'My Profile'
   },
   de: {
     brandName: '5,364',
     logout: 'Abmelden',
     login: 'Anmelden',
-    myProfile: 'Mein Profil',
-    signUp: 'Einschreiben',
-    anonymous: 'Anonym'
+    myProfile: 'Mein Profil'
   }
 }
 

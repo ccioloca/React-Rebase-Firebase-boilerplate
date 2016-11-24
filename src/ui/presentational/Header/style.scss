@@ -9,7 +9,7 @@ $textColor: $white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 1rem 0rem;
   }
 
   &__logo {
@@ -35,9 +35,11 @@ $textColor: $white;
   }
 
   &__right {
-    min-width: 130px;
-    @include breakpoint(mobile) {
-      min-width: 0;
+    &--has-user {
+      min-width: 130px;
+      @include breakpoint(mobile) {
+        min-width: 0;
+      }
     }
     a {
       color: $textColor;

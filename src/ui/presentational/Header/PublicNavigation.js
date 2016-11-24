@@ -8,9 +8,6 @@ const PublicNavigation = () => {
         <Link className="header__public-link" to="/login">
           {Text.en.login}
         </Link>
-        <Link className="header__public-link header__public-link--last" to="/register">
-          {Text.en.signUp}
-        </Link>
       </div>
     )
 }

@@ -9,12 +9,13 @@ const Header = ({hasUser, loading}) => {
 
     const renderNavigation = hasUser ? <Dropdown /> : <PublicNavigation />
     const brandLink = hasUser ? 'dashboard' : 'index'
+    const headerRightHasUserModifier = hasUser ? 'header__right--has-user' : null
 
     return (
         loading
         ? null
         : <header className='header'>
-            <Container>
+            <Container size={'medium'}>
               <nav className="header__navigation">
                 <div className='header__container'>
                   <div className='header__left'>
@@ -29,7 +30,7 @@ const Header = ({hasUser, loading}) => {
                       </div>
                     </Link>
                   </div>
-                  <div className='header__right'>
+                  <div className={`header__right ${headerRightHasUserModifier}`} >
                     {renderNavigation}
                   </div>
                 </div>
