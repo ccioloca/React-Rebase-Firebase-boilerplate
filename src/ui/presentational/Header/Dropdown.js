@@ -50,8 +50,6 @@ class Dropdown extends Component {
   render() {
     const {isMenuOpen, displayName, photoURL} = this.state
 
-    console.log(displayName)
-
     let menuOptions = {
       isOpen: isMenuOpen,
       close: this.close.bind(this),
