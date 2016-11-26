@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OneWhole from './OneWhole';
+import Cell from './Cell';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<OneWhole />, div);
+  ReactDOM.render(<Cell />, div);
 });

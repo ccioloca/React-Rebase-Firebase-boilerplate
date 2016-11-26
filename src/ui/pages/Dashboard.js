@@ -8,7 +8,7 @@ class Dashboard extends Component {
       <Messages />
     )
   }
-  
+
 }
 
 export default Dashboard;

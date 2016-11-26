@@ -10,14 +10,19 @@ class App extends Component {
         super(props);
         this.state = {
             hasUser: false,
-            loading: true
+            loading: true,
+            firebaseUser: null,
+            language: 'en'
         }
     }
 
     componentWillMount() {
         const authDataCallback = (user) => {
             if (user) {
-                if (user.emailVerified) this.setState({hasUser: true, loading: false})
+                this.setState({hasUser: true, loading: false, firebaseUser: user})
+                base.post(`users/${user.uid}`, {
+                  data: { test: 'test' }
+                })
             } else {
                 this.setState({hasUser: false, loading: false})
                 browserHistory.replace('/login')
@@ -33,14 +38,15 @@ class App extends Component {
     }
 
     render() {
+
         const { children } = this.props
-        const {hasUser, loading} = this.state
+        const {hasUser, loading, firebaseUser, language} = this.state
 
         return (
             <div>
-                <Header hasUser={hasUser} loading={loading}/>
+                <Header hasUser={hasUser} loading={loading} language={language}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser: this.state.hasUser }) }
+                    { React.cloneElement(children, { hasUser, firebaseUser, language }) }
                 </Container>
             </div>
         )

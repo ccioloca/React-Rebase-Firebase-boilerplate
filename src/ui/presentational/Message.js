@@ -1,17 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const Message = ({handleClick, show, removeMessage, thread}) => {
+const Message = ({removeMessage, data}) => {
   return (
-    <li
-      onClick={ handleClick }
-      className={ show ? 'bg-warning' : 'bg-info'}>
+    <li>
         <Button
           onClick={ removeMessage }
           bsStyle={'danger'}>X
         </Button>
-          { thread.title }
-          { show && <p> { thread.message } </p> }
+        <p> { data.message } </p>
     </li>
   )
 };
@@ -19,8 +16,6 @@ const Message = ({handleClick, show, removeMessage, thread}) => {
 export default Message
 
 Message.propTypes = {
-  handleClick: React.PropTypes.func.isRequired,
-  show: React.PropTypes.bool,
   removeMessage: React.PropTypes.func.isRequired,
-  thread: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired
 }

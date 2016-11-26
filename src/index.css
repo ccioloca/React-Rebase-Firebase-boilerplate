@@ -762,6 +762,9 @@ textarea {
   width: 100%;
   height: auto; }
 
+body {
+  background-color: #fcfcfa; }
+
 .btn--unstyled {
   background-color: transparent;
   border: 0;
@@ -771,7 +774,7 @@ textarea {
 
 .header {
   background: #005b96;
-  color: #fff; }
+  color: #fcfcfa; }
   .header__container {
     display: flex;
     justify-content: space-between;
@@ -780,7 +783,7 @@ textarea {
   .header__logo {
     display: inline-block; }
   .header__circle {
-    stroke: #fff;
+    stroke: #fcfcfa;
     fill: #6497b1; }
   .header__brand {
     display: inline-block;
@@ -789,14 +792,14 @@ textarea {
     font-size: 1rem;
     line-height: 1; }
   .header__left a {
-    color: #fff; }
+    color: #fcfcfa; }
   .header__right--has-user {
     min-width: 130px; }
     @media only screen and (max-width: 740px) {
       .header__right--has-user {
         min-width: 0; } }
   .header__right a {
-    color: #fff; }
+    color: #fcfcfa; }
   .header__public-link {
     margin-right: 1rem; }
     .header__public-link--last {

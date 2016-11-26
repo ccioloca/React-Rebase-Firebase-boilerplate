@@ -4,7 +4,15 @@ import base from '../../rebase.config.js';
 import { FormGroup, FormControl, Button, ControlLabel} from 'react-bootstrap';
 
 class NewChat extends Component {
-  _newChat(e){
+    constructor(props) {
+     super(props);
+     this.state = {value: ''}
+
+     this.handleChange = this.handleChange.bind(this)
+     this.handleSubmit = this.handleSubmit.bind(this)
+   }
+
+  handleSubmit(e){
     e.preventDefault();
 
     /*
@@ -21,8 +29,7 @@ class NewChat extends Component {
 
     base.post('chats', {
       data: this.props.chats.concat([{
-        title: ReactDOM.findDOMNode(this.refs.title).value,
-        message: ReactDOM.findDOMNode(this.refs.message).value
+        message: this.state.value
       }]),
       context: this,
       /*
@@ -30,27 +37,27 @@ class NewChat extends Component {
        * post has finished.
        */
       then: () => {
-        console.log('POSTED');
+        console.log(this.props.chats)
       }
-    });
+    })
 
-    ReactDOM.findDOMNode(this.refs.message).value = '';
-    ReactDOM.findDOMNode(this.refs.title).value = '';
+    this.setState({value:''})
 
   }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
   render(){
     return (
-        <form onSubmit={ () => this._newChat() }>
-          <FormGroup>
-            <ControlLabel>Title:</ControlLabel>
-            <FormControl type="text" ref='title' placeholder='Title' />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Message:</ControlLabel>
-            <FormControl componentClass="textarea" ref='message' placeholder='Message' />
-          </FormGroup>
-          <Button type='submit' className='btn btn-success'>Submit</Button>
-        </form>
+      <form onSubmit={this.handleSubmit}>
+      <label>
+        Message:
+        <input type="text" value={this.state.value} onChange={this.handleChange} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
     )
   }
 }

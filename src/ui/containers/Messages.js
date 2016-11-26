@@ -35,9 +35,9 @@ class Messages extends Component {
       then: () => {
           this.setState({
             loading: false
-          });
+          })
       }
-    });
+    })
   }
   componentWillUnmount(){
     /*
@@ -49,10 +49,12 @@ class Messages extends Component {
 
     base.removeBinding(this.ref);
   }
-  _removeMessage(index, e){
-    e.stopPropagation();
+  _removeMessage(index){
+
+    console.log('index', index)
     var arr = this.state.messages.concat([]);
     arr.splice(index, 1);
+    console.log('arr', arr);
 
     /*
      * Calling setState here will update the '/chats' ref on our Firebase.
@@ -66,26 +68,14 @@ class Messages extends Component {
       show: null
     });
   }
-  _toggleView(index){
 
-    /*
-     * Because nothing is bound to our 'show' state, calling
-     * setState on 'show' here will do nothing with Firebase,
-     * but simply update our local state like normal.
-     */
-    this.setState({
-      show: index
-    });
-  }
   render(){
     const { messages} = this.state
     const mappedMessages = messages.map( (item, index) => {
       return (
         <Message
-          thread={ item }
-          show={ this.state.show === index }
-          removeMessage={ () => this._removeMessage.bind(this, index) }
-          handleClick={ () => this._toggleView.bind(this, index) }
+          data={ item }
+          removeMessage={ () => this._removeMessage(index) }
           key={ index } />
       );
     });
