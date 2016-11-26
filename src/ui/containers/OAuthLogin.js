@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import base from '../../rebase.config.js'
 import { browserHistory } from 'react-router'
-import LoadingAnimation from '../presentational/LoadingAnimation'
+
+import LoadingAnimation from '../components/LoadingAnimation.js'
 
 class OAuthLogin extends Component {
 

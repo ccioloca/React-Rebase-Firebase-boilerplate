@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import base from '../../rebase.config.js';
-import LoadingAnimation from '../presentational/LoadingAnimation';
+import LoadingAnimation from '../components/LoadingAnimation';
 import Center from '../layout/Center'
 
 

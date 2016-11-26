@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoadingAnimation from './LoadingAnimation';
+import Messages from '../Messages';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<LoadingAnimation height={'string'} />, div);
+  ReactDOM.render(<Messages />, div);
 });

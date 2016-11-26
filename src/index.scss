@@ -18,8 +18,9 @@
 @import "ui/styles/buttons";
 
 // your component styles go here
-@import "ui/presentational/Header/style";
-@import "ui/presentational/Avatar/style";
+@import "ui/components/Header/style";
+@import "ui/components/Avatar/style";
+@import "ui/components/Messages/style";
 
 @import
   "bonescss/3.helpers",

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Message from '../presentational/Message';
-import base from '../../rebase.config.js';
-import LoadingAnimation from '../presentational/LoadingAnimation';
-import Center from '../layout/Center'
+import React, { Component } from 'react'
 
-import NewChat from './NewChat';
+import base from '../../../rebase.config.js'
+import Center from '../../layout/Center'
+import LoadingAnimation from '../LoadingAnimation.js'
+import Message from './Message'
+import NewMessage from './NewMessage'
 
 class Messages extends Component {
   constructor(props){
@@ -18,7 +18,7 @@ class Messages extends Component {
   componentWillMount(){
 
     /*
-     * We bind the 'chats' firebase endopint to our 'messages' state.
+     * We bind the 'messages' firebase endopint to our 'messages' state.
      * Anytime the firebase updates, it will call 'setState' on this component
      * with the new state.
      *
@@ -28,13 +28,18 @@ class Messages extends Component {
      * state to reflect those changes.
      */
 
-    this.ref = base.syncState('chats', {
+    this.ref = base.listenTo('messages', {
       context: this,
       state: 'messages',
       asArray: true,
-      then: () => {
+      queries: {
+        limitToLast: 10,
+
+      },
+      then: (messages) => {
           this.setState({
-            loading: false
+            loading: false,
+            messages: messages
           })
       }
     })
@@ -49,15 +54,14 @@ class Messages extends Component {
 
     base.removeBinding(this.ref);
   }
+
   _removeMessage(index){
 
-    console.log('index', index)
-    var arr = this.state.messages.concat([]);
-    arr.splice(index, 1);
-    console.log('arr', arr);
+    var arr = this.state.messages.concat([])
+    arr.splice(index, 1)
 
     /*
-     * Calling setState here will update the '/chats' ref on our Firebase.
+     * Calling setState here will update the '/messages' ref on our Firebase.
      * Notice that I'm also updating the 'show' state.  Because there is no
      * binding to our 'show' state, it will update the local 'show' state normally,
      * without going to Firebase.
@@ -71,21 +75,22 @@ class Messages extends Component {
 
   render(){
     const { messages} = this.state
-    const mappedMessages = messages.map( (item, index) => {
+    const mappedMessages = messages.map( (data, index) => {
+
       return (
         <Message
-          data={ item }
+          data={ data }
           removeMessage={ () => this._removeMessage(index) }
           key={ index } />
-      );
-    });
+      )
+    })
 
 
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
-              <NewChat chats={ messages } />
+              <NewMessage />
               <div>
                 <ul>{ mappedMessages }</ul>
               </div>
