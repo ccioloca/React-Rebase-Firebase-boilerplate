@@ -4,14 +4,13 @@ import base from '../../../rebase.config.js'
 import Center from '../../layout/Center'
 import LoadingAnimation from '../LoadingAnimation.js'
 import Message from './Message'
-import NewMessage from './NewMessage'
+import NewMessage from '../NewMessage'
 
 class Messages extends Component {
   constructor(props){
     super(props);
     this.state = {
       messages: [],
-      show: null,
       loading: true
     }
   }
@@ -28,20 +27,13 @@ class Messages extends Component {
      * state to reflect those changes.
      */
 
-    this.ref = base.listenTo('messages', {
+    this.ref = base.syncState('messages', {
       context: this,
       state: 'messages',
       asArray: true,
-      queries: {
-        limitToLast: 10,
-
-      },
-      then: (messages) => {
-          this.setState({
-            loading: false,
-            messages: messages
-          })
-      }
+      queries: { limitToLast: 10,
+                  orderByKey: 'reverse'},
+      then: () => { this.setState({loading: false}) }
     })
   }
   componentWillUnmount(){
@@ -68,15 +60,21 @@ class Messages extends Component {
      */
 
     this.setState({
-      messages: arr,
-      show: null
+      messages: arr
     });
+  }
+
+  _setNewMessage(message) {
+    this.setState({ messages: this.state.messages.concat([message])})
   }
 
   render(){
     const { messages} = this.state
-    const mappedMessages = messages.map( (data, index) => {
+    const firebaseUser = base.auth().currentUser
+    const displayName = firebaseUser.displayName
+    const photoURL = firebaseUser.photoURL
 
+    const mappedMessages = messages.map( (data, index) => {
       return (
         <Message
           data={ data }
@@ -85,12 +83,13 @@ class Messages extends Component {
       )
     })
 
-
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
-              <NewMessage />
+              <NewMessage setNewMessage={ this._setNewMessage.bind(this) }
+                          displayName={ displayName }
+                          photoURL={ photoURL }/>
               <div>
                 <ul>{ mappedMessages }</ul>
               </div>

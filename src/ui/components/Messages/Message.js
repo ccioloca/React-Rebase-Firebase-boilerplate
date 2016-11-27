@@ -9,9 +9,10 @@ const Message = ({removeMessage, data}) => {
           onClick={ removeMessage }
           bsStyle={'danger'}>X
         </Button>
-        <img src={data.photoURL} />
+        <img src={data.photoURL} role="presentation" />
         <h3>{ data.displayName }</h3>
         <p>{ data.message }</p>
+        <p>{ data.date }</p>
     </li>
   )
 };

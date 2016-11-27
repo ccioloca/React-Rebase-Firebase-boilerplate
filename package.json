@@ -12,6 +12,7 @@
     "bonescss": "^0.8.4",
     "classnames": "^2.2.5",
     "jsxstyle": "^1.0.1",
+    "moment": "^2.17.0",
     "re-base": "^2.2.0",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.0",
