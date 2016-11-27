@@ -5,7 +5,7 @@ class NewMessage extends Component {
     constructor(props) {
      super(props);
      this.state = {value: ''}
-
+     this.firebaseUser = base.auth().currentUser
      this.handleChange = this.handleChange.bind(this)
      this.handleSubmit = this.handleSubmit.bind(this)
    }
@@ -14,8 +14,7 @@ class NewMessage extends Component {
     e.preventDefault()
     const message = this.state.value
     const date = Date.now()
-    const firebaseUser = base.auth().currentUser
-    const { uid, displayName, photoURL } = firebaseUser
+    const { uid, displayName, photoURL } = this.firebaseUser
 
     if (message) {
       base.push('messages', {

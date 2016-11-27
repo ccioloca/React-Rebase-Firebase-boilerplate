@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import base from '../../../rebase.config.js'
 import LoadingAnimation from '../LoadingAnimation'
 import Center from '../../layout/Center'
+import SelectLanguage from '../SelectLanguage'
 
 
 class UserProfile extends Component {
@@ -13,9 +14,8 @@ class UserProfile extends Component {
     }
   }
   componentWillMount(){
-    const firebaseUser = base.auth().currentUser || {}
-    const {uid} = firebaseUser
-    this.ref = base.syncState('users/' + uid , {
+    const uid = base.auth().currentUser.uid || ''
+    this.ref = base.syncState(`users/${uid}` , {
       context: this,
       state: 'user',
       asArray: true,
@@ -39,6 +39,7 @@ class UserProfile extends Component {
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
+            <SelectLanguage />
             {user}
           </div>
     )

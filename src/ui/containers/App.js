@@ -11,8 +11,7 @@ class App extends Component {
         this.state = {
             hasUser: false,
             loading: true,
-            firebaseUser: null,
-            language: 'en'
+            firebaseUser: null
         }
     }
 
@@ -40,13 +39,13 @@ class App extends Component {
     render() {
 
         const { children } = this.props
-        const {hasUser, loading, firebaseUser, language} = this.state
+        const { hasUser, loading, firebaseUser, language } = this.state
 
         return (
             <div>
                 <Header hasUser={hasUser} loading={loading} language={language}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser, firebaseUser, language }) }
+                    { React.cloneElement(children, { hasUser, firebaseUser }) }
                 </Container>
             </div>
         )

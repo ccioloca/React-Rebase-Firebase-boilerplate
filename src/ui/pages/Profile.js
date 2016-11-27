@@ -10,15 +10,6 @@ class Profile extends Component {
         <Cell type={'l-one-quarter l-mobile-one-whole'}>
         </Cell>
         <Cell type={'l-one-half l-mobile-one-whole'}>
-          My Profile - Load Container probably
-          <h3>Language</h3>
-          <button className='btn--unstyled'>
-            English
-          </button>
-          <button className='btn--unstyled'>
-            German
-          </button>
-          {this.props.language}
           <UserProfile />
         </Cell>
         <Cell type={'l-one-quarter l-mobile-one-whole'}>
