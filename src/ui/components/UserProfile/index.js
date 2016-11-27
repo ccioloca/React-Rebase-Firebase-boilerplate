@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import base from '../../rebase.config.js';
-import LoadingAnimation from '../components/LoadingAnimation';
-import Center from '../layout/Center'
+import React, { Component } from 'react'
+import base from '../../../rebase.config.js'
+import LoadingAnimation from '../LoadingAnimation'
+import Center from '../../layout/Center'
 
 
 class UserProfile extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state = {
       user: [],
       loading: true
     }
   }
   componentWillMount(){
-
-    this.ref = base.syncState('messages', {
+    const firebaseUser = base.auth().currentUser
+    const {uid} = firebaseUser
+    this.ref = base.syncState('users/' + uid , {
       context: this,
       state: 'user',
       asArray: true,
@@ -40,7 +41,7 @@ class UserProfile extends Component {
         : <div>
             {user}
           </div>
-    );
+    )
   }
 }
 

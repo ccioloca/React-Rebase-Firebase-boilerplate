@@ -1,6 +1,6 @@
 import React from 'react'
 import Loading from 'react-loading'
-import Center from '../layout/Center'
+import Center from '../../layout/Center'
 
 const LoadingAnimation = ({height}) => {
 

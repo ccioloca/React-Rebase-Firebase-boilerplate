@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import base from '../../../rebase.config.js'
 import Center from '../../layout/Center'
-import LoadingAnimation from '../LoadingAnimation.js'
+import LoadingAnimation from '../LoadingAnimation'
 import Message from './Message'
 import NewMessage from '../NewMessage'
 

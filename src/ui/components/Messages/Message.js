@@ -1,7 +1,10 @@
-import React from 'react';
-import { button } from 'react-bootstrap';
+import React from 'react'
+import { button } from 'react-bootstrap'
+import moment from 'moment'
 
 const Message = ({removeMessage, data}) => {
+
+  const displayDate = moment(data.date).fromNow()
 
   return (
     <li>
@@ -11,10 +14,10 @@ const Message = ({removeMessage, data}) => {
         <img src={data.photoURL} role="presentation" />
         <h3>{ data.displayName }</h3>
         <p>{ data.message }</p>
-        <p>{ data.date }</p>
+        <p>{ displayDate }</p>
     </li>
   )
-};
+}
 
 export default Message
 

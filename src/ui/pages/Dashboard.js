@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Messages from '../components/Messages';
+import React, { Component } from 'react'
+import Messages from '../components/Messages'
 
 class Dashboard extends Component {
 
@@ -11,4 +11,4 @@ class Dashboard extends Component {
 
 }
 
-export default Dashboard;
+export default Dashboard

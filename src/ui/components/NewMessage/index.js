@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import base from '../../rebase.config.js'
-import moment from 'moment'
+import base from '../../../rebase.config.js'
 
 class NewMessage extends Component {
     constructor(props) {
@@ -14,14 +13,16 @@ class NewMessage extends Component {
   handleSubmit(e) {
     e.preventDefault()
     const message = this.state.value
-    const date = moment().format('MMMM Do YYYY, h:mm:ss a')
+    const date = Date.now()
     const firebaseUser = base.auth().currentUser
     const { uid, displayName, photoURL } = firebaseUser
+
     if (message) {
       base.push('messages', {
         data: {message, uid, displayName, photoURL, date}
       })
     }
+
     this.setState({value: ''})
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
-import UserProfile from '../containers/UserProfile'
+import UserProfile from '../components/UserProfile'
 
 class Profile extends Component {
   render() {
