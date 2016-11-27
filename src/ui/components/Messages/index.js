@@ -70,7 +70,7 @@ class Messages extends Component {
 
   render(){
     const { messages} = this.state
-    const firebaseUser = base.auth().currentUser
+    const firebaseUser = base.auth().currentUser || {displayName: '', photoURL: ''}
     const displayName = firebaseUser.displayName
     const photoURL = firebaseUser.photoURL
 

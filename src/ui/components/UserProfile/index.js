@@ -13,7 +13,7 @@ class UserProfile extends Component {
     }
   }
   componentWillMount(){
-    const firebaseUser = base.auth().currentUser
+    const firebaseUser = base.auth().currentUser || {}
     const {uid} = firebaseUser
     this.ref = base.syncState('users/' + uid , {
       context: this,
