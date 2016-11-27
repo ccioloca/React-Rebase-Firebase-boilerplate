@@ -1,6 +1,6 @@
 import React from 'react'
 import Avatar from '../Avatar'
-import Text from './translations'
+import Text from '../translations'
 
 const UserButton = ({ onClick, displayName, photoURL}) => {
 
