@@ -6,7 +6,7 @@ const Text = {
     myProfile: 'My Profile'
   },
   de: {
-    brandName: '5,364',
+    brandName: 'Funf Tausend oder',
     logout: 'Abmelden',
     login: 'Anmelden',
     myProfile: 'Mein Profil'

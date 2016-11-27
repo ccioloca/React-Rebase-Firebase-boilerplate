@@ -11,7 +11,8 @@ class App extends Component {
         this.state = {
             hasUser: false,
             loading: true,
-            firebaseUser: null
+            firebaseUser: null,
+            language: 'en'
         }
     }
 
@@ -19,8 +20,15 @@ class App extends Component {
         const authDataCallback = (user) => {
             if (user) {
                 this.setState({hasUser: true, loading: false, firebaseUser: user})
-                base.post(`users/${user.uid}`, {
-                  data: { test: 'test' }
+                this.ref = base.listenTo(`users/${user.uid}`, {
+                  context: this,
+                  asArray: false,
+                  then(userOptions) {
+                    console.log(userOptions.language)
+                    const language = userOptions.language || 'en'
+
+                    this.setState({language})
+                  }
                 })
             } else {
                 this.setState({hasUser: false, loading: false})
@@ -34,6 +42,7 @@ class App extends Component {
     componentWillUnmount() {
         //to remove auth listener
         this.unsubscribeToAuthListener()
+        base.removeBinding(this.ref)
     }
 
     render() {

@@ -5,7 +5,7 @@ import Container from '../../layout/Container'
 import {Link} from 'react-router'
 import Text from '../translations'
 
-const Header = ({hasUser, loading}) => {
+const Header = ({hasUser, loading, language}) => {
 
     const renderNavigation = hasUser ? <Dropdown /> : <PublicNavigation />
     const brandLink = hasUser ? 'dashboard' : 'index'
@@ -26,7 +26,7 @@ const Header = ({hasUser, loading}) => {
                         </svg>
                       </div>
                       <div className="header__brand">
-                          {Text.en.brandName}
+                          {Text[language].brandName}
                       </div>
                     </Link>
                   </div>
