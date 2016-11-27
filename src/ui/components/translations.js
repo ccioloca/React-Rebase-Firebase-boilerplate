@@ -1,15 +1,21 @@
 const Text = {
   en: {
-    brandName: '5,364',
+    brandName: 'English',
     logout: 'Logout',
     login: 'Login',
     myProfile: 'My Profile'
   },
   de: {
-    brandName: 'Funf Tausend oder',
+    brandName: 'Deutsch',
     logout: 'Abmelden',
     login: 'Anmelden',
     myProfile: 'Mein Profil'
+  },
+  es: {
+    brandName: 'Español',
+    logout: 'Cerrar sesión',
+    login: 'Iniciar sesión',
+    myProfile: 'Mi perfil'
   }
 }
 

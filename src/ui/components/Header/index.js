@@ -7,7 +7,7 @@ import Text from '../translations'
 
 const Header = ({hasUser, loading, language}) => {
 
-    const renderNavigation = hasUser ? <Dropdown /> : <PublicNavigation />
+    const renderNavigation = hasUser ? <Dropdown language={language}/> : <PublicNavigation language={language} />
     const brandLink = hasUser ? 'dashboard' : 'index'
     const headerRightHasUserModifier = hasUser ? 'header__right--has-user' : null
 

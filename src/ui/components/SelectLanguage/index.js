@@ -6,22 +6,34 @@ class SelectLanguage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedOption: 'en'
+      language: 'en'
     }
-
     this.firebaseUser = base.auth().currentUser || {}
   }
 
+  componentWillMount() {
+    const { uid } = this.firebaseUser
+    base.fetch(`users/${uid}`,  {
+      context: this,
+      asArray: true
+      }).then(data => {
+        this.setState({language: data.language})
+      }).catch(error => {
+        //handle error
+        console.log(error)
+      })
+  }
+
   handleOptionChange(changeEvent) {
-    const selectedOption = changeEvent.target.value
+    const language = changeEvent.target.value
     const { uid } = this.firebaseUser
 
     this.setState({
-      selectedOption
+      language
     })
 
     base.update(`users/${uid}`, {
-      data: {language: selectedOption}
+      data: {language}
     })
 
   }
@@ -35,19 +47,19 @@ class SelectLanguage extends Component {
             <form onSubmit={this.handleFormSubmit}>
               <div className="radio">
                 <label>
-                  <input type="radio" value="en" checked={this.state.selectedOption === 'en'} onChange={this.handleOptionChange.bind(this)} />
+                  <input type="radio" value="en" checked={this.state.language === 'en'} onChange={this.handleOptionChange.bind(this)} />
                   English
                 </label>
               </div>
               <div className="radio">
                 <label>
-                  <input type="radio" value="de" checked={this.state.selectedOption === 'de'} onChange={this.handleOptionChange.bind(this)}/>
+                  <input type="radio" value="de" checked={this.state.language === 'de'} onChange={this.handleOptionChange.bind(this)}/>
                   German
                 </label>
               </div>
               <div className="radio">
                 <label>
-                  <input type="radio" value="es" checked={this.state.selectedOption === 'es'} onChange={this.handleOptionChange.bind(this)}/>
+                  <input type="radio" value="es" checked={this.state.language === 'es'} onChange={this.handleOptionChange.bind(this)}/>
                   Spanish
                 </label>
               </div>

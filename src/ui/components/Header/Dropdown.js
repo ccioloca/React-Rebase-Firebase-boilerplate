@@ -46,6 +46,7 @@ class Dropdown extends Component {
 
   render() {
     const {isMenuOpen, displayName, photoURL} = this.state
+    const {language} = this.props
 
     let menuOptions = {
       isOpen: isMenuOpen,
@@ -58,11 +59,11 @@ class Dropdown extends Component {
     return (
       <DropdownMenu {...menuOptions} className="user-dropdown">
         <li className="user-dropdown__item">
-          <Link to="profile">{Text.en.myProfile}</Link>
+          <Link to="profile">{Text[language].myProfile}</Link>
         </li>
         <li className="user-dropdown__item-logout">
           <button className="user-dropdown__btn-logout btn--unstyled"
-                  onClick={() => this.logout()}>{Text.en.logout}</button>
+                  onClick={() => this.logout()}>{Text[language].logout}</button>
         </li>
       </DropdownMenu>
     );
