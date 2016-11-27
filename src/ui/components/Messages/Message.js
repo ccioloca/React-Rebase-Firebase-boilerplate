@@ -1,14 +1,13 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { button } from 'react-bootstrap';
 
 const Message = ({removeMessage, data}) => {
 
   return (
     <li>
-        <Button
-          onClick={ removeMessage }
-          bsStyle={'danger'}>X
-        </Button>
+        <button
+          onClick={ removeMessage }>Delete Message
+        </button>
         <img src={data.photoURL} role="presentation" />
         <h3>{ data.displayName }</h3>
         <p>{ data.message }</p>
