@@ -32,7 +32,8 @@ yarn magic
 
 ## Credits
 
-* [Paul Hayes](https://github.com/haluvibe)
+* [haluvibe](https://github.com/haluvibe)
+* [qwales1](https://github.com/qwales1)
 
 ## License
 
