@@ -24,9 +24,7 @@ class App extends Component {
                   context: this,
                   asArray: false,
                   then(userOptions) {
-                    console.log(userOptions.language)
                     const language = userOptions.language || 'en'
-
                     this.setState({language})
                   }
                 })

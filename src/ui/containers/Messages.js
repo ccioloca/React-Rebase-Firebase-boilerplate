@@ -66,7 +66,6 @@ class Messages extends Component {
 
   _onFormSubmit(event, newMessage) {
     event.preventDefault()
-    console.log(newMessage)
     this.setState({ messages: this.state.messages.concat([newMessage])})
   }
 
