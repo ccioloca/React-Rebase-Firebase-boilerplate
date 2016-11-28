@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Messages from '../containers/Messages'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'

@@ -12,6 +12,7 @@ class Messages extends Component {
       messages: [],
       loading: true
     }
+    this.firebaseUser = base.auth().currentUser
   }
   componentWillMount(){
 
@@ -30,7 +31,7 @@ class Messages extends Component {
       context: this,
       state: 'messages',
       asArray: true,
-      queries: { limitToLast: 10,
+      queries: { limitToLast: 3,
                   orderByKey: 'reverse'},
       then: () => { this.setState({loading: false}) }
     })
@@ -63,15 +64,15 @@ class Messages extends Component {
     });
   }
 
-  _setNewMessage(message) {
-    this.setState({ messages: this.state.messages.concat([message])})
+  _onFormSubmit(event, newMessage) {
+    event.preventDefault()
+    console.log(newMessage)
+    this.setState({ messages: this.state.messages.concat([newMessage])})
   }
 
-  render(){
+  render() {
     const { messages} = this.state
-    const firebaseUser = base.auth().currentUser || {displayName: '', photoURL: ''}
-    const displayName = firebaseUser.displayName
-    const photoURL = firebaseUser.photoURL
+    const { displayName, photoURL } = this.firebaseUser
 
     const mappedMessages = messages.map( (data, index) => {
       return (
@@ -86,7 +87,7 @@ class Messages extends Component {
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
-              <NewMessage setNewMessage={ this._setNewMessage.bind(this) }
+              <NewMessage onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }/>
               <div>

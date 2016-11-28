@@ -1,45 +1,34 @@
-import React, { Component } from 'react'
-import base from '../../rebase.config.js'
+import React from 'react'
 
-class NewMessage extends Component {
-    constructor(props) {
-     super(props);
-     this.state = {value: ''}
-     this.firebaseUser = base.auth().currentUser
-     this.handleChange = this.handleChange.bind(this)
-     this.handleSubmit = this.handleSubmit.bind(this)
-   }
+const NewMessage = ({onFormSubmit, displayName, photoURL}) => {
 
-  handleSubmit(e) {
-    e.preventDefault()
-    const message = this.state.value
-    const date = Date.now()
-    const { uid, displayName, photoURL } = this.firebaseUser
+  let message
+  const date = Date.now()
 
-    if (message) {
-      base.push('messages', {
-        data: {message, uid, displayName, photoURL, date}
-      })
-    }
-
-    this.setState({value: ''})
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  render(){
-    return (
-      <form onSubmit={this.handleSubmit}>
-      <label>
-        Message:
-        <input type='text' value={this.state.value} onChange={this.handleChange} />
-      </label>
-      <input type="submit" value="Submit" />
+  return (
+    <form className="form"
+          onSubmit={(event) => onFormSubmit(event, {
+            message: message.value,
+            photoURL,
+            displayName,
+            date
+    })}>
+      <div className="form__row">
+        <label className="form__label">
+          Message:
+          <input className="form__field" type='text' ref={c => (message = c)} />
+        </label>
+      </div>
+      <input className="form__submit" type="submit" value="Submit" />
     </form>
-    )
-  }
+  )
+
 }
 
 export default NewMessage
+
+NewMessage.propTypes = {
+  onFormSubmit: React.PropTypes.func.isRequired,
+  displayName: React.PropTypes.string.isRequired,
+  photoURL: React.PropTypes.string.isRequired
+}

@@ -15,5 +15,5 @@ export default Avatar
 
 Avatar.propTypes = {
   size: React.PropTypes.string.isRequired,
-  photoURL: React.PropTypes.string.isRequired
+  photoURL: React.PropTypes.string
 }
