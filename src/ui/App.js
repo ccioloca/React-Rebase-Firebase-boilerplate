@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Container from '../layout/Container'
-import Header from '../components/Header'
-import base from '../../rebase.config.js'
+import Container from './layout/Container'
+import Header from './components/Header'
+import base from './rebase.config.js'
 import { browserHistory } from 'react-router'
 
 class App extends Component {

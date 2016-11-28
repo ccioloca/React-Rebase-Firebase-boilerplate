@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import base from '../../../rebase.config.js'
+import base from '../../rebase.config.js'
 
 class NewMessage extends Component {
     constructor(props) {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import OAuthLogin from '../containers/OAuthLogin'
 
+// TODO: Refactor to stateless function component after Authentication is moved to Router level
+
 class Login extends Component {
     constructor(props){
         super(props);

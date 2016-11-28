@@ -3,7 +3,7 @@ import DropdownMenu from 'react-dd-menu'
 import UserButton from './UserButton'
 import { Link, browserHistory } from 'react-router'
 import Text from '../translations'
-import base from '../../../rebase.config.js'
+import base from '../../rebase.config.js'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -59,11 +59,11 @@ class Dropdown extends Component {
     return (
       <DropdownMenu {...menuOptions} className="user-dropdown">
         <li className="user-dropdown__item">
-          <Link to="profile">{Text[language].myProfile}</Link>
+          <Link to="profile">{Text[language].myProfile || 'My Profile'}</Link>
         </li>
         <li className="user-dropdown__item-logout">
           <button className="user-dropdown__btn-logout btn--unstyled"
-                  onClick={() => this.logout()}>{Text[language].logout}</button>
+                  onClick={() => this.logout()}>{Text[language].logout || 'Logout'}</button>
         </li>
       </DropdownMenu>
     );

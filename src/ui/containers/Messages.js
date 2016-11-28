@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-
-import base from '../../../rebase.config.js'
-import Center from '../../layout/Center'
-import LoadingAnimation from '../LoadingAnimation'
-import Message from './Message'
-import NewMessage from '../NewMessage'
+import base from '../rebase.config.js'
+import Center from '../layout/Center'
+import LoadingAnimation from '../components/LoadingAnimation'
+import Message from '../components/Message'
+import NewMessage from '../components/NewMessage'
 
 class Messages extends Component {
   constructor(props){

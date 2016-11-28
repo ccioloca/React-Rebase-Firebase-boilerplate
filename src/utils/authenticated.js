@@ -1,4 +1,4 @@
-import base from '../rebase.config.js'
+import base from '../ui/rebase.config.js'
 
 export const requireAuth = (nextState, replace) => {
 

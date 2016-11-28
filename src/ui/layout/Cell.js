@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Cell = ({ children, type }) => {
-    return (
-            <div className={`l-grid-cell ${type}`}>
-                {children}
-            </div>
-    )
+  return (
+    <div className={`l-grid-cell ${type}`}>
+        {children}
+    </div>
+  )
 }
 
 export default Cell

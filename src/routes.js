@@ -1,7 +1,7 @@
 import React from 'react'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 
-import App from './ui/containers/App'
+import App from './ui/App'
 import Index from "./ui/pages/Index"
 import Login from "./ui/pages/Login"
 import Dashboard from './ui/pages/Dashboard'

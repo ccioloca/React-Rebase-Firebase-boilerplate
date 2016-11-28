@@ -1,5 +1,5 @@
 import Rebase from 're-base';
-import FIREBASE_CONFIG from './firebase.config.js';
+import FIREBASE_CONFIG from '../firebase.config.js';
 
 const base = Rebase.createClass({
     apiKey: FIREBASE_CONFIG.apiKey,

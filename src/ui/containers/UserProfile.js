@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import base from '../../../rebase.config.js'
-import LoadingAnimation from '../LoadingAnimation'
-import Center from '../../layout/Center'
-import SelectLanguage from '../SelectLanguage'
+import base from '../rebase.config.js'
+import LoadingAnimation from '../components/LoadingAnimation'
+import Center from '../layout/Center'
+import SelectLanguage from '../components/SelectLanguage'
 
 
 class UserProfile extends Component {

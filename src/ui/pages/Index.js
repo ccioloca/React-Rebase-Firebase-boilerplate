@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import browserHistory from 'react-router'
+import Grid from '../layout/Grid'
+import Cell from '../layout/Cell'
+
+// TODO: Refactor to stateless function component after Authentication is moved to Router level
 
 class Index extends Component {
     componentWillMount() {
@@ -8,7 +12,11 @@ class Index extends Component {
     }
     render() {
         return (
-          <div>You are not logged in</div>
+          <Grid>
+            <Cell type={'l-one-whole l-mobile-one-whole'}>
+              You are not loggedin
+            </Cell>
+          </Grid>
         )
     }
 }
