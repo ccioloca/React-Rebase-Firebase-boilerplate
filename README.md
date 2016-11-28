@@ -6,9 +6,19 @@ A starting point for Firebase Web apps
 
 npm install yarn -g
 
+yarn start -> start the dev server
+yarn test -> start the Jest tests
+yarn build -> build a production ready file
+yarn magic -> run all three commands above
+
 ## Usage
 
-yarn magic
+The aim of this repository is the following (But it's a Work in Progress):
+
+1) All authentication redirects should be done at the routes.js level
+2) Pages should be stateless function components that have only Grid, Cell & Container components
+3) Containers should adhere to [this definition of container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.w8t47qq2a)
+4) Components should be presentational, and where possible stateless function components
 
 ## Main Features
 
