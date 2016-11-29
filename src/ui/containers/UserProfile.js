@@ -3,7 +3,6 @@ import base from '../rebase.config.js'
 import LoadingAnimation from '../components/LoadingAnimation'
 import Center from '../layout/Center'
 import SelectLanguage from '../components/SelectLanguage'
-import Text from './translations'
 
 class UserProfile extends Component {
 
@@ -13,6 +12,7 @@ class UserProfile extends Component {
       userProfile: {},
       loading: true
     }
+    const { Text } = this.props
     this.availableLanguages = Object.keys(Text)
   }
 
@@ -41,7 +41,7 @@ class UserProfile extends Component {
   }
 
   render(){
-    const language = this.state.userProfile.language || 'en'
+    const { language } = this.props
 
     return (
         this.state.loading

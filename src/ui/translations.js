@@ -7,7 +7,8 @@ const Text = {
     selectYourLanguage: 'Select Your Language',
     message: 'Message',
     language: 'English',
-    submit: 'submit'
+    submit: 'submit',
+    notLoggedIn: 'You are not loggedin'
   },
   de: {
     brandName: 'Deutsch',
@@ -17,7 +18,8 @@ const Text = {
     selectYourLanguage: 'Wähle deine Sprache',
     message: 'Nachricht',
     language: 'Deutsch',
-    submit: 'einsenden'
+    submit: 'einsenden',
+    notLoggedIn: 'DE You are not loggedin'
   },
   es: {
     brandName: 'Español',
@@ -27,7 +29,8 @@ const Text = {
     selectYourLanguage: 'Elige tu idioma',
     message: 'Mensaje',
     language: 'Español',
-    submit: 'enviar'
+    submit: 'enviar',
+    notLoggedIn: 'ESP You are not loggedin'
   }
 }
 

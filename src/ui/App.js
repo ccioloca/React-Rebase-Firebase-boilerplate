@@ -3,6 +3,7 @@ import Container from './layout/Container'
 import Header from './components/Header'
 import base from './rebase.config.js'
 import { browserHistory } from 'react-router'
+import Text from './translations'
 
 class App extends Component {
 
@@ -52,7 +53,7 @@ class App extends Component {
             <div>
                 <Header hasUser={hasUser} loading={loading} language={language}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser, firebaseUser, language }) }
+                    { React.cloneElement(children, { hasUser, firebaseUser, language, Text }) }
                 </Container>
             </div>
         )
