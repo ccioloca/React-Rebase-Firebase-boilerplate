@@ -52,7 +52,7 @@ class App extends Component {
             <div>
                 <Header hasUser={hasUser} loading={loading} language={language}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser, firebaseUser }) }
+                    { React.cloneElement(children, { hasUser, firebaseUser, language }) }
                 </Container>
             </div>
         )

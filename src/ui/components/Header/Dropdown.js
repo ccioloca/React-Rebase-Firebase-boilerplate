@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DropdownMenu from 'react-dd-menu'
 import UserButton from './UserButton'
 import { Link, browserHistory } from 'react-router'
-import Text from '../translations'
+import Text from '../../containers/translations'
 import base from '../../rebase.config.js'
 
 class Dropdown extends Component {

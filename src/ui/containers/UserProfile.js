@@ -3,7 +3,7 @@ import base from '../rebase.config.js'
 import LoadingAnimation from '../components/LoadingAnimation'
 import Center from '../layout/Center'
 import SelectLanguage from '../components/SelectLanguage'
-import Text from '../components/translations'
+import Text from './translations'
 
 class UserProfile extends Component {
 
@@ -37,32 +37,20 @@ class UserProfile extends Component {
   _handleOptionChange(language) {
     const newUserProfile = Object.assign({}, this.state.userProfile, {language})
     this.setState({userProfile: newUserProfile})
+    console.log(newUserProfile)
   }
 
   render(){
-    const language = this.state.userProfile.language
-
-    const mappedLanguages = this.availableLanguages.map((data, index) => {
-      const checked = this.state.userProfile.language === data
-      return (
-        <SelectLanguage
-          handleOptionChange={ this._handleOptionChange.bind(this) }
-          language={data}
-          key={index}
-          checked={checked}
-        />
-      )
-    })
+    const language = this.state.userProfile.language || 'en'
 
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <div>
-            <form>
-              <h1>{Text[language].selectYourLanguage}</h1>
-              {mappedLanguages}
-            </form>
-          </div>
+        : <SelectLanguage
+            handleOptionChange={ this._handleOptionChange.bind(this) }
+            language={language}
+            availableLanguages={ this.availableLanguages }
+            Text={Text} />
     )
   }
 }

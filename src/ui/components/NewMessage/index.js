@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value}) => {
+const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value, Text, language }) => {
 
   let message
   const date = Date.now()
@@ -24,7 +24,7 @@ const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value}) => {
                  />
         </label>
       </div>
-      <input className="form__submit" type="submit" value="Submit" />
+      <input className="form__submit" type="submit" value={Text[language].submit} />
     </form>
   )
 
@@ -37,5 +37,6 @@ NewMessage.propTypes = {
   displayName: React.PropTypes.string.isRequired,
   photoURL: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
-  onChange: React.PropTypes.func.isRequired
+  onChange: React.PropTypes.func.isRequired,
+  Text: React.PropTypes.object.isRequired
 }

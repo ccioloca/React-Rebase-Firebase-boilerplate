@@ -6,9 +6,8 @@ const Text = {
     myProfile: 'My Profile',
     selectYourLanguage: 'Select Your Language',
     message: 'Message',
-    en: 'English',
-    de: 'Deutsch',
-    es: 'Español'
+    language: 'English',
+    submit: 'submit'
   },
   de: {
     brandName: 'Deutsch',
@@ -17,9 +16,8 @@ const Text = {
     myProfile: 'Mein Profil',
     selectYourLanguage: 'Wähle deine Sprache',
     message: 'Nachricht',
-    en: 'English',
-    de: 'Deutsch',
-    es: 'Español'
+    language: 'Deutsch',
+    submit: 'einsenden'
   },
   es: {
     brandName: 'Español',
@@ -28,9 +26,8 @@ const Text = {
     myProfile: 'Mi perfil',
     selectYourLanguage: 'Elige tu idioma',
     message: 'Mensaje',
-    en: 'English',
-    de: 'Deutsch',
-    es: 'Español'
+    language: 'Español',
+    submit: 'enviar'
   }
 }
 

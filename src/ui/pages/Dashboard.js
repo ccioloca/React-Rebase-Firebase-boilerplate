@@ -3,13 +3,13 @@ import Messages from '../containers/Messages'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 
-const Dashboard = () => {
+const Dashboard = ({language}) => {
   return (
     <Grid>
       <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>
       <Cell type={'l-one-half l-mobile-one-whole'}>
-        <Messages />
+        <Messages language={language} />
       </Cell>
       <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>

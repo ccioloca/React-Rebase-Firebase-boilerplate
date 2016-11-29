@@ -4,6 +4,7 @@ import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
 import Message from '../components/Message'
 import NewMessage from '../components/NewMessage'
+import Text from './translations'
 
 class Messages extends Component {
   constructor(props){
@@ -79,6 +80,7 @@ class Messages extends Component {
   }
 
   render() {
+    const { language } = this.props
     const { messages, message } = this.state
     const { displayName, photoURL } = this.firebaseUser
 
@@ -99,7 +101,9 @@ class Messages extends Component {
                           displayName={ displayName }
                           photoURL={ photoURL }
                           value={ message }
-                          onChange={ this._onChange.bind(this) } />
+                          onChange={ this._onChange.bind(this) }
+                          Text={Text}
+                          language={language}/>
               <div>
                 <ul>{ mappedMessages }</ul>
               </div>
@@ -109,3 +113,7 @@ class Messages extends Component {
 }
 
 export default Messages
+
+Messages.propTypes = {
+  language: React.PropTypes.string.isRequired
+}

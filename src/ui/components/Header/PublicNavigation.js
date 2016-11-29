@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Text from '../translations'
+import Text from '../../containers/translations'
 
 const PublicNavigation = ({language}) => {
 

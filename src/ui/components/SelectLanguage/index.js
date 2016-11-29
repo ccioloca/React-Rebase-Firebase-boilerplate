@@ -1,19 +1,32 @@
 import React from 'react'
-import Text from '../translations'
 
-const SelectLanguage = ({ handleOptionChange, language, checked }) => {
+const SelectLanguage = ({ handleOptionChange, language, Text, availableLanguages }) => {
+
+  const mappedLanguages = availableLanguages.map((item, index) => {
+
+    const checked = language === item
+    return (
+      <div key={index} className="select-language__radio-wrapper">
+        <label className="select-language__label">
+
+          <input  className="select-language__input"
+                  type="radio"
+                  name="language"
+                  value={item}
+                  checked={checked}
+                  onChange={ () => handleOptionChange(item) } />
+          { Text[item].language }
+
+        </label>
+      </div>
+    )
+  })
+
   return (
-    <div className="radio">
-      <label className="radio__label">
-        <input  className="radio__input"
-                type="radio"
-                name="language"
-                value={language}
-                checked={checked}
-                onChange={ () => handleOptionChange(language) } />
-        { Text[language][language] }
-      </label>
-    </div>
+    <form className="select-language">
+      <h1>{Text[language].selectYourLanguage}</h1>
+      {mappedLanguages}
+    </form>
   )
 }
 
@@ -22,5 +35,6 @@ export default SelectLanguage
 SelectLanguage.propTypes = {
   handleOptionChange: React.PropTypes.func.isRequired,
   language: React.PropTypes.string.isRequired,
-  checked: React.PropTypes.bool.isRequired
+  Text: React.PropTypes.object.isRequired,
+  availableLanguages: React.PropTypes.array.isRequired
 }
