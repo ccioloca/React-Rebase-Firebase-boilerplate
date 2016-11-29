@@ -6,6 +6,7 @@ const Text = {
     myProfile: 'My Profile',
     selectYourLanguage: 'Select Your Language',
     message: 'Message',
+    deleteMessage: 'Delete Message',
     language: 'English',
     submit: 'submit',
     notLoggedIn: 'You are not loggedin'
@@ -17,6 +18,7 @@ const Text = {
     myProfile: 'Mein Profil',
     selectYourLanguage: 'Wähle deine Sprache',
     message: 'Nachricht',
+    deleteMessage: 'löschen',
     language: 'Deutsch',
     submit: 'einsenden',
     notLoggedIn: 'DE You are not loggedin'
@@ -28,6 +30,7 @@ const Text = {
     myProfile: 'Mi perfil',
     selectYourLanguage: 'Elige tu idioma',
     message: 'Mensaje',
+    deleteMessage: 'borrar',
     language: 'Español',
     submit: 'enviar',
     notLoggedIn: 'ESP You are not loggedin'

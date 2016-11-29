@@ -1,23 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Text from '../../containers/translations'
 
-const PublicNavigation = ({language}) => {
-
-    const login = Text[language].login || 'login'
+const PublicNavigation = ({language, Text}) => {
 
     return (
       <div className="header__public-links-wrapper">
         <Link className="header__public-link" to="/login">
-          {login}
+          {Text[language].login}
         </Link>
       </div>
     )
-    
+
 }
 
 export default PublicNavigation
 
 PublicNavigation.propTypes = {
-  language: React.PropTypes.string
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired
 }

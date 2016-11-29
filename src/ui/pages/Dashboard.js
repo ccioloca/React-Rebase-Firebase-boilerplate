@@ -9,7 +9,7 @@ const Dashboard = ({language, Text}) => {
       <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>
       <Cell type={'l-one-half l-mobile-one-whole'}>
-        <Messages language={language} />
+        <Messages language={language} Text={Text} />
       </Cell>
       <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>

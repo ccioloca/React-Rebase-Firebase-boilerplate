@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import DropdownMenu from 'react-dd-menu'
 import UserButton from './UserButton'
 import { Link, browserHistory } from 'react-router'
-import Text from '../../containers/translations'
 import base from '../../rebase.config.js'
 
 class Dropdown extends Component {
@@ -45,15 +44,17 @@ class Dropdown extends Component {
   }
 
   render() {
-    const {isMenuOpen, displayName, photoURL} = this.state
-    const {language} = this.props
+    const { isMenuOpen, displayName, photoURL } = this.state
+    const { language, Text } = this.props
 
     let menuOptions = {
       isOpen: isMenuOpen,
       close: this.close.bind(this),
       toggle: <UserButton onClick={this.toggle.bind(this)}
                           displayName={displayName}
-                          photoURL={photoURL}/>
+                          photoURL={photoURL}
+                          Text={Text}
+                          language={language}/>
     }
 
     return (

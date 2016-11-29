@@ -2,14 +2,15 @@ import React from 'react'
 import { button } from 'react-bootstrap'
 import moment from 'moment'
 
-const Message = ({removeMessage, data}) => {
+const Message = ({removeMessage, data, language, Text}) => {
 
   const displayDate = moment(data.date).fromNow()
-
+  const deleteMessageText = Text[language].deleteMessage
+  
   return (
     <li>
         <button
-          onClick={ removeMessage }>Delete Message
+          onClick={ removeMessage }>{deleteMessageText}
         </button>
         <img src={data.photoURL} role="presentation" />
         <h3>{ data.displayName }</h3>

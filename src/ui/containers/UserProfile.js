@@ -37,11 +37,10 @@ class UserProfile extends Component {
   _handleOptionChange(language) {
     const newUserProfile = Object.assign({}, this.state.userProfile, {language})
     this.setState({userProfile: newUserProfile})
-    console.log(newUserProfile)
   }
 
   render(){
-    const { language } = this.props
+    const { Text, language } = this.props
 
     return (
         this.state.loading

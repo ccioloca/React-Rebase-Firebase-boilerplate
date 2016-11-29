@@ -3,8 +3,7 @@ import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 import UserProfile from '../containers/UserProfile'
 
-const Profile = ({ language, Text }) {
-
+const Profile = ({ language, Text }) => {
   return (
     <Grid>
       <Cell type={'l-one-quarter l-mobile-one-whole'}>

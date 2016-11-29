@@ -4,7 +4,6 @@ import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
 import Message from '../components/Message'
 import NewMessage from '../components/NewMessage'
-import Text from './translations'
 
 class Messages extends Component {
   constructor(props){
@@ -80,13 +79,15 @@ class Messages extends Component {
   }
 
   render() {
-    const { language } = this.props
+    const { language, Text } = this.props
     const { messages, message } = this.state
     const { displayName, photoURL } = this.firebaseUser
 
     const mappedMessages = messages.map( (data, index) => {
       return (
         <Message
+          Text={Text}
+          language={language}
           data={ data }
           removeMessage={ () => this._removeMessage(index) }
           key={ index } />
@@ -101,8 +102,8 @@ class Messages extends Component {
                           displayName={ displayName }
                           photoURL={ photoURL }
                           value={ message }
-                          onChange={ this._onChange.bind(this) }
                           Text={Text}
+                          onChange={ this._onChange.bind(this) }
                           language={language}/>
               <div>
                 <ul>{ mappedMessages }</ul>

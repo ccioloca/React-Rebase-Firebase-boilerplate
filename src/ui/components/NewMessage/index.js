@@ -4,6 +4,8 @@ const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value, Text,
 
   let message
   const date = Date.now()
+  const submitText = Text[language].submit
+  const messageText =  Text[language].message
 
   return (
     <form className="form"
@@ -15,7 +17,7 @@ const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value, Text,
     })}>
       <div className="form__row">
         <label className="form__label">
-          Message:
+          {messageText}:
           <input className="form__field"
                  type='text'
                  ref={c => (message = c)}
@@ -24,7 +26,7 @@ const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value, Text,
                  />
         </label>
       </div>
-      <input className="form__submit" type="submit" value={Text[language].submit} />
+      <input className="form__submit" type="submit" value={submitText} />
     </form>
   )
 

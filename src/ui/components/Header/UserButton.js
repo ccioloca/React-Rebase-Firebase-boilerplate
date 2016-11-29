@@ -1,10 +1,9 @@
 import React from 'react'
 import Avatar from '../Avatar'
-import Text from '../../containers/translations'
 
-const UserButton = ({ onClick, displayName, photoURL}) => {
+const UserButton = ({ onClick, displayName, photoURL, Text, language}) => {
 
-  const label = displayName ? displayName : Text.en.anonymous
+  const label = displayName ? displayName : Text[language].anonymous
 
   return (
     <button type="button"
