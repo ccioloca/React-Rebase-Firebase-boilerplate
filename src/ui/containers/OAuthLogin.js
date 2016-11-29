@@ -1,66 +1,68 @@
 import React, { Component } from 'react';
 import base from '../rebase.config.js'
 import { browserHistory } from 'react-router'
+import SocialLoginButtons from '../components/SocialLoginButtons'
 
 import LoadingAnimation from '../components/LoadingAnimation'
 
 class OAuthLogin extends Component {
 
-    componentWillMount() {
+  constructor(props){
+    super(props)
+    this.state = {
+      loading: true
+    }
+  }
 
-        const onRedirectBack = function(error, authData){
-            if(error) console.log(error)
-            if(authData.user) browserHistory.replace('/dashboard')
-        }
+  componentWillMount() {
 
-        base.authGetOAuthRedirectResult(onRedirectBack)
-
-        this.authListener = base.auth().onAuthStateChanged(firebaseUser => {
-            if (firebaseUser !== null && firebaseUser.emailVerified === true) {
-                browserHistory.replace('/dashboard')
-            } else {
-                this.props.switchLoadingState()
-            }
-        })
+    const onRedirectBack = function(error, authData){
+      if(error) console.log(error)
+      if(authData.user) browserHistory.replace('/dashboard')
     }
 
-    componentWillUnmount() {
-        this.authListener();
-        this.authListener = null;
-    }
+    base.authGetOAuthRedirectResult(onRedirectBack)
 
-    _loginWithOAuthRedirect(provider) {
-        base.authWithOAuthRedirect(provider, this._authHandler)
-    }
+    this.authListener = base.auth().onAuthStateChanged(firebaseUser => {
+      if ( firebaseUser !== null ) {
+        browserHistory.replace('/dashboard')
+      } else {
+        this.setState({loading: false})
+      }
+    })
 
-    _authHandler(error) {
-        if(error) {
-            console.log(error)
-        }
-        // noop if redirect is successful
-        return
-    }
+  }
 
-    _renderLoginButtons() {
-        const providers = ['google', 'twitter', 'facebook', 'github']
-        const loginButtons = providers.map( (provider, index) => {
-            return (
-                    <button   key={index}
-                              onClick={() => this._loginWithOAuthRedirect(provider)}
-                              className='btn--unstyled'>Login With {provider}</button>
-            )
-        })
-        return loginButtons
-    }
+  componentWillUnmount() {
+    this.authListener()
+    this.authListener = null;
+  }
 
-    render() {
-        return (
-            this.props.loading
-            ? <LoadingAnimation height={window.innerHeight + 'px'}/>
-            : <div>{this._renderLoginButtons()}</div>
+  _loginWithOAuthRedirect(provider) {
+      base.authWithOAuthRedirect(provider, this._authHandler)
+  }
 
-        )
-    }
+  _authHandler(error) {
+      if(error) {
+          console.log(error)
+      }
+      // noop if redirect is successful
+      return
+  }
+
+  render() {
+    const { Text, language } = this.props
+    const providers = ['google', 'twitter', 'facebook', 'github']
+
+    return (
+      this.state.loading
+      ? <LoadingAnimation height={window.innerHeight + 'px'}/>
+      : <SocialLoginButtons providers={providers}
+                            language={language}
+                            Text={Text}
+                            onClick={() => this._loginWithOAuthRedirect(provider)}/>
+    )
+  }
 }
 
 export default OAuthLogin

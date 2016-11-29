@@ -18,3 +18,8 @@ const Dashboard = ({language, Text}) => {
 }
 
 export default Dashboard
+
+Dashboard.propTypes = {
+  Text: React.PropTypes.object,
+  language: React.PropTypes.string
+}

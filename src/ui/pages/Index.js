@@ -13,3 +13,8 @@ const Index = ({Text, language}) => {
 }
 
 export default Index
+
+Index.propTypes = {
+  Text: React.PropTypes.object,
+  language: React.PropTypes.string
+}
