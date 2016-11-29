@@ -1,75 +1,40 @@
-import React, { Component } from 'react'
-import base from '../../rebase.config.js'
+import React from 'react'
 
-class SelectLanguage extends Component {
+const SelectLanguage = ({ handleOptionChange, language, Text, availableLanguages }) => {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      language: 'en'
-    }
-    this.firebaseUser = base.auth().currentUser || {}
-  }
+  const mappedLanguages = availableLanguages.map((item, index) => {
 
-  componentWillMount() {
-    const { uid } = this.firebaseUser
-    base.fetch(`users/${uid}`,  {
-      context: this,
-      asArray: true
-      }).then(data => {
-        this.setState({language: data.language})
-      }).catch(error => {
-        //handle error
-        console.log(error)
-      })
-  }
-
-  handleOptionChange(changeEvent) {
-    const language = changeEvent.target.value
-    const { uid } = this.firebaseUser
-
-    this.setState({
-      language
-    })
-
-    base.update(`users/${uid}`, {
-      data: {language}
-    })
-
-  }
-
-  render() {
+    const checked = language === item
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12">
+      <div key={index} className="select-language__radio-wrapper">
+        <label className="select-language__label">
 
-            <form onSubmit={this.handleFormSubmit}>
-              <div className="radio">
-                <label>
-                  <input type="radio" value="en" checked={this.state.language === 'en'} onChange={this.handleOptionChange.bind(this)} />
-                  English
-                </label>
-              </div>
-              <div className="radio">
-                <label>
-                  <input type="radio" value="de" checked={this.state.language === 'de'} onChange={this.handleOptionChange.bind(this)}/>
-                  German
-                </label>
-              </div>
-              <div className="radio">
-                <label>
-                  <input type="radio" value="es" checked={this.state.language === 'es'} onChange={this.handleOptionChange.bind(this)}/>
-                  Spanish
-                </label>
-              </div>
-            </form>
+          <input  className="select-language__input"
+                  type="radio"
+                  name="language"
+                  value={item}
+                  checked={checked}
+                  onChange={ () => handleOptionChange(item) } />
+          { Text[item].language }
 
-          </div>
-        </div>
+        </label>
       </div>
     )
-  }
+  })
+
+  return (
+    <form className="select-language">
+      <h1>{Text[language].selectYourLanguage}</h1>
+      {mappedLanguages}
+    </form>
+  )
 }
 
 export default SelectLanguage
+
+SelectLanguage.propTypes = {
+  handleOptionChange: React.PropTypes.func.isRequired,
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired,
+  availableLanguages: React.PropTypes.array.isRequired
+}

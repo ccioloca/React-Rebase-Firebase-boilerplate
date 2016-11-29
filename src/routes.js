@@ -9,7 +9,7 @@ import Profile from './ui/pages/Profile'
 
 import { requireAuth } from './utils/authenticated'
 
-const Routes =  (props) => {
+const Routes = (props) => {
     return (
         <Router history={browserHistory}>
             <Route path='/' component={App} name="App" >

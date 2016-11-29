@@ -3,11 +3,10 @@ import Dropdown from './Dropdown'
 import PublicNavigation from './PublicNavigation'
 import Container from '../../layout/Container'
 import {Link} from 'react-router'
-import Text from '../translations'
 
-const Header = ({hasUser, loading, language}) => {
+const Header = ({hasUser, loading, language, Text}) => {
 
-    const renderNavigation = hasUser ? <Dropdown language={language}/> : <PublicNavigation language={language} />
+    const renderNavigation = hasUser ? <Dropdown language={language} Text={Text} /> : <PublicNavigation language={language} Text={Text} />
     const brandLink = hasUser ? 'dashboard' : 'index'
     const headerRightHasUserModifier = hasUser ? 'header__right--has-user' : null
 

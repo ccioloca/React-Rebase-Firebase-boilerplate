@@ -3,6 +3,7 @@ import Container from './layout/Container'
 import Header from './components/Header'
 import base from './rebase.config.js'
 import { browserHistory } from 'react-router'
+import Text from './translations'
 
 class App extends Component {
 
@@ -24,9 +25,7 @@ class App extends Component {
                   context: this,
                   asArray: false,
                   then(userOptions) {
-                    console.log(userOptions.language)
                     const language = userOptions.language || 'en'
-
                     this.setState({language})
                   }
                 })
@@ -46,15 +45,14 @@ class App extends Component {
     }
 
     render() {
-
         const { children } = this.props
         const { hasUser, loading, firebaseUser, language } = this.state
 
         return (
             <div>
-                <Header hasUser={hasUser} loading={loading} language={language}/>
+                <Header hasUser={hasUser} loading={loading} language={language} Text={Text}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser, firebaseUser }) }
+                    { React.cloneElement(children, { hasUser, firebaseUser, language, Text }) }
                 </Container>
             </div>
         )
@@ -62,7 +60,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.node,
+  children: React.PropTypes.node
 }
 
 export default App

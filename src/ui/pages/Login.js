@@ -16,8 +16,13 @@ class Login extends Component {
     }
 
     render() {
+      const { language, Text } = this.props
         return (
-          <OAuthLogin loading={ this.state.loading } switchLoadingState={() => this._switchLoadingState() }/>
+          <OAuthLogin loading={ this.state.loading }
+                      switchLoadingState={() => this._switchLoadingState() }
+                      language={language}
+                      Text={Text}
+                      />
         )
     }
 }
