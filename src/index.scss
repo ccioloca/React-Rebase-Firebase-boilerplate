@@ -1,3 +1,4 @@
+// bonescss and sensible
 @import
   "bonescss/vendor/normalize",
   // "vendor/reset",
@@ -10,18 +11,24 @@
   "bonescss/2.layout";
 
 // Your global styles go here
-@import "ui/layout/grid";
-@import "ui/layout/container";
-@import "ui/styles/objects";
-@import "ui/styles/colors";
-@import "ui/styles/base";
-@import "ui/styles/buttons";
+@import
+  "ui/layout/grid",
+  "ui/layout/container",
+  "ui/styles/objects",
+  "ui/styles/colors",
+  "ui/styles/base",
+  "ui/styles/buttons";
 
 // your component styles go here
-@import "ui/components/Header/style";
-@import "ui/components/Avatar/style";
-@import "ui/components/Messages/style";
+@import
+  "ui/components/Header/style",
+  "ui/components/Avatar/style",
+  "ui/components/Message/style",
+  "ui/components/LoadingAnimation/style",
+  "ui/components/NewMessage/style",
+  "ui/components/SelectLanguage/style";
 
+// bonescss
 @import
   "bonescss/3.helpers",
   "bonescss/5.states";

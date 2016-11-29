@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import base from '../rebase.config.js'
 import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
-import Message from '../components/Message'
+import MessageList from '../components/MessageList'
 import NewMessage from '../components/NewMessage'
 
 class Messages extends Component {
@@ -10,8 +10,10 @@ class Messages extends Component {
     super(props);
     this.state = {
       messages: [],
+      message: '',
       loading: true
     }
+    this.firebaseUser = base.auth().currentUser
   }
   componentWillMount(){
 
@@ -30,9 +32,9 @@ class Messages extends Component {
       context: this,
       state: 'messages',
       asArray: true,
-      queries: { limitToLast: 10,
+      queries: { limitToLast: 3,
                   orderByKey: 'reverse'},
-      then: () => { this.setState({loading: false}) }
+      then: () => { this.setState({loading:false}) }
     })
   }
   componentWillUnmount(){
@@ -63,38 +65,46 @@ class Messages extends Component {
     });
   }
 
-  _setNewMessage(message) {
-    this.setState({ messages: this.state.messages.concat([message])})
+  _onFormSubmit(event, newMessage) {
+    event.preventDefault()
+    if (newMessage.message) {
+      this.setState({messages: this.state.messages.concat([newMessage])})
+      this.setState({message: ''})
+     }
+
   }
 
-  render(){
-    const { messages} = this.state
-    const firebaseUser = base.auth().currentUser || {displayName: '', photoURL: ''}
-    const displayName = firebaseUser.displayName
-    const photoURL = firebaseUser.photoURL
+  _onChange(value) {
+    this.setState({message:value})
+  }
 
-    const mappedMessages = messages.map( (data, index) => {
-      return (
-        <Message
-          data={ data }
-          removeMessage={ () => this._removeMessage(index) }
-          key={ index } />
-      )
-    })
+  render() {
+    const { language, Text } = this.props
+    const { messages, message } = this.state
+    const { displayName, photoURL } = this.firebaseUser
 
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
-              <NewMessage setNewMessage={ this._setNewMessage.bind(this) }
+              <NewMessage onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
-                          photoURL={ photoURL }/>
-              <div>
-                <ul>{ mappedMessages }</ul>
-              </div>
+                          photoURL={ photoURL }
+                          value={ message }
+                          Text={Text}
+                          onChange={ this._onChange.bind(this) }
+                          language={language}/>
+              <MessageList Text={Text}
+                           language={language}
+                           messages={messages}
+                           removeMessage={ () => this._removeMessage() }/>
           </div>
     );
   }
 }
 
 export default Messages
+
+Messages.propTypes = {
+  language: React.PropTypes.string.isRequired
+}

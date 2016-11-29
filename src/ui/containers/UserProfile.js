@@ -4,44 +4,52 @@ import LoadingAnimation from '../components/LoadingAnimation'
 import Center from '../layout/Center'
 import SelectLanguage from '../components/SelectLanguage'
 
-
 class UserProfile extends Component {
+
   constructor(props){
     super(props)
     this.state = {
-      user: [],
+      userProfile: {},
       loading: true
     }
+    const { Text } = this.props
+    this.availableLanguages = Object.keys(Text)
   }
+
   componentWillMount(){
     const uid = base.auth().currentUser.uid || ''
     this.ref = base.syncState(`users/${uid}` , {
       context: this,
-      state: 'user',
-      asArray: true,
+      state: 'userProfile',
+      asArray: false,
       then: () => {
-          this.setState({
-            loading: false
-          })
+        this.setState({
+          loading: false
+        })
       }
     })
-
   }
+
   componentWillUnmount(){
-
     base.removeBinding(this.ref)
+  }
 
+  _handleOptionChange(language) {
+    const newUserProfile = Object.assign({}, this.state.userProfile, {language})
+    this.setState({userProfile: newUserProfile})
   }
 
   render(){
-    const {user} = this.state
+    const { Text, language } = this.props
+
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <div>
-            <SelectLanguage />
-            {user}
-          </div>
+        : <SelectLanguage
+            handleOptionChange={ this._handleOptionChange.bind(this) }
+            language={language}
+            availableLanguages={ this.availableLanguages }
+            Text={Text} />
     )
   }
 }
