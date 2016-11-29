@@ -60,7 +60,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.node,
+  children: React.PropTypes.node
 }
 
 export default App

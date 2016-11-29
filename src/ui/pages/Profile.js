@@ -18,3 +18,8 @@ const Profile = ({ language, Text }) => {
 }
 
 export default Profile
+
+Profile.propTypes = {
+  Text: React.PropTypes.object,
+  language: React.PropTypes.string
+}
