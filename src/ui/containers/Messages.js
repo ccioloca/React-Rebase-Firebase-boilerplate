@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import base from '../rebase.config.js'
 import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
-import Message from '../components/Message'
+import MessageList from '../components/MessageList'
 import NewMessage from '../components/NewMessage'
 
 class Messages extends Component {
@@ -83,17 +83,6 @@ class Messages extends Component {
     const { messages, message } = this.state
     const { displayName, photoURL } = this.firebaseUser
 
-    const mappedMessages = messages.map( (data, index) => {
-      return (
-        <Message
-          Text={Text}
-          language={language}
-          data={ data }
-          removeMessage={ () => this._removeMessage(index) }
-          key={ index } />
-      )
-    })
-
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
@@ -105,9 +94,10 @@ class Messages extends Component {
                           Text={Text}
                           onChange={ this._onChange.bind(this) }
                           language={language}/>
-              <div>
-                <ul>{ mappedMessages }</ul>
-              </div>
+              <MessageList Text={Text}
+                           language={language}
+                           messages={messages}
+                           removeMessage={ () => this._removeMessage() }/>
           </div>
     );
   }
