@@ -40,14 +40,16 @@ class UserProfile extends Component {
   }
 
   render(){
-    const language = this.state.userProfile.language || 'en'
+    const language = this.state.userProfile.language
 
     const mappedLanguages = this.availableLanguages.map((data, index) => {
+      const checked = this.state.userProfile.language === data
       return (
         <SelectLanguage
           handleOptionChange={ this._handleOptionChange.bind(this) }
           language={data}
           key={index}
+          checked={checked}
         />
       )
     })

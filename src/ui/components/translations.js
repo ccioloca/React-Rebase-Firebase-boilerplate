@@ -5,7 +5,10 @@ const Text = {
     login: 'Login',
     myProfile: 'My Profile',
     selectYourLanguage: 'Select Your Language',
-    message: 'Message'
+    message: 'Message',
+    en: 'English',
+    de: 'Deutsch',
+    es: 'Español'
   },
   de: {
     brandName: 'Deutsch',
@@ -13,7 +16,10 @@ const Text = {
     login: 'Anmelden',
     myProfile: 'Mein Profil',
     selectYourLanguage: 'Wähle deine Sprache',
-    message: 'Nachricht'
+    message: 'Nachricht',
+    en: 'English',
+    de: 'Deutsch',
+    es: 'Español'
   },
   es: {
     brandName: 'Español',
@@ -21,7 +27,10 @@ const Text = {
     login: 'Iniciar sesión',
     myProfile: 'Mi perfil',
     selectYourLanguage: 'Elige tu idioma',
-    message: 'Mensaje'
+    message: 'Mensaje',
+    en: 'English',
+    de: 'Deutsch',
+    es: 'Español'
   }
 }
 
