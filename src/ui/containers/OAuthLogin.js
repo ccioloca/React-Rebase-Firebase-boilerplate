@@ -39,7 +39,7 @@ class OAuthLogin extends Component {
   }
 
   _loginWithOAuthRedirect(provider) {
-      base.authWithOAuthRedirect(provider, this._authHandler)
+      base.authWithOAuthRedirect('google', this._authHandler)
   }
 
   _authHandler(error) {

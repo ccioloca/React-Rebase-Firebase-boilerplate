@@ -1,7 +1,7 @@
 $module-name: 'card';
 
 @include settings((
-  gap-below           : size(xx-large),
+  gap-above           : size(huge),
   padding             : size(medium),
   border-color        : color($black),
   shadow-color        : rgba($black,.25),
@@ -13,7 +13,7 @@ $module-name: 'card';
 ));
 
 .#{$module-name} {
-  margin-bottom: setting(gap-below);
+  margin-top: setting(gap-above);
   padding: setting(padding);
   background: color(white);
   box-shadow: 0 2px 3px setting(shadow-color);

@@ -779,6 +779,7 @@ body {
     padding-right: 0; }
 
 .card {
+  margin-top: 3rem;
   padding: 1rem;
   background: #fcfcfa;
   box-shadow: 0 2px 3px rgba(22, 22, 29, 0.25);
@@ -868,13 +869,6 @@ body {
 .avatar {
   border-radius: 50%;
   overflow: hidden; }
-  .avatar--small {
-    height: 48px;
-    width: 48px; }
-
-.avatar-svg--small, .avatar-svg__rect--small {
-  height: 48px;
-  width: 48px; }
 
 .t-selectable {
   user-select: text; }
