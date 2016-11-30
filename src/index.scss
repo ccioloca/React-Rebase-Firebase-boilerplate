@@ -3,18 +3,19 @@
   // "bonescss/vendor/normalize",
   "bonescss/vendor/reset";
 
+//settings
 @import
   "ui/styles/0.settings";
 
 // Mixins
 @import
   "bonescss/mixins",
-  "ui/styles/mixins",
+  "ui/styles/mixins/mixins",
   "dialog-size/dist/dialog-size";
 
-// Your global styles go here
+// Base & Grid styles
 @import
-  "ui/styles/base",
+  "ui/styles/1.base",
   "sensible/sensible",
   "ui/styles/2.layout",
   "ui/layout/grid/style";

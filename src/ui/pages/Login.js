@@ -7,7 +7,7 @@ import Card from '../layout/Card'
 const Login = ({Text, language}) => {
   return (
     <Grid>
-      <Cell type={'whole'}>
+      <Cell desktop={'half'}>
         <Card>
           <OAuthLogin language={language}
                       Text={Text} />

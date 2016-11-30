@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Cell = ({ children, default, mobile, tablet }) => {
+const Cell = ({ children, desktop, mobile, tablet }) => {
 
-  const mobileClass = mobile && `l-one-${mobile}--mobile`
-  const tabletClass = mobile && `l-one-${tablet}--tablet`
+  const mobileClass = mobile ? `l-one-${mobile}--mobile` : null
+  const tabletClass = mobile ? `l-one-${tablet}--tablet` : null
 
   return (
-    <div className={`l-grid-cell l-one-${type} ${mobileClass} ${tabletClass}`}>
+    <div className={`l-grid-cell l-one-${desktop} ${mobileClass} ${tabletClass}`}>
         {children}
     </div>
   )
@@ -15,8 +15,8 @@ const Cell = ({ children, default, mobile, tablet }) => {
 export default Cell
 
 Cell.propTypes = {
-  children: React.PropTypes.node,
-  type: React.PropTypes.string,
+  desktop: React.PropTypes.string,
   mobile: React.PropTypes.string,
-  tablet: React.PropTypes.string
+  tablet: React.PropTypes.string,
+  children: React.PropTypes.node
 }

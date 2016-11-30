@@ -7,14 +7,10 @@ import Card from '../layout/Card'
 const Profile = ({ language, Text }) => {
   return (
     <Grid>
-      <Cell type={'l-one-quarter l-mobile-one-whole'}>
-      </Cell>
-      <Cell type={'l-one-half l-mobile-one-whole'}>
+      <Cell desktop={'whole'}>
         <Card>
           <UserProfile Text={Text} language={language}/>
         </Card>
-      </Cell>
-      <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>
     </Grid>
   )
