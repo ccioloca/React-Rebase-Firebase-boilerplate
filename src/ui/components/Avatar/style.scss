@@ -1,24 +1,23 @@
 $module-name: 'avatar';
 
 @include settings((
-  avatar-size           : size(image-small)
+  size           : size(image-small),
+  size-medium    : size(image-medium),
+  size-large     : size(image-large)
 ));
 
 .#{$module-name} {
   border-radius: 50%;
   overflow: hidden;
-  &--small {
-    height: setting(avatar-size);
-    width: setting(avatar-size);
+  height: setting(size);
+  width: setting(size);
+  &--medium {
+    height: setting(size-medium);
+    width: setting(size-medium);
   }
-  &__image {
+  &--large {
+    height: setting(size-large);
+    width: setting(size-large);
+  }
 
-  }
-  &-svg {
-    &--small,
-    &__rect--small {
-      height: setting(avatar-size);
-      width: setting(avatar-size);
-    }
-  }
 }

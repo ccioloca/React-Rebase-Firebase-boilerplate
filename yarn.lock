@@ -1641,6 +1641,10 @@ detect-port@1.0.0:
   dependencies:
     commander "~2.8.1"
 
+dialog-size:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/dialog-size/-/dialog-size-1.2.1.tgz#d8d9946e0278290ebdac73253c4da4ad11e67e83"
+
 diff@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.0.1.tgz#a52d90cc08956994be00877bff97110062582c35"

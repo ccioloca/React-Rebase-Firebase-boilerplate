@@ -1,28 +1,30 @@
-// bonescss and sensible
+// reset or normalize
 @import
-  "bonescss/vendor/normalize",
-  // "vendor/reset",
-  "bonescss/0.settings",
-  "sensible/mediaqueries",
-  "sensible/grid",
-  "sensible/responsive-visibility",
+  // "bonescss/vendor/normalize",
+  "bonescss/vendor/reset";
+
+@import
+  "ui/styles/0.settings";
+
+// Mixins
+@import
   "bonescss/mixins",
-  "bonescss/1.base",
-  "bonescss/2.layout";
+  "ui/styles/mixins",
+  "dialog-size/dist/dialog-size";
 
 // Your global styles go here
 @import
-  "ui/styles/mixins",
-  "ui/styles/sizes",
-  "ui/styles/objects",
-  "ui/styles/utilities",
-  "ui/styles/colors",
   "ui/styles/base",
+  "sensible/sensible",
+  "ui/styles/2.layout",
+  "ui/layout/grid/style";
+
+// Todo - remove button styles to a react component
+@import
   "ui/styles/buttons";
 
 // Your layout styles go here
 @import
-  "ui/layout/grid/style",
   "ui/layout/container/style",
   "ui/layout/Card/style";
 
@@ -36,7 +38,9 @@
   "ui/components/SelectLanguage/style",
   "ui/components/SocialLoginButtons/style";
 
-// bonescss
 @import
-  "bonescss/3.helpers",
-  "bonescss/5.states";
+  "3.helpers",
+  "4.states",
+  "5.trumps",
+  "6.print",
+  "7.shame";
