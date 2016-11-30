@@ -12,21 +12,28 @@
 
 // Your global styles go here
 @import
-  "ui/layout/grid",
-  "ui/layout/container",
+  "ui/styles/mixins",
   "ui/styles/objects",
+  "ui/styles/utilities",
   "ui/styles/colors",
   "ui/styles/base",
   "ui/styles/buttons";
+
+// Your layout styles go here
+@import
+  "ui/layout/grid/style",
+  "ui/layout/container/style",
+  "ui/layout/Card/style";
 
 // your component styles go here
 @import
   "ui/components/Header/style",
   "ui/components/Avatar/style",
-  "ui/components/Message/style",
+  "ui/components/MessageList/style",
   "ui/components/LoadingAnimation/style",
   "ui/components/NewMessage/style",
-  "ui/components/SelectLanguage/style";
+  "ui/components/SelectLanguage/style",
+  "ui/components/SocialLoginButtons/style";
 
 // bonescss
 @import

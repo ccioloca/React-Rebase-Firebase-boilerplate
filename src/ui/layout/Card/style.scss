@@ -1,0 +1,22 @@
+$module-name: 'card';
+
+@include settings((
+  gap-below           : size(xx-large),
+  padding             : size(medium),
+  border-color        : color($black),
+  shadow-color        : rgba($black,.25),
+  border-radius       : size(border-radius),
+  colors              : (
+    'white'           : $white,
+    'black'           : $black
+  )
+));
+
+.#{$module-name} {
+  margin-bottom: setting(gap-below);
+  padding: setting(padding);
+  background: color(white);
+  box-shadow: 0 2px 3px setting(shadow-color);
+  border: 1px solid setting(border-color);
+  border-radius: setting(border-radius);
+}

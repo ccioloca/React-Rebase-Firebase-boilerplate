@@ -60,7 +60,7 @@ class OAuthLogin extends Component {
       : <SocialLoginButtons providers={providers}
                             language={language}
                             Text={Text}
-                            onClick={() => this._loginWithOAuthRedirect(provider)}/>
+                            onClick={() => this._loginWithOAuthRedirect()}/>
     )
   }
 }

@@ -536,6 +536,26 @@ textarea {
   max-width: 90%;
   text-align: left; }
 
+.o-img-responsive {
+  width: 100%;
+  height: auto; }
+
+.u-inline-center {
+  text-align: center; }
+
+.u-block-center {
+  margin: 0 auto; }
+
+body {
+  background-color: #fcfcfa; }
+
+.btn--unstyled {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit; }
+
 
 .l-grid {
   display: flex;
@@ -758,19 +778,11 @@ textarea {
     padding-left: 0;
     padding-right: 0; }
 
-.o-img-responsive {
-  width: 100%;
-  height: auto; }
-
-body {
-  background-color: #fcfcfa; }
-
-.btn--unstyled {
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  color: inherit; }
+.card {
+  padding: 1rem;
+  background: #fcfcfa;
+  box-shadow: 0 2px 3px rgba(22, 22, 29, 0.25);
+  border: 1px solid; }
 
 .header {
   background: #005b96;

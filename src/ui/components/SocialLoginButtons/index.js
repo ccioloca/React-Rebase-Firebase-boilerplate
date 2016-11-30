@@ -2,10 +2,11 @@ import React from 'react'
 
 const SocialLoginButtons = ({providers, language, Text, onClick}) => {
   const loginButtons = providers.map( (provider, index) => {
+    console.log(provider)
     return (
-      <div>
+      <div key={index}>
         <button key={index}
-                onClick={() => this._loginWithOAuthRedirect(provider)}
+                onClick={()=>onClick(provider)}
                 className='btn--unstyled'>Login With {provider}</button>
       </div>
     )

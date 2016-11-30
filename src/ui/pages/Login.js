@@ -2,6 +2,7 @@ import React from 'react'
 import OAuthLogin from '../containers/OAuthLogin'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
+import Card from '../layout/Card'
 
 const Login = ({Text, language}) => {
   return (
@@ -9,8 +10,10 @@ const Login = ({Text, language}) => {
       <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>
       <Cell type={'l-one-half l-mobile-one-whole'}>
-        <OAuthLogin language={language}
-                    Text={Text} />
+        <Card>
+          <OAuthLogin language={language}
+                      Text={Text} />
+        </Card>
       </Cell>
       <Cell type={'l-one-quarter l-mobile-one-whole'}>
       </Cell>
