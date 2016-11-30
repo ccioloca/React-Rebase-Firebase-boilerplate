@@ -18,4 +18,4 @@
 
 @include responsive-visibility("desktop" "tablet" "mobile", true);
 
-.l-grid--vr > .l-grid-cell { margin-bottom: $grid-gutter; }
+.l-grid--vr > .l-grid-cell { margin-bottom: size(gutter); }

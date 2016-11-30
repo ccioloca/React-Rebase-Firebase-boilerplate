@@ -1,0 +1,50 @@
+$module-name: 'message-list';
+
+@include settings((
+  inline: size(inline),
+  display-name-type: small,
+  display-name-color: color(black),
+
+  message-type: default,
+  message-color: color(black),
+
+  date-type: small,
+  date-color: color(grey),
+
+  image-size: size(image-small)
+
+));
+
+.#{$module-name} {
+
+  &__display-name {
+    display: inline-block;
+    margin-right: setting(inline);
+    @include type(setting(display-name-type),(color: setting(display-name-color) ) );
+  }
+
+  &__message {
+    display: block;
+    margin-right: setting(inline);
+    @include type(setting(message-type),(color: setting(message-color) ) );
+    overflow: hidden;
+    clear: both;
+  }
+
+  &__date {
+    display: inline-block;
+    margin-right: setting(inline);
+    @include type(setting(date-type),(color: setting(date-color) ) );
+  }
+
+  &__image {
+    display: inline-block;
+    margin-right: setting(inline);
+    width: setting(image-size);
+  }
+
+  &__btn-delete {
+    float: right;
+  }
+
+}

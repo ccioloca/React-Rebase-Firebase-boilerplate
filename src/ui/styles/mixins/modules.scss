@@ -1,3 +1,5 @@
+/* @import "module-settings"; */
+
 $module-name: null !default;
 $module-settings: () !default;
 $module-cssvariables: false !default;
@@ -23,3 +25,23 @@ $module-cssvariables: false !default;
     @error 'no setting called #{$key}'
   }
 }
+
+/**
+ * Usage
+
+$module-name: 'somerandommodule';
+
+@include settings((
+  gutter         : 1rem,
+  color          : silver,
+  color-contrast : gold
+));
+
+.#{$module-name} {
+  padding: setting('gutter');
+  &__submodule {
+    color: setting(color);
+  }
+}
+
+ */

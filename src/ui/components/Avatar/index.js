@@ -3,7 +3,7 @@ import React from 'react'
 const Avatar = ({size, photoURL}) => {
 
     return (
-            <div className={`avatar avatar--${size}`}>
+            <div className={`avatar`}>
                 <img  src={photoURL}
                       role="presentation"
                       className='o-img-responsive avatar__image'/>

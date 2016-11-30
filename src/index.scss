@@ -31,7 +31,8 @@
 
 // your component styles go here
 @import
-  "ui/components/Header/style",
+  "ui/Header/style",
+  "ui/Header/Dropdown/style",
   "ui/components/Avatar/style",
   "ui/components/MessageList/style",
   "ui/components/LoadingAnimation/style",
@@ -39,9 +40,10 @@
   "ui/components/SelectLanguage/style",
   "ui/components/SocialLoginButtons/style";
 
+// uncomment these when you use them
 @import
-  "3.helpers",
-  "4.states",
-  "5.trumps",
-  "6.print",
-  "7.shame";
+  "ui/styles/3.helpers",
+  "ui/styles/4.states",
+  "ui/styles/5.trumps",
+  "ui/styles/6.print",
+  "ui/styles/7.shame";

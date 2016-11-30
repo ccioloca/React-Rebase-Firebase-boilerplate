@@ -1,0 +1,80 @@
+$module-name: 'header';
+
+@include settings((
+  dropdown-color: color(blue),
+  dropdown-colorHover: rgba(color(blue), .8),
+
+  links-type: default,
+  link-color: color(white),
+  link-colorHover: rgba(color(white), .7),
+
+  username-type: default,
+  username-color: color(white)
+
+));
+
+.user-dropdown {
+    position: relative;
+    @include breakpoint(mobile) {
+      position: initial;
+    }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__label {
+    @include type(setting(username-type),(color: setting(username-color) ) );
+    display: inline-block;
+    margin-right: 1rem;
+    @include breakpoint(mobile) {
+      display:none;
+    }
+  }
+
+  &__wrapper .avatar {
+    display: inline-block;
+  }
+
+  &__item a {
+    background: settings(dropdown-color);
+    display: block;
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      background: settings(dropdown-colorHover);
+      text-decoration: none;
+    }
+  }
+
+  &__btn-logout {
+    background: settings(dropdown-color);
+    display: block;
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    &:hover,
+    &:active {
+      background: settings(dropdown-colorHover);
+    }
+  }
+}
+
+.dd-menu-items {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-top: 0.5rem;
+}
+
+.dd-items-center {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Container from './layout/Container'
-import Header from './components/Header'
+import Header from './Header'
 import base from './rebase.config.js'
 import { browserHistory } from 'react-router'
 import Text from './translations'

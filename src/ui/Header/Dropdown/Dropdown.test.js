@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dropdown from './Dropdown';
+import Dropdown from '../Dropdown';
 const Text = {}
 
 it('renders without crashing', () => {

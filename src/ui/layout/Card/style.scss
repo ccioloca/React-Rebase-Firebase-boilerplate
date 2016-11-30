@@ -2,8 +2,8 @@ $module-name: 'card';
 
 @include settings((
   bezel               : size(medium),
-  border-color        : color($black),
-  shadow-color        : rgba($black,.25),
+  border-color        : color(black),
+  shadow-color        : rgba(black,.25),
   border-radius       : size(border-radius)
 ));
 
