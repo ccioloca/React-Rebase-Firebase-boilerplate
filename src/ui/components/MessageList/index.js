@@ -10,15 +10,14 @@ const MessageList = ({removeMessage, messages, language, Text}) => {
     const displayDate = moment(data.date).locale(language).fromNow()
     return (
       <li className="message-list__item" key={index}>
-          <Flag imageSrc={ data.photoURL } />
-          <div className="message-list__content wrapper">
+          <Flag imageSrc={ data.photoURL } >
             <h3 className="message-list__display-name">{ data.displayName }</h3>
             <p className="message-list__date">{ displayDate }</p>
             <button className="message-list__btn-delete" onClick={ () => removeMessage(index) }>
               {deleteMessageText}
             </button>
             <p className="message-list__message">{ data.message }</p>
-          </div>
+          </Flag>
 
       </li>
     )

@@ -2,6 +2,7 @@ $module-name: 'header';
 
 @include settings((
   background: color(blue),
+  gap-below: size(gap-large),
 
   circle-border-color: color(white),
   circle-fill-color: color(blue-light),
@@ -18,6 +19,7 @@ $module-name: 'header';
 
 .#{$module-name} {
   background: setting(background);
+  margin-bottom: setting(gap-below);
 
   &__container {
     display: flex;
@@ -39,11 +41,12 @@ $module-name: 'header';
     display: inline-block;
     margin-left: 1rem;
     text-transform: uppercase;
-    @include type(setting(brand-type),(color: setting(brand-color) ) );
+
   }
   &__left {
+    @include type(setting(brand-type),(color: setting(brand-color) ) );
     a {
-
+      color: setting(brand-color);
       &:hover,
       &:active {
         color: setting(brand-colorHover)

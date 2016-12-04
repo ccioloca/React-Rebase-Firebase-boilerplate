@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Flag = ({ imageSrc, body, size }) => {
+const Flag = ({ imageSrc, children, size }) => {
 
-  const imageSize = size ? `l-flag__image--${size}` : null
+  const imageSize = size ? `l-flag__image--${size}` : ''
 
   return (
     <div className="l-flag">
@@ -11,9 +11,7 @@ const Flag = ({ imageSrc, body, size }) => {
              role="presentation" />
       </div>
       <div className="l-flag__body">
-        <h3 className="message-list__display-name">test</h3>
-        <p className="message-list__date">test</p>
-        <p className="message-list__message">test</p>
+        {children}
       </div>
     </div>
   )
@@ -23,6 +21,6 @@ export default Flag
 
 Flag.propTypes = {
   imageSrc: React.PropTypes.string.isRequired,
-  body: React.PropTypes.node,
+  children: React.PropTypes.node,
   size: React.PropTypes.string
 }

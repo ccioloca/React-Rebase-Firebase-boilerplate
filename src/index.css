@@ -247,7 +247,8 @@ html {
   overflow-y: scroll; }
 
 html, body, .l-body {
-  min-height: 100%; }
+  min-height: 100%;
+  max-width: 100vw; }
 
 strong {
   font-weight: 400; }
@@ -567,18 +568,13 @@ textarea {
 
 .l-container {
   max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px; }
+  margin: 0 20px; }
   .l-container--medium {
     max-width: 960px; }
   .l-container--small {
     max-width: 500px; }
   .l-container--condensed {
-    padding-left: 0;
-    padding-right: 0; }
+    margin: 0; }
 
 .card {
   padding: 1rem;
@@ -590,7 +586,9 @@ textarea {
 .l-flag {
   display: flex; }
   .l-flag__image {
-    width: 48px; }
+    width: 48px;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem; }
     .l-flag__image--medium {
       width: 10rem; }
     .l-flag__image--large {
@@ -602,7 +600,8 @@ textarea {
     flex-grow: 1; }
 
 .header {
-  background: #005b96; }
+  background: #005b96;
+  margin-bottom: 1.5rem; }
   .header__container {
     display: flex;
     justify-content: space-between;
@@ -616,13 +615,16 @@ textarea {
   .header__brand {
     display: inline-block;
     margin-left: 1rem;
-    text-transform: uppercase;
+    text-transform: uppercase; }
+  .header__left {
     font-weight: 600;
     font-size: 1.3rem;
     line-height: 1.3;
     color: #fcfcfa; }
-  .header__left a:hover, .header__left a:active {
-    color: rgba(252, 252, 250, 0.7); }
+    .header__left a {
+      color: #fcfcfa; }
+      .header__left a:hover, .header__left a:active {
+        color: rgba(252, 252, 250, 0.7); }
   .header__right--has-user {
     min-width: 130px; }
     @media only screen and (max-width: 740px) {
@@ -665,23 +667,25 @@ textarea {
   .user-dropdown__wrapper .avatar {
     display: inline-block; }
   .user-dropdown__item a {
-    background: settings(dropdown-color);
+    background: #005b96;
     display: block;
     padding: 1rem 0;
     width: 100%;
     text-align: center;
-    cursor: pointer; }
+    cursor: pointer;
+    color: #fcfcfa; }
     .user-dropdown__item a:hover, .user-dropdown__item a:active {
-      background: settings(dropdown-colorHover);
+      color: rgba(252, 252, 250, 0.7);
       text-decoration: none; }
   .user-dropdown__btn-logout {
-    background: settings(dropdown-color);
+    background: #005b96;
     display: block;
     padding: 1rem 0;
     width: 100%;
-    text-align: center; }
+    text-align: center;
+    color: #fcfcfa; }
     .user-dropdown__btn-logout:hover, .user-dropdown__btn-logout:active {
-      background: settings(dropdown-colorHover); }
+      color: rgba(252, 252, 250, 0.7); }
 
 .dd-menu-items {
   position: absolute;

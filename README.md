@@ -42,9 +42,10 @@ The aim of this repository is the following (But it's a Work in Progress):
 4. Push to the branch: `git push origin feature/my-new-feature`
 5. Submit a pull request :D
 
-## Credits
+## Credits and thank you to all who have helped! (in alphabetical order)
 
 * [haluvibe](https://github.com/haluvibe)
+* [meodai](https://github.com/meodai)
 * [qwales1](https://github.com/qwales1)
 
 ## License

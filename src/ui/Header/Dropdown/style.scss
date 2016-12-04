@@ -39,28 +39,30 @@ $module-name: 'header';
   }
 
   &__item a {
-    background: settings(dropdown-color);
+    background: setting(dropdown-color);
     display: block;
     padding: 1rem 0;
     width: 100%;
     text-align: center;
     cursor: pointer;
+    color: setting(link-color);
     &:hover,
     &:active {
-      background: settings(dropdown-colorHover);
+      color: setting(link-colorHover);
       text-decoration: none;
     }
   }
 
   &__btn-logout {
-    background: settings(dropdown-color);
+    background: setting(dropdown-color);
     display: block;
     padding: 1rem 0;
     width: 100%;
     text-align: center;
+    color: setting(link-color);
     &:hover,
     &:active {
-      background: settings(dropdown-colorHover);
+      color: setting(link-colorHover);
     }
   }
 }
