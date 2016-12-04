@@ -568,7 +568,8 @@ textarea {
 
 .l-container {
   max-width: 1200px;
-  margin: 0 20px; }
+  margin: 0 auto;
+  padding: 0 20px; }
   .l-container--medium {
     max-width: 960px; }
   .l-container--small {
