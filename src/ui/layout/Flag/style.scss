@@ -1,0 +1,28 @@
+$module-name: 'l-flag';
+
+@include settings((
+  inline         : size(inline),
+  size           : size(image-small),
+  size-medium    : size(image-medium),
+  size-large     : size(image-large)
+));
+
+.#{$module-name} {
+  display: flex;
+  &__image {
+    width: setting(size);
+    &--medium {
+    width: setting(size-medium);
+    }
+    &--large {
+    width: setting(size-large);
+    }
+    img {
+      height: 100%;
+      width: 100%; 
+    }
+  }
+  &__body {
+    flex-grow: 1;
+  }
+}

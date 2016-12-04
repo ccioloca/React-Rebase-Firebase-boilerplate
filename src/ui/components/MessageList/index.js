@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import Flag from '../../layout/Flag'
 
 const MessageList = ({removeMessage, messages, language, Text}) => {
 
@@ -9,16 +10,15 @@ const MessageList = ({removeMessage, messages, language, Text}) => {
     const displayDate = moment(data.date).locale(language).fromNow()
     return (
       <li className="message-list__item" key={index}>
-          <img src={ data.photoURL }
-               role="presentation"
-               className="message-list__image" />
-
-          <h3 className="message-list__display-name">{ data.displayName }</h3>
-          <p className="message-list__date">{ displayDate }</p>
-          <button className="message-list__btn-delete" onClick={ () => removeMessage(index) }>
-            {deleteMessageText}
-          </button>
-          <p className="message-list__message">{ data.message }</p>
+          <Flag imageSrc={ data.photoURL } />
+          <div className="message-list__content wrapper">
+            <h3 className="message-list__display-name">{ data.displayName }</h3>
+            <p className="message-list__date">{ displayDate }</p>
+            <button className="message-list__btn-delete" onClick={ () => removeMessage(index) }>
+              {deleteMessageText}
+            </button>
+            <p className="message-list__message">{ data.message }</p>
+          </div>
 
       </li>
     )

@@ -587,6 +587,20 @@ textarea {
   border: 1px solid #16161d;
   border-radius: 0.2rem; }
 
+.l-flag {
+  display: flex; }
+  .l-flag__image {
+    width: 48px; }
+    .l-flag__image--medium {
+      width: 10rem; }
+    .l-flag__image--large {
+      width: 20rem; }
+    .l-flag__image img {
+      height: 100%;
+      width: 100%; }
+  .l-flag__body {
+    flex-grow: 1; }
+
 .header {
   background: #005b96; }
   .header__container {
