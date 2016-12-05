@@ -32,7 +32,7 @@ class Messages extends Component {
       context: this,
       state: 'messages',
       asArray: true,
-      queries: { limitToLast: 3,
+      queries: { limitToLast: 6,
                   orderByKey: 'reverse'},
       then: () => { this.setState({loading:false}) }
     })
@@ -87,6 +87,10 @@ class Messages extends Component {
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
         : <div>
+              <MessageList Text={Text}
+                           language={language}
+                           messages={messages}
+                           removeMessage={ () => this._removeMessage() }/>
               <NewMessage onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }
@@ -94,10 +98,6 @@ class Messages extends Component {
                           Text={Text}
                           onChange={ this._onChange.bind(this) }
                           language={language}/>
-              <MessageList Text={Text}
-                           language={language}
-                           messages={messages}
-                           removeMessage={ () => this._removeMessage() }/>
           </div>
     );
   }

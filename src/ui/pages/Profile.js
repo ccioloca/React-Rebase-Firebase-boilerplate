@@ -2,16 +2,15 @@ import React from 'react';
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 import UserProfile from '../containers/UserProfile'
+import Card from '../layout/Card'
 
 const Profile = ({ language, Text }) => {
   return (
     <Grid>
-      <Cell type={'l-one-quarter l-mobile-one-whole'}>
-      </Cell>
-      <Cell type={'l-one-half l-mobile-one-whole'}>
-        <UserProfile Text={Text} language={language}/>
-      </Cell>
-      <Cell type={'l-one-quarter l-mobile-one-whole'}>
+      <Cell desktop={'whole'}>
+        <Card>
+          <UserProfile Text={Text} language={language}/>
+        </Card>
       </Cell>
     </Grid>
   )

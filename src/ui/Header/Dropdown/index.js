@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DropdownMenu from 'react-dd-menu'
-import UserButton from './UserButton'
+import UserButton from '../UserButton'
 import { Link, browserHistory } from 'react-router'
 import base from '../../rebase.config.js'
 

@@ -1,0 +1,21 @@
+@include sensibleGrid (
+  $modern:               true,
+  $gutter:               size(gutter),
+  $gutter-type:          margin,
+  $gutter-direction:     left,
+  $gutter-modifiers:     (
+    "narrow" : size(gutter-narrow),
+    "collapsed": 0
+  ),
+  $slug:                 "l-",
+  $grid-widths:          (
+    "one-whole"       : 100%,
+    "one-half"        : 50%,
+    "one-quarter"     : 25%
+  ),
+  $grid-breakpoints:  "tablet" "mobile"
+);
+
+@include responsive-visibility("desktop" "tablet" "mobile", true);
+
+.l-grid--vr > .l-grid-cell { margin-bottom: size(gutter); }

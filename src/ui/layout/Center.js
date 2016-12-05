@@ -13,3 +13,7 @@ const Center = ({ children, ...rest }) => {
 }
 
 export default Center
+
+Center.propTypes = {
+  children: React.PropTypes.node
+}

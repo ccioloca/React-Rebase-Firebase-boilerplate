@@ -8,8 +8,9 @@ npm install yarn -g
 
 yarn start -> start the dev server
 yarn test -> start the Jest tests
+yarn watch -> watches the scss files
+yarn magic -> run all three commands above in seperate tabs
 yarn build -> build a production ready file
-yarn magic -> run all three commands above
 
 ## Usage
 
@@ -27,8 +28,9 @@ The aim of this repository is the following (But it's a Work in Progress):
 * [firebase](https://www.npmjs.com/package/firebase)
 * [re-base](https://github.com/tylermcginnis/re-base)
 * [react-router](https://github.com/rackt/react-router)
-* [sensible](https://github.com/meodai/sensible)
+* [dialog-size](https://github.com/meodai/dialog-size)
 * [bonescss](https://github.com/meodai/bonescss)
+* [sensible](https://github.com/meodai/sensible)
 * [jsxstyle](https://github.com/smyte/jsxstyle)
 * [moment](https://github.com/moment/moment)
 
@@ -40,9 +42,10 @@ The aim of this repository is the following (But it's a Work in Progress):
 4. Push to the branch: `git push origin feature/my-new-feature`
 5. Submit a pull request :D
 
-## Credits
+## Credits and thank you to all who have helped! (in alphabetical order)
 
 * [haluvibe](https://github.com/haluvibe)
+* [meodai](https://github.com/meodai)
 * [qwales1](https://github.com/qwales1)
 
 ## License

@@ -1,0 +1,79 @@
+$module-name: 'header';
+
+@include settings((
+  background: color(blue),
+  gap-below: size(gap-large),
+
+  circle-border-color: color(white),
+  circle-fill-color: color(blue-light),
+
+  brand-type: brand,
+  brand-color: color(white),
+  brand-colorHover: rgba(color(white), .7),
+
+  links-type: default,
+  link-color: color(white),
+  link-colorHover: rgba(color(white), .7)
+
+));
+
+.#{$module-name} {
+  background: setting(background);
+  margin-bottom: setting(gap-below);
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0rem;
+  }
+
+  &__logo {
+    display:inline-block;
+  }
+
+  &__circle {
+    stroke: setting(circle-border-color);
+    fill: setting(circle-fill-color);
+  }
+
+  &__brand {
+    display: inline-block;
+    margin-left: 1rem;
+    text-transform: uppercase;
+
+  }
+  &__left {
+    @include type(setting(brand-type),(color: setting(brand-color) ) );
+    a {
+      color: setting(brand-color);
+      &:hover,
+      &:active {
+        color: setting(brand-colorHover)
+      }
+    }
+  }
+
+  &__right {
+    &--has-user {
+      min-width: 130px;
+      @include breakpoint(mobile) {
+        min-width: 0;
+      }
+    }
+    a {
+      color: setting(link-color);
+      &:hover,
+      &:active {
+        color: setting(link-colorHover);
+      }
+    }
+  }
+
+  &__public-link {
+    margin-right: 1rem;
+    &--last {
+      margin-right: 0;
+    }
+  }
+}
