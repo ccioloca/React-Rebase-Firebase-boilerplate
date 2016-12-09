@@ -34,6 +34,18 @@ const Text = {
     language: 'Español',
     submit: 'enviar',
     notLoggedIn: 'ESP You are not loggedin'
+  },
+  pl: {
+    brandName: 'Polski',
+    logout: 'Wyloguj',
+    login: 'Zaloguj',
+    myProfile: 'Moj Profil',
+    selectYourLanguage: 'Wybierz jezyk',
+    message: 'Wiadomosc',
+    delete: 'Usun',
+    language: 'Polski',
+    submit: 'wyslij',
+    notLoggedIn: 'Nie jestes zalogowany'
   }
 }
 
