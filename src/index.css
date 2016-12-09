@@ -714,7 +714,11 @@ textarea {
 
 .message-list__display-name {
   display: inline-block;
-  margin-right: 0.5rem; }
+  margin-right: 0.5rem;
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: #16161d; }
 
 .message-list__message {
   display: block;
@@ -724,7 +728,7 @@ textarea {
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
-  color: #16161d;
+  color: #005b96;
   overflow: hidden;
   clear: both; }
   @media only screen and (max-width: 740px) {

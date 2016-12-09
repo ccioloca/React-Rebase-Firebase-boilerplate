@@ -2,11 +2,11 @@ $module-name: 'message-list';
 
 @include settings((
   inline: size(inline),
-  display-name-type: small,
+  display-name-type: subtitle,
   display-name-color: color(black),
 
   message-type: default,
-  message-color: color(black),
+  message-color: color(blue),
 
   date-type: small,
   date-color: color(grey),

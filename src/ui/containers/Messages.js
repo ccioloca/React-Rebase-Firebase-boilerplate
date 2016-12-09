@@ -23,7 +23,7 @@ class Messages extends Component {
      * with the new state.
      *
      * Any time we call 'setState' on our 'messages' state, it will
-     * updated the Firebase '/chats' endpoint. Firebase will then emit the changes,
+     * updated the Firebase '/messages' endpoint. Firebase will then emit the changes,
      * which causes our local instance (and any other instances) to update
      * state to reflect those changes.
      */
