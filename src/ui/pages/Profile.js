@@ -8,9 +8,7 @@ const Profile = ({ language, Text }) => {
   return (
     <Grid>
       <Cell desktop={'whole'}>
-        <Card>
-          <UserProfile Text={Text} language={language}/>
-        </Card>
+        <UserProfile Text={Text} language={language}/>
       </Cell>
     </Grid>
   )
