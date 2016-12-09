@@ -588,15 +588,13 @@ textarea {
   display: flex; }
   .l-flag__image {
     width: 48px;
+    min-width: 48px;
     margin-right: 0.5rem;
     margin-bottom: 1rem; }
     .l-flag__image--medium {
       width: 10rem; }
     .l-flag__image--large {
       width: 20rem; }
-    .l-flag__image img {
-      height: 100%;
-      width: 100%; }
   .l-flag__body {
     flex-grow: 1; }
 
