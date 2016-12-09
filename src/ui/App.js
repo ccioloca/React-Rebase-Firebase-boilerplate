@@ -12,7 +12,6 @@ class App extends Component {
         this.state = {
             hasUser: false,
             loading: true,
-            firebaseUser: null,
             language: 'en'
         }
     }
@@ -20,7 +19,7 @@ class App extends Component {
     componentWillMount() {
         const authDataCallback = (user) => {
             if (user) {
-                this.setState({hasUser: true, loading: false, firebaseUser: user})
+                this.setState({hasUser: true, loading: false})
                 this.ref = base.listenTo(`users/${user.uid}`, {
                   context: this,
                   asArray: false,
@@ -46,13 +45,13 @@ class App extends Component {
 
     render() {
         const { children } = this.props
-        const { hasUser, loading, firebaseUser, language } = this.state
+        const { hasUser, loading, language } = this.state
 
         return (
             <div>
                 <Header hasUser={hasUser} loading={loading} language={language} Text={Text}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser, firebaseUser, language, Text }) }
+                    { React.cloneElement(children, { language, Text }) }
                 </Container>
             </div>
         )
