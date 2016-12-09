@@ -90,7 +90,7 @@ class Messages extends Component {
               <MessageList Text={Text}
                            language={language}
                            messages={messages}
-                           removeMessage={ () => this._removeMessage() }/>
+                           removeMessage={ (index) => this._removeMessage(index) }/>
               <NewMessage onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }
