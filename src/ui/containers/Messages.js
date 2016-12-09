@@ -4,6 +4,7 @@ import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
 import MessageList from '../components/MessageList'
 import NewMessage from '../components/NewMessage'
+import Card from '../layout/Card'
 
 class Messages extends Component {
   constructor(props){
@@ -86,7 +87,7 @@ class Messages extends Component {
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <div>
+        : <Card>
               <MessageList Text={Text}
                            language={language}
                            messages={messages}
@@ -98,7 +99,7 @@ class Messages extends Component {
                           Text={Text}
                           onChange={ this._onChange.bind(this) }
                           language={language}/>
-          </div>
+          </Card>
     );
   }
 }

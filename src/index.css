@@ -588,15 +588,12 @@ textarea {
   display: flex; }
   .l-flag__image {
     width: 48px;
-    margin-right: 0.5rem;
-    margin-bottom: 1rem; }
+    min-width: 48px;
+    margin-right: 0.5rem; }
     .l-flag__image--medium {
       width: 10rem; }
     .l-flag__image--large {
       width: 20rem; }
-    .l-flag__image img {
-      height: 100%;
-      width: 100%; }
   .l-flag__body {
     flex-grow: 1; }
 
@@ -712,6 +709,9 @@ textarea {
     height: 20rem;
     width: 20rem; }
 
+.message-list__item {
+  margin-bottom: 1rem; }
+
 .message-list__display-name {
   display: inline-block;
   margin-right: 0.5rem;
@@ -747,6 +747,23 @@ textarea {
 
 .message-list__btn-delete {
   float: right; }
+
+.message-form__row {
+  display: flex; }
+
+.message-form__field {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #b20000; }
+  @media only screen and (max-width: 740px) {
+    .message-form__field {
+      font-size: 1.15rem;
+      line-height: 1.5; } }
 
 .is-visuallyhidden {
   border: 0;

@@ -22,7 +22,8 @@
 
 // Todo - remove button styles to a react component
 @import
-  "ui/styles/buttons";
+  "ui/styles/misc/buttons",
+  "ui/styles/misc/forms";
 
 // Your layout styles go here
 @import
@@ -36,7 +37,6 @@
   "ui/Header/Dropdown/style",
   "ui/components/Avatar/style",
   "ui/components/MessageList/style",
-  "ui/components/LoadingAnimation/style",
   "ui/components/NewMessage/style",
   "ui/components/SelectLanguage/style",
   "ui/components/SocialLoginButtons/style";

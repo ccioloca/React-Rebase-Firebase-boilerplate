@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Grid = ({children, fluid}) => {
+const Grid = ({children}) => {
   return (
-    <div className={`l-grid ${fluid ? 'l-grid--fluid' : ''}`}>
+    <div className={`l-grid`}>
       {children}
     </div>
   )
@@ -11,6 +11,5 @@ const Grid = ({children, fluid}) => {
 export default Grid
 
 Grid.propTypes = {
-  children: React.PropTypes.node,
-  fluid: React.PropTypes.bool
+  children: React.PropTypes.node
 }
