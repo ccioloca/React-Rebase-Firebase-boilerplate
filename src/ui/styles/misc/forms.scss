@@ -1,0 +1,25 @@
+$module-name: 'form';
+
+@include settings((
+  inline: size(inline),
+));
+
+.#{$module-name} {
+
+  &__row {
+
+  }
+
+  &__label {
+
+  }
+
+  &__field {
+
+  }
+
+  &__submit {
+
+  }
+
+}

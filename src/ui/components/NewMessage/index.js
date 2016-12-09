@@ -3,33 +3,26 @@ import React from 'react'
 const NewMessage = ({onFormSubmit, onChange, displayName, photoURL, value, Text, language }) => {
 
   let message
-  const date = Date.now()
-  const submitText = Text[language].submit
-  const messageText =  Text[language].message
 
   return (
-    <form className="form"
+    <form className="form message-form"
           onSubmit={(event) => onFormSubmit(event, {
             message: message.value,
             photoURL,
             displayName,
-            date
+            date: Date.now()
     })}>
-      <div className="form__row">
-        <label className="form__label">
-          {messageText}:
-          <input className="form__field"
+      <div className="form__row message-form__row">
+          <input className="form__field message-form__field"
                  type='text'
                  ref={c => (message = c)}
                  value={value}
+                 placeholder={Text[language].message}
                  onChange={() => onChange(message.value) }
                  />
-        </label>
       </div>
-      <input className="form__submit" type="submit" value={submitText} />
     </form>
   )
-
 }
 
 export default NewMessage

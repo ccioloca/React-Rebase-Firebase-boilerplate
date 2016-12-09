@@ -11,11 +11,16 @@ $module-name: 'message-list';
   date-type: small,
   date-color: color(grey),
 
+  gap-below: size(gutter),
   image-size: size(image-small)
 
 ));
 
 .#{$module-name} {
+
+  &__item {
+    margin-bottom: setting(gap-below)
+  }
 
   &__display-name {
     display: inline-block;

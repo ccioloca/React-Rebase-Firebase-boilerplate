@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 import UserProfile from '../containers/UserProfile'
-import Card from '../layout/Card'
 
 const Profile = ({ language, Text }) => {
   return (

@@ -2,7 +2,6 @@ $module-name: 'l-flag';
 
 @include settings((
   inline         : size(inline),
-  gap-below      : size(gutter),
   size           : size(image-small),
   size-medium    : size(image-medium),
   size-large     : size(image-large)
@@ -14,7 +13,6 @@ $module-name: 'l-flag';
     width: setting(size);
     min-width: setting(size);
     margin-right: setting(inline);
-    margin-bottom: setting(gap-below);
     &--medium {
     width: setting(size-medium);
     }
