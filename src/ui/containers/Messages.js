@@ -107,5 +107,6 @@ class Messages extends Component {
 export default Messages
 
 Messages.propTypes = {
-  language: React.PropTypes.string.isRequired
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired
 }
