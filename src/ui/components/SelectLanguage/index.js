@@ -4,12 +4,12 @@ import Card from '../../layout/Card'
 const SelectLanguage = ({ handleOptionChange, language, Text, availableLanguages }) => {
   return (
     <Card>
-      <form className="select-language">
+      <form className="form select-language-form">
         <h1>{Text[language].selectYourLanguage}</h1>
         { availableLanguages.map((item, index) =>
-          <div key={index} className="select-language__radio-wrapper">
-            <label className="select-language__label">
-              <input  className="select-language__input"
+          <div key={index} className="form__row select-language-form__row">
+            <label className="form__radio-label select-language-form__label">
+              <input  className="form__radio-input select-language-form__radio-input"
                       type="radio"
                       name="language"
                       value={item}

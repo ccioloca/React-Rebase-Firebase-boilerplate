@@ -22,4 +22,12 @@ $module-name: 'form';
 
   }
 
+  &__radio-label {
+
+  }
+
+  &__radio-input {
+    margin-right: setting(inline);
+  }
+
 }

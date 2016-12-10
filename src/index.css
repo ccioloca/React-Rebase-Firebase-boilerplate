@@ -566,6 +566,9 @@ textarea {
   font: inherit;
   color: inherit; }
 
+.form__radio-input {
+  margin-right: 0.5rem; }
+
 .l-container {
   max-width: 1200px;
   margin: 0 auto;

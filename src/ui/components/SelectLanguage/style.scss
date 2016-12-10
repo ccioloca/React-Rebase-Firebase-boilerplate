@@ -1,5 +1,12 @@
-.select-language {
-  &__radio-wrapper {
+$module-name: 'select-language-form';
+
+@include settings((
+  inline: size(inline),
+));
+
+.#{$module-name} {
+
+  &__row {
 
   }
   &__radio-label {
@@ -8,4 +15,5 @@
   &__radio-input {
 
   }
+  
 }
