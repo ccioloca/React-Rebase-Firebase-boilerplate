@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import base from '../rebase.config.js'
 import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
+import NoteList from '../components/NoteList'
+import NewNote from '../components/NewNote'
 
 class NotesContainer extends Component {
   constructor(props){

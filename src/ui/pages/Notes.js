@@ -1,12 +1,13 @@
 import React from 'react'
+import NotesContainer from '../containers/NotesContainer'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 
 const Notes = ({Text, language}) => {
   return (
     <Grid>
-      <Cell desktop={ 'whole' } mobile={ 'whole'} tablet={'whole'}>
-        I am an example notes page, replace me with a component or container
+      <Cell desktop={ 'whole' }>
+        <NotesContainer language={language} Text={Text} />
       </Cell>
     </Grid>
   )
