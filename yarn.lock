@@ -1641,6 +1641,10 @@ detect-port@1.0.0:
   dependencies:
     commander "~2.8.1"
 
+dialog-size:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/dialog-size/-/dialog-size-1.2.1.tgz#d8d9946e0278290ebdac73253c4da4ad11e67e83"
+
 diff@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.0.1.tgz#a52d90cc08956994be00877bff97110062582c35"
@@ -5430,10 +5434,6 @@ trim-newlines@^1.0.0:
 tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
-
-ttab:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/ttab/-/ttab-0.5.0.tgz#3dde11fe6012759a514b8c63df7cdb34c0561666"
 
 tty-browserify@0.0.0:
   version "0.0.0"

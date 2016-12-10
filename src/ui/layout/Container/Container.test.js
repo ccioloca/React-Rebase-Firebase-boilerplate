@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Avatar from '../Avatar'
+import Container from '../Container'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Avatar photoURL={'string'} size={'string'}  />, div)
+  ReactDOM.render(<Container />, div)
 })

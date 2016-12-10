@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Container from './layout/Container'
-import Header from './components/Header'
+import Header from './Header'
 import base from './rebase.config.js'
 import { browserHistory } from 'react-router'
 import Text from './translations'
@@ -12,7 +12,6 @@ class App extends Component {
         this.state = {
             hasUser: false,
             loading: true,
-            firebaseUser: null,
             language: 'en'
         }
     }
@@ -20,7 +19,7 @@ class App extends Component {
     componentWillMount() {
         const authDataCallback = (user) => {
             if (user) {
-                this.setState({hasUser: true, loading: false, firebaseUser: user})
+                this.setState({hasUser: true, loading: false})
                 this.ref = base.listenTo(`users/${user.uid}`, {
                   context: this,
                   asArray: false,
@@ -46,21 +45,21 @@ class App extends Component {
 
     render() {
         const { children } = this.props
-        const { hasUser, loading, firebaseUser, language } = this.state
+        const { hasUser, loading, language } = this.state
 
         return (
             <div>
                 <Header hasUser={hasUser} loading={loading} language={language} Text={Text}/>
                 <Container size={'medium'}>
-                    { React.cloneElement(children, { hasUser, firebaseUser, language, Text }) }
+                    { React.cloneElement(children, { language, Text }) }
                 </Container>
             </div>
         )
     }
 }
 
+export default App
+
 App.propTypes = {
   children: React.PropTypes.node
 }
-
-export default App

@@ -5,12 +5,12 @@
   "devDependencies": {
     "node-sass": "^3.13.0",
     "npm-scripts-watcher": "^1.0.2",
-    "react-scripts": "0.6.1",
-    "ttab": "^0.5.0"
+    "react-scripts": "0.6.1"
   },
   "dependencies": {
     "bonescss": "^0.8.4",
     "classnames": "^2.2.5",
+    "dialog-size": "^1.2.1",
     "jsxstyle": "^1.0.1",
     "moment": "^2.17.0",
     "re-base": "^2.2.0",

@@ -1,21 +1,22 @@
-$avatarSize: 48px;
+$module-name: 'avatar';
 
-.avatar {
+@include settings((
+  size           : size(image-small),
+  size-medium    : size(image-medium),
+  size-large     : size(image-large)
+));
+
+.#{$module-name} {
   border-radius: 50%;
   overflow: hidden;
-  &--small {
-    height: $avatarSize;
-    width: $avatarSize;
+  height: setting(size);
+  width: setting(size);
+  &--medium {
+    height: setting(size-medium);
+    width: setting(size-medium);
   }
-  &__image {
-
-  }
-}
-
-.avatar-svg {
-  &--small,
-  &__rect--small {
-    height: $avatarSize;
-    width: $avatarSize;
+  &--large {
+    height: setting(size-large);
+    width: setting(size-large);
   }
 }

@@ -1,0 +1,16 @@
+$module-name: 'card';
+
+@include settings((
+  bezel               : size(medium),
+  border-color        : color(black),
+  shadow-color        : rgba(black,.25),
+  border-radius       : size(border-radius)
+));
+
+.#{$module-name} {
+  padding: setting(bezel);
+  background: color(white);
+  box-shadow: 0 2px 3px setting(shadow-color);
+  border: 1px solid setting(border-color);
+  border-radius: setting(border-radius);
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropdown from './Dropdown'
 import PublicNavigation from './PublicNavigation'
-import Container from '../../layout/Container'
+import Container from '../layout/Container'
 import {Link} from 'react-router'
 
 const Header = ({hasUser, loading, language, Text}) => {

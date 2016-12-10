@@ -4,6 +4,7 @@ import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
 import MessageList from '../components/MessageList'
 import NewMessage from '../components/NewMessage'
+import Card from '../layout/Card'
 
 class Messages extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class Messages extends Component {
      * with the new state.
      *
      * Any time we call 'setState' on our 'messages' state, it will
-     * updated the Firebase '/chats' endpoint. Firebase will then emit the changes,
+     * updated the Firebase '/messages' endpoint. Firebase will then emit the changes,
      * which causes our local instance (and any other instances) to update
      * state to reflect those changes.
      */
@@ -32,7 +33,7 @@ class Messages extends Component {
       context: this,
       state: 'messages',
       asArray: true,
-      queries: { limitToLast: 3,
+      queries: { limitToLast: 6,
                   orderByKey: 'reverse'},
       then: () => { this.setState({loading:false}) }
     })
@@ -86,7 +87,11 @@ class Messages extends Component {
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <div>
+        : <Card>
+              <MessageList Text={Text}
+                           language={language}
+                           messages={messages}
+                           removeMessage={ (index) => this._removeMessage(index) }/>
               <NewMessage onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }
@@ -94,11 +99,7 @@ class Messages extends Component {
                           Text={Text}
                           onChange={ this._onChange.bind(this) }
                           language={language}/>
-              <MessageList Text={Text}
-                           language={language}
-                           messages={messages}
-                           removeMessage={ () => this._removeMessage() }/>
-          </div>
+          </Card>
     );
   }
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dropdown from './Dropdown';
-const Text = {}
+import SocialLoginButton from '../SocialLoginButton';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Dropdown />, div);
+  ReactDOM.render(<SocialLoginButton />, div);
 });

@@ -1,34 +1,50 @@
-// bonescss and sensible
+// reset or normalize
 @import
-  "bonescss/vendor/normalize",
-  // "vendor/reset",
-  "bonescss/0.settings",
-  "sensible/mediaqueries",
-  "sensible/grid",
-  "sensible/responsive-visibility",
-  "bonescss/mixins",
-  "bonescss/1.base",
-  "bonescss/2.layout";
+  // "bonescss/vendor/normalize",
+  "bonescss/vendor/reset";
 
-// Your global styles go here
+//settings
 @import
-  "ui/layout/grid",
-  "ui/layout/container",
-  "ui/styles/objects",
-  "ui/styles/colors",
-  "ui/styles/base",
-  "ui/styles/buttons";
+  "ui/styles/0.settings";
+
+// Mixins
+@import
+  "bonescss/mixins",
+  "ui/styles/mixins/mixins",
+  "dialog-size/dist/dialog-size";
+
+// Base & Grid styles
+@import
+  "ui/styles/1.base",
+  "sensible/sensible",
+  "ui/styles/2.layout",
+  "ui/layout/grid/style";
+
+// Todo - remove button styles to a react component
+@import
+  "ui/styles/misc/buttons",
+  "ui/styles/misc/forms";
+
+// Your layout styles go here
+@import
+  "ui/layout/container/style",
+  "ui/layout/Card/style",
+  "ui/layout/Flag/style";
 
 // your component styles go here
 @import
-  "ui/components/Header/style",
+  "ui/Header/style",
+  "ui/Header/Dropdown/style",
   "ui/components/Avatar/style",
-  "ui/components/Message/style",
-  "ui/components/LoadingAnimation/style",
+  "ui/components/MessageList/style",
   "ui/components/NewMessage/style",
-  "ui/components/SelectLanguage/style";
+  "ui/components/SelectLanguage/style",
+  "ui/components/SocialLoginButtons/style";
 
-// bonescss
+// uncomment these when you use them
 @import
-  "bonescss/3.helpers",
-  "bonescss/5.states";
+  "ui/styles/3.helpers",
+  "ui/styles/4.states",
+  "ui/styles/5.trumps",
+  "ui/styles/6.print",
+  "ui/styles/7.shame";
