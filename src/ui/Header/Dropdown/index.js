@@ -62,6 +62,9 @@ class Dropdown extends Component {
         <li className="user-dropdown__item">
           <Link to="profile">{Text[language].myProfile || 'My Profile'}</Link>
         </li>
+        <li className="user-dropdown__item">
+          <Link to="notes">{Text[language].myNotes || 'My Notes'}</Link>
+        </li>
         <li className="user-dropdown__item-logout">
           <button className="user-dropdown__btn-logout btn--unstyled"
                   onClick={() => this.logout()}>{Text[language].logout || 'Logout'}</button>
