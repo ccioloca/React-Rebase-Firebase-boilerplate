@@ -1,0 +1,75 @@
+$module-name: 'social-login-buttons';
+
+@include settings((
+  inline: size(inline),
+  bezel: size(gap-small),
+  gap-below: size(gap-small),
+
+  button-radius: size(border-radius),
+  button-type: default,
+  button-text-color: color(white),
+
+  google-color: color(google),
+  google-colorHover: rgba(color(google), 0.95),
+  facebook-color: color(facebook),
+  facebook-colorHover: rgba(color(facebook), 0.95),
+  twitter-color: color(twitter),
+  twitter-colorHover: rgba(color(twitter), 0.95),
+  github-color: color(github),
+  github-colorHover: rgba(color(github), 0.85),
+
+));
+
+.#{$module-name} {
+
+  &__icon {
+    margin-right: setting(inline);
+  }
+
+  &__button {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: setting(bezel);
+    border-radius: setting(button-radius);
+    @include type(setting(button-type),(color: setting(button-text-color) ) );
+    margin-bottom: setting(gap-below);
+    &:last-child {
+      margin-bottom: 0px;
+    }
+
+    &--google {
+      background-color: setting(google-color);
+      &:hover,
+      &:active {
+        background-color: setting(google-colorHover);
+      }
+    }
+
+    &--facebook {
+      background-color: setting(facebook-color);
+      &:hover,
+      &:active {
+        background-color: setting(facebook-colorHover);
+      }
+    }
+
+    &--twitter {
+      background-color: setting(twitter-color);
+      &:hover,
+      &:active {
+        background-color: setting(twitter-colorHover);
+      }
+    }
+
+    &--github {
+      background-color: setting(github-color);
+      &:hover,
+      &:active {
+        background-color: setting(github-colorHover);
+      }
+    }
+
+  }
+
+}

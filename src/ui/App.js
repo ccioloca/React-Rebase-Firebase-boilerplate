@@ -4,6 +4,7 @@ import Header from './Header'
 import base from './rebase.config.js'
 import { browserHistory } from 'react-router'
 import Text from './translations'
+import 'font-awesome/css/font-awesome.css'
 
 class App extends Component {
 

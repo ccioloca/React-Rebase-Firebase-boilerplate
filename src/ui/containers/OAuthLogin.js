@@ -66,3 +66,8 @@ class OAuthLogin extends Component {
 }
 
 export default OAuthLogin
+
+OAuthLogin.propTypes = {
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired
+}

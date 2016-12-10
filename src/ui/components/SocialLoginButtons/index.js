@@ -4,14 +4,18 @@ import Card from '../../layout/Card'
 const SocialLoginButtons = ({providers, language, Text, onClick}) => {
   return (
     <Card>
-      { providers.map( (provider, index) =>
-          <div key={index}>
-            <button key={index}
-                    onClick={()=>onClick(provider)}
-                    className='btn--unstyled'>Login With {provider}</button>
-          </div>
-      )}
+      <div className="social-login-buttons">
+        { providers.map( (provider, index) =>
+          <button key={index}
+                  onClick={()=>onClick(provider)}
+                  className={`social-login-buttons__button social-login-buttons__button--${provider}`}>
+                  <i className={`fa fa-${provider} social-login-buttons__icon`}></i>
+                  Login With {provider}
+          </button>
+        )}
+      </div>
     </Card>
+
   )
 }
 

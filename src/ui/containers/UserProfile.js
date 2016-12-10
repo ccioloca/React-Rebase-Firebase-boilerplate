@@ -55,3 +55,8 @@ class UserProfile extends Component {
 }
 
 export default UserProfile
+
+UserProfile.propTypes = {
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired
+}
