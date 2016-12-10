@@ -2,16 +2,13 @@ import React, { Component } from 'react'
 import base from '../rebase.config.js'
 import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
-import MessageList from '../components/MessageList'
-import NewMessage from '../components/NewMessage'
-import Card from '../layout/Card'
 
-class Messages extends Component {
+class NotesContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      messages: [],
-      message: '',
+      notes: [],
+      note: '',
       loading: true
     }
     this.firebaseUser = base.auth().currentUser
@@ -19,22 +16,21 @@ class Messages extends Component {
   componentWillMount(){
 
     /*
-     * We bind the 'messages' firebase endopint to our 'messages' state.
+     * We bind the 'notes' firebase endopint to our 'notes' state.
      * Anytime the firebase updates, it will call 'setState' on this component
      * with the new state.
      *
-     * Any time we call 'setState' on our 'messages' state, it will
-     * updated the Firebase '/messages' endpoint. Firebase will then emit the changes,
+     * Any time we call 'setState' on our 'notes' state, it will
+     * updated the Firebase '/notes' endpoint. Firebase will then emit the changes,
      * which causes our local instance (and any other instances) to update
      * state to reflect those changes.
      */
 
-    this.ref = base.syncState('messages', {
+    this.ref = base.syncState('notes', {
       context: this,
-      state: 'messages',
+      state: 'notes',
       asArray: true,
-      queries: { limitToLast: 6,
-                  orderByKey: 'reverse'},
+      queries: { limitToLast: 10},
       then: () => { this.setState({loading:false}) }
     })
   }
@@ -49,64 +45,64 @@ class Messages extends Component {
     base.removeBinding(this.ref);
   }
 
-  _removeMessage(index){
+  _removeNotes(index){
 
-    var arr = this.state.messages.concat([])
+    var arr = this.state.notes.concat([])
     arr.splice(index, 1)
 
     /*
-     * Calling setState here will update the '/messages' ref on our Firebase.
+     * Calling setState here will update the '/notes' ref on our Firebase.
      * Notice that I'm also updating the 'show' state.  Because there is no
      * binding to our 'show' state, it will update the local 'show' state normally,
      * without going to Firebase.
      */
 
     this.setState({
-      messages: arr
+      notes: arr
     });
   }
 
-  _onFormSubmit(event, newMessage) {
+  _onFormSubmit(event, newNote) {
     event.preventDefault()
-    if (newMessage.message) {
-      this.setState({messages: this.state.messages.concat([newMessage])})
-      this.setState({message: ''})
+    if (newNote.note) {
+      this.setState({notes: this.state.notes.concat([newNote])})
+      this.setState({note: ''})
      }
 
   }
 
   _onChange(value) {
-    this.setState({message:value})
+    this.setState({note:value})
   }
 
   render() {
     const { language, Text } = this.props
-    const { messages, message } = this.state
+    const { notes, note } = this.state
     const { displayName, photoURL } = this.firebaseUser
 
-    console.log(this.state.messages)
+    console.log(this.state.notes)
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <Card>
-              <MessageList Text={Text}
+        : <div>
+              <NoteList Text={Text}
                            language={language}
-                           messages={messages}
-                           removeMessage={ (index) => this._removeMessage(index) }/>
-              <NewMessage onFormSubmit={ this._onFormSubmit.bind(this) }
+                           notes={notes}
+                           removeNote={ (index) => this._removeNote(index) }/>
+              <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }
-                          value={ message }
+                          value={ note }
                           Text={Text}
                           onChange={ this._onChange.bind(this) }
                           language={language}/>
-          </Card>
+          </div>
     );
   }
 }
 
-export default Messages
+export default NotesContainer
 
-Messages.propTypes = {
+NotesContainer.propTypes = {
   language: React.PropTypes.string.isRequired
 }
