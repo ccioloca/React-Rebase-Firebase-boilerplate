@@ -28,12 +28,21 @@ class NotesContainer extends Component {
      * state to reflect those changes.
      */
 
-    this.ref = base.syncState('notes', {
+    this.ref = base.listenTo('notes', {
       context: this,
-      state: 'notes',
-      asArray: true,
-      queries: { limitToLast: 10},
-      then: () => { this.setState({loading:false}) }
+      asArray: false,
+      queries: { limitToLast: 10 },
+      then: (notes) => { 
+        var notesArray = [];
+        var i = 0;
+        for (var key in notes) {
+          notesArray.push(notes[key]);
+          notesArray[i]["key"] = key;
+          i++;
+        }
+        console.log(notesArray);
+        this.setState({notes: notesArray, loading: false});
+       }
     })
   }
   componentWillUnmount(){
@@ -47,10 +56,7 @@ class NotesContainer extends Component {
     base.removeBinding(this.ref);
   }
 
-  _removeNotes(index){
-
-    var arr = this.state.notes.concat([])
-    arr.splice(index, 1)
+  _removeNote(index){
 
     /*
      * Calling setState here will update the '/notes' ref on our Firebase.
@@ -59,17 +65,16 @@ class NotesContainer extends Component {
      * without going to Firebase.
      */
 
-    this.setState({
-      notes: arr
-    });
+    base.remove(`notes/${index}`).then(() => console.log('deleted'));
   }
 
   _onFormSubmit(event, newNote) {
     event.preventDefault()
     if (newNote.note) {
-      this.setState({notes: this.state.notes.concat([newNote])})
-      this.setState({note: ''})
-     }
+      base.push('notes', {
+        data: newNote,
+      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
+    }
 
   }
 

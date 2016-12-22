@@ -14,7 +14,7 @@ const NoteList = ({removeNote, notes, language, Text}) => {
               <Flag imageSrc={ data.photoURL } >
                 <h3 className="message-list__display-name">{ data.displayName }</h3>
                 <p className="message-list__date">{ moment(data.date).locale(language).fromNow() }</p>
-                <button className="message-list__btn-delete" onClick={ () => removeNote(index) }>
+                <button className="message-list__btn-delete" onClick={ () => removeNote(data.key) }>
                   {deleteNoteText}
                 </button>
                 <p className="message-list__message">{ data.note }</p>
