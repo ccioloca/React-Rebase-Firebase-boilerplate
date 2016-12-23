@@ -28,23 +28,17 @@ class NotesContainer extends Component {
      * which causes our local instance (and any other instances) to update
      * state to reflect those changes.
      */
-
-    this.ref = base.listenTo('notes', {
+     console.log(this.firebaseUser.uid)
+    this.ref = base.listenTo(`authentication/userReadable/${this.firebaseUser.uid}/notes`, {
       context: this,
-      asArray: false,
-      queries: { limitToLast: 10,
-                 orderByChild: 'isPublic',
-                 equalTo: true },
-      then: (notes) => { 
-        var notesArray = [];
-        var i = 0;
-        for (var key in notes) {
-          notesArray.push(notes[key]);
-          notesArray[i]["key"] = key;
-          i++;
-        }
-        console.log(notesArray);
-        this.setState({notes: notesArray, loading: false});
+      asArray: true,
+      queries: { limitToLast: 10 },
+      onFailure: (err) => {
+        console.log('inside', err)
+        this.setState({loading: false})
+      },
+      then: (notes) => {
+        this.setState({notes: notes, loading: false});
        }
     })
   }
@@ -59,7 +53,7 @@ class NotesContainer extends Component {
     base.removeBinding(this.ref);
   }
 
-  _removeNote(index){
+  _removeNote(key){
 
     /*
      * Calling setState here will update the '/notes' ref on our Firebase.
@@ -67,8 +61,7 @@ class NotesContainer extends Component {
      * binding to our 'show' state, it will update the local 'show' state normally,
      * without going to Firebase.
      */
-
-    base.remove(`notes/${index}`).then(() => console.log('deleted'));
+     console.log('key', key)
   }
 
   _onFormSubmit(event, newNote) {
@@ -76,9 +69,15 @@ class NotesContainer extends Component {
     newNote.uid = this.firebaseUser.uid
     newNote.isPublic = this.state.isPublic
     if (newNote.note) {
-      base.push('notes', {
-        data: newNote,
-      }).then(() => this.setState({note: '', isPublic: true})).catch(err => console.log(err));
+      const uid = this.firebaseUser.uid
+	  newNote.isPublic = this.state.isPublic
+      newNote.uid = uid
+      base.push(`firebase-queue/notes-queue/tasks`, {
+        data: {
+          timestamp: new Date().toString(),
+          note: newNote
+        }
+      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
     }
 
   }
@@ -104,7 +103,7 @@ class NotesContainer extends Component {
               <NoteList Text={Text}
                            language={language}
                            notes={notes}
-                           removeNote={ (index) => this._removeNote(index) }/>
+                           removeNote={ (key) => this._removeNote(key) }/>
               <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }

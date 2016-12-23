@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "authentication": {
+      "admins": {
+        "$uid": {
+          ".read": "root.child('authentication').child('admins').child(auth.uid).val() == true",
+          ".write": "newData.parent().parent().parent().child('authentication').child('admins').child(auth.uid).val() == true"
+        }
+      },
+      "userReadable": {
+        "$objectType": {
+          "$uid": {
+            ".read": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() == true",
+            ".write": "newData.parent().parent().parent().parent().child('authentication').child('admins').child(auth.uid).val() == true"
+          }
+        }
+      }
+    }
+  }
+}
