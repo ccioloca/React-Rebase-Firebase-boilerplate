@@ -1,11 +1,12 @@
 import React from 'react'
 
-const NewNote = ({onFormSubmit, onChange, displayName, photoURL, value, Text, language }) => {
+const NewNote = ({onFormSubmit, onChange, onCheck, isChecked, displayName, photoURL, value, Text, language }) => {
 
   let note
   const date = Date.now()
   const submitText = Text[language].submit
   const noteText =  Text[language].note
+  const isPrivateText = Text[language].isPrivate
 
   return (
     <form className="form"
@@ -27,6 +28,7 @@ const NewNote = ({onFormSubmit, onChange, displayName, photoURL, value, Text, la
         </label>
       </div>
       <input className="form__submit" type="submit" value={submitText} />
+      <label><input className="form__checkbox" type="checkbox" checked={isChecked} onChange={ () => onCheck() } />{isPrivateText}</label>
     </form>
   )
 

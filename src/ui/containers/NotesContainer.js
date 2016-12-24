@@ -11,7 +11,8 @@ class NotesContainer extends Component {
     this.state = {
       notes: [],
       note: '',
-      loading: true
+      loading: true,
+      isPublic: true
     }
     this.firebaseUser = base.auth().currentUser
   }
@@ -73,17 +74,21 @@ class NotesContainer extends Component {
   _onFormSubmit(event, newNote) {
     event.preventDefault()
     newNote.uid = this.firebaseUser.uid
-    newNote.isPublic = true
+    newNote.isPublic = this.state.isPublic
     if (newNote.note) {
       base.push('notes', {
         data: newNote,
-      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
+      }).then(() => this.setState({note: '', isPublic: true})).catch(err => console.log(err));
     }
 
   }
 
   _onChange(value) {
     this.setState({note:value})
+  }
+
+  _onCheck() {
+    this.setState({isPublic: !this.state.isPublic})
   }
 
   render() {
@@ -106,7 +111,9 @@ class NotesContainer extends Component {
                           value={ note }
                           Text={Text}
                           onChange={ this._onChange.bind(this) }
-                          language={language}/>
+                          language={language}
+                          onCheck={ () => this._onCheck() }
+                          isChecked={!this.state.isPublic}/>
           </div>
     );
   }

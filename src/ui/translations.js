@@ -11,7 +11,8 @@ const Text = {
     delete: 'Delete',
     language: 'English',
     submit: 'submit',
-    notLoggedIn: 'You are not loggedin'
+    notLoggedIn: 'You are not loggedin',
+    isPrivate: 'Private Note'
   },
   de: {
     brandName: 'Deutsch',
@@ -25,7 +26,8 @@ const Text = {
     delete: 'löschen',
     language: 'Deutsch',
     submit: 'einsenden',
-    notLoggedIn: 'DE You are not loggedin'
+    notLoggedIn: 'DE You are not loggedin',
+    isPrivate: 'DE Private Note'
   },
   es: {
     brandName: 'Español',
@@ -39,7 +41,8 @@ const Text = {
     delete: 'borrar',
     language: 'Español',
     submit: 'enviar',
-    notLoggedIn: 'ESP You are not loggedin'
+    notLoggedIn: 'ESP You are not loggedin',
+    isPrivate: 'ESP Private Note'
   },
   pl: {
     brandName: 'Polski',
@@ -53,7 +56,8 @@ const Text = {
     delete: 'Usun',
     language: 'Polski',
     submit: 'wyslij',
-    notLoggedIn: 'Nie jestes zalogowany'
+    notLoggedIn: 'Nie jestes zalogowany',
+    isPrivate: 'Prywatna Notatka'
   }
 }
 
