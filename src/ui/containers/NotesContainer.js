@@ -31,7 +31,9 @@ class NotesContainer extends Component {
     this.ref = base.listenTo('notes', {
       context: this,
       asArray: false,
-      queries: { limitToLast: 10 },
+      queries: { limitToLast: 10,
+                 orderByChild: 'isPublic',
+                 equalTo: true },
       then: (notes) => { 
         var notesArray = [];
         var i = 0;
@@ -70,6 +72,8 @@ class NotesContainer extends Component {
 
   _onFormSubmit(event, newNote) {
     event.preventDefault()
+    newNote.uid = this.firebaseUser.uid
+    newNote.isPublic = true
     if (newNote.note) {
       base.push('notes', {
         data: newNote,
