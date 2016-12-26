@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import Flag from '../../layout/Flag'
 
-const NoteList = ({removeNote, notes, language, Text}) => {
+const PublicNoteList = ({removeNote, notes, language, Text}) => {
 
   const deleteNoteText = Text[language].delete
 
@@ -26,9 +26,9 @@ const NoteList = ({removeNote, notes, language, Text}) => {
   )
 }
 
-export default NoteList
+export default PublicNoteList
 
-NoteList.propTypes = {
+PublicNoteList.propTypes = {
   removeNote: React.PropTypes.func.isRequired,
   notes: React.PropTypes.array.isRequired,
   language: React.PropTypes.string.isRequired,

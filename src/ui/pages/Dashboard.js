@@ -1,13 +1,14 @@
 import React from 'react'
-import Messages from '../containers/Messages'
+import PublicNotesContainer from '../containers/PublicNotesContainer'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 
 const Dashboard = ({language, Text}) => {
   return (
     <Grid>
-      <Cell desktop={'whole'}>
-        <Messages language={language} Text={Text} />
+      <Cell desktop={'one-whole'}>
+        <PublicNotesContainer language={language}
+                              Text={Text} />
       </Cell>
     </Grid>
   )
