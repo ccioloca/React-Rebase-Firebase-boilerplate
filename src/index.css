@@ -953,7 +953,9 @@ textarea {
 
 .public-notes-list__date {
   display: inline-block;
-  margin-right: 0.5rem; }
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: #999; }
 
 .public-notes-list__image {
   display: inline-block;
