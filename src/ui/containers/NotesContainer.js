@@ -66,8 +66,7 @@ class NotesContainer extends Component {
        data: {
          timestamp: new Date().toString(),
          action: 'delete',
-         target: key,
-         note: {}
+         target: key
        }
      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
 
@@ -88,7 +87,7 @@ class NotesContainer extends Component {
           action: 'add',
           note: newNote
         }
-      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
+      }).then(() => this.setState({note: '', })).catch(err => console.log(err));
     }
 
   }

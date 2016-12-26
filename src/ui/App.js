@@ -20,7 +20,7 @@ class App extends Component {
         const authDataCallback = (user) => {
             if (user) {
                 this.setState({hasUser: true, loading: false})
-                this.ref = base.listenTo(`users/${user.uid}`, {
+                this.ref = base.listenTo(`authentication/userOwned/${user.uid}/preferences`, {
                   context: this,
                   asArray: false,
                   then(userOptions) {

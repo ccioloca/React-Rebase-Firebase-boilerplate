@@ -27,7 +27,13 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
   }
 
   if ( data.action === 'add' ) {
-    return USER_PRIVATE_REF.child('notes').child(data._id).set(data.note)
+    const newPrivateNote = Object.assign({}, data.note)
+    delete newPrivateNote.isPublic
+    delete newPrivateNote.displayName
+    delete newPrivateNote.photoURL
+    delete newPrivateNote.uid
+
+    return USER_PRIVATE_REF.child(data.note.uid).child('notes').child(data._id).set(newPrivateNote)
       .then(function(){
         if (data.note.isPublic === true) {
           delete data.note.isPublic
