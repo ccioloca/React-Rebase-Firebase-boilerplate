@@ -32,7 +32,7 @@ class NotesContainer extends Component {
     this.ref = base.listenTo(`authentication/allMembers/notes`, {
       context: this,
       asArray: true,
-      queries: { limitToLast: 10 },
+      queries: { limitToLast: 10,},
       onFailure: (err) => {
         console.log('inside', err)
         this.setState({loading: false})
@@ -72,6 +72,7 @@ class NotesContainer extends Component {
       const uid = this.firebaseUser.uid
       newNote.isPublic = this.state.isPublic
       newNote.uid = uid
+
       base.push(`authentication/userWritable/notes-queue/tasks`, {
         data: {
           timestamp: new Date().toString(),

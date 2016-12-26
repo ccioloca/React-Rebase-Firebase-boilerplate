@@ -18,24 +18,15 @@ const PUBLIC_NOTES_REF = AUTH_REF.child('allMembers').child('notes')
 const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, progress, resolve, reject) {
   // Read and process task data
   progress(10);
-  if (data.note.isPublic === true) {
-    return PUBLIC_NOTES_REF.push(data.note)
-      .then(function(){
-        PUBLIC_NOTES_REF.child('count').transaction(i => i + 1)
-        progress(20)
-        console.log('success')
-        USER_PRIVATE_REF.child(data.note.uid).child('notes').push(data.note)
-
-      })
-      .then(resolve)
-      .catch(reject)
-  } else {
-    return USER_PRIVATE_REF.child(data.note.uid).child('notes').push(data.note)
-      .then(function(){
-        progress(20)
-        console.log('success')
-      })
-      .then(resolve)
-      .catch(reject)
-  }
+  return USER_PRIVATE_REF.child('notes').child(data._id).set(data.note)
+    .then(function(){
+      if (data.note.isPublic === true) {
+        delete data.note.isPublic
+        PUBLIC_NOTES_REF.child(data._id).set(data.note)
+      }
+      progress(20)
+      NOTES_QUEUE_REF.child(data._id).remove()
+    })
+    .then(resolve)
+    .catch(reject)
 })
