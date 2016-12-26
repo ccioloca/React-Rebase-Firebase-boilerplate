@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import base from '../rebase.config.js'
 import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
-import NoteList from '../components/NoteList'
+import UserNotesList from '../components/UserNotesList'
 import NewNote from '../components/NewNote'
+import Card from '../layout/Card'
+import Grid from '../layout/Grid'
+import Cell from '../layout/Cell'
 
-class NotesContainer extends Component {
+class UserNotesContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -28,8 +31,8 @@ class NotesContainer extends Component {
      * which causes our local instance (and any other instances) to update
      * state to reflect those changes.
      */
-     console.log(this.firebaseUser.uid)
-    this.ref = base.listenTo(`authentication/allMembers/notes`, {
+     const uid = this.firebaseUser.uid
+    this.ref = base.listenTo(`authentication/userReadable/${uid}/notes`, {
       context: this,
       asArray: true,
       queries: { limitToLast: 10,},
@@ -66,7 +69,9 @@ class NotesContainer extends Component {
        data: {
          timestamp: new Date().toString(),
          action: 'delete',
-         target: key
+         language: this.props.language,
+         target: key,
+         uid: this.firebaseUser.uid
        }
      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
 
@@ -74,18 +79,16 @@ class NotesContainer extends Component {
 
   _onFormSubmit(event, newNote) {
     event.preventDefault()
-    newNote.uid = this.firebaseUser.uid
-    newNote.isPublic = this.state.isPublic
-    if (newNote.note) {
-      const uid = this.firebaseUser.uid
-      newNote.isPublic = this.state.isPublic
-      newNote.uid = uid
 
+    if (newNote.note) {
+      newNote.uid = this.firebaseUser.uid
       base.push(`authentication/userWritable/notes-queue/tasks`, {
         data: {
           timestamp: new Date().toString(),
           action: 'add',
-          note: newNote
+          note: newNote,
+          isPublic: this.state.isPublic,
+          language: this.props.language
         }
       }).then(() => this.setState({note: '', })).catch(err => console.log(err));
     }
@@ -105,15 +108,19 @@ class NotesContainer extends Component {
     const { notes, note } = this.state
     const { displayName, photoURL } = this.firebaseUser
 
-    console.log(this.state.notes)
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <div>
-              <NoteList Text={Text}
-                           language={language}
-                           notes={notes}
-                           removeNote={ (key) => this._removeNote(key) }/>
+        : <Grid>
+            <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">
+              <Card>
+                <UserNotesList Text={Text}
+                             language={language}
+                             notes={notes}
+                             displayName={displayName}
+                             photoURL={photoURL}
+                             removeNote={ (key) => this._removeNote(key) }/>
+               </Card>
               <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }
@@ -123,13 +130,17 @@ class NotesContainer extends Component {
                           language={language}
                           onCheck={ () => this._onCheck() }
                           isChecked={!this.state.isPublic}/>
-          </div>
+            </Cell>
+            <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
+              Choose category section goes here
+            </Cell>
+          </Grid>
     );
   }
 }
 
-export default NotesContainer
+export default UserNotesContainer
 
-NotesContainer.propTypes = {
+UserNotesContainer.propTypes = {
   language: React.PropTypes.string.isRequired
 }

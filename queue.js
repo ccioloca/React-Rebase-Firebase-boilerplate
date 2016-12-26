@@ -20,8 +20,8 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
   progress(10);
 
   if ( data.action === 'delete' ) {
-      USER_PRIVATE_REF.child('notes').child(data.target).remove()
-      PUBLIC_NOTES_REF.child(data.target).remove()
+      USER_PRIVATE_REF.child(data.uid).child('notes').child(data.target).remove()
+      PUBLIC_NOTES_REF.child(data.language).child(data.target).remove()
       NOTES_QUEUE_REF.child(data._id).remove()
       resolve()
   }
@@ -35,9 +35,8 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
 
     return USER_PRIVATE_REF.child(data.note.uid).child('notes').child(data._id).set(newPrivateNote)
       .then(function(){
-        if (data.note.isPublic === true) {
-          delete data.note.isPublic
-          PUBLIC_NOTES_REF.child(data._id).set(data.note)
+        if (data.isPublic === true) {
+          PUBLIC_NOTES_REF.child(data.language).child(data._id).set(data.note)
         }
         progress(20)
         NOTES_QUEUE_REF.child(data._id).remove()

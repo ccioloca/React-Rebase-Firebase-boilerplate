@@ -1,4 +1,6 @@
 import React from 'react'
+import Grid from '../../layout/Grid'
+import Cell from '../../layout/Cell'
 
 const NewNote = ({onFormSubmit, onChange, onCheck, isChecked, displayName, photoURL, value, Text, language }) => {
 
@@ -19,8 +21,7 @@ const NewNote = ({onFormSubmit, onChange, onCheck, isChecked, displayName, photo
       <div className="form__row">
         <label className="form__label">
           {noteText}:
-          <input className="form__field"
-                 type='text'
+          <textarea className="form__field form__textarea"
                  ref={c => (note = c)}
                  value={value}
                  onChange={() => onChange(note.value) }

@@ -8,10 +8,17 @@
     "collapsed": 0
   ),
   $slug:                 "l-",
-  $grid-widths:          (
-    "one-whole"       : 100%,
-    "one-half"        : 50%,
-    "one-quarter"     : 25%
+  $grid-widths:          (                 // [08]
+    'one-whole'      : 100%,
+    'one-half'       : 50%,
+    'one-quarter'    : 25%,
+    'three-quarters' : 75%,
+    'one-third'      : 33.333%,
+    'two-thirds'     : 66.666%,
+    'one-fifth'      : 20%,
+    'four-fifths'    : 80%,
+    "one-sixth"      : 16.666%,
+    "five-sixths"    : 83.333%
   ),
   $grid-breakpoints:  "tablet" "mobile"
 );
