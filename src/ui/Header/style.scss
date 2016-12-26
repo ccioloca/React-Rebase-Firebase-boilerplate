@@ -2,7 +2,7 @@ $module-name: 'header';
 
 @include settings((
   background: color(blue),
-  gap-below: size(gap-large),
+  stack-below: size(stack-large),
 
   circle-border-color: color(white),
   circle-fill-color: color(blue-light),
@@ -19,7 +19,7 @@ $module-name: 'header';
 
 .#{$module-name} {
   background: setting(background);
-  margin-bottom: setting(gap-below);
+  margin-bottom: setting(stack-below);
 
   &__container {
     display: flex;

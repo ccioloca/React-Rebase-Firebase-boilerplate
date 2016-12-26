@@ -11,7 +11,7 @@ $module-name: 'message-list';
   date-type: date,
   date-color: color(grey),
 
-  gap-below: size(gutter),
+  stack-below: size(gutter),
   image-size: size(image-small)
 
 ));
@@ -19,7 +19,7 @@ $module-name: 'message-list';
 .#{$module-name} {
 
   &__item {
-    margin-bottom: setting(gap-below)
+    margin-bottom: setting(stack-below)
   }
 
   &__display-name {
