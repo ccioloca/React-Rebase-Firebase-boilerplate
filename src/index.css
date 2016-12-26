@@ -910,6 +910,9 @@ textarea {
 .new-note-form__row {
   display: flex; }
 
+.new-note-form__label {
+  display: block; }
+
 .new-note-form__field {
   width: 100%;
   padding: 0.75rem;

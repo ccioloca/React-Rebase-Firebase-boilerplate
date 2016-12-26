@@ -4,6 +4,7 @@ import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
 import UserNotesList from '../components/UserNotesList'
 import NewNote from '../components/NewNote'
+import ChooseCategory from '../components/ChooseCategory'
 import Card from '../layout/Card'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
@@ -15,6 +16,7 @@ class UserNotesContainer extends Component {
     this.state = {
       notes: [],
       note: '',
+      category: 'all',
       loading: true,
       isPublic: true
     }
@@ -23,10 +25,17 @@ class UserNotesContainer extends Component {
 
   componentWillMount(){
     const uid = this.firebaseUser.uid
+    const userNotesQuery = { limitToLast: 10 }
+
+    if (this.state.category !== 'all') {
+      userNotesQuery.orderByChild = "category"
+      userNotesQuery.equalTo = this.state.category
+    }
+
     this.ref = base.listenTo(`authentication/userReadable/${uid}/notes`, {
       context: this,
       asArray: true,
-      queries: { limitToLast: 10,},
+      queries: userNotesQuery,
       onFailure: (err) => {
         console.log('inside', err)
         this.setState({loading: false})
@@ -95,18 +104,25 @@ class UserNotesContainer extends Component {
                              photoURL={photoURL}
                              removeNote={ (key) => this._removeNote(key) }/>
               </Card>
-              <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
-                          displayName={ displayName }
-                          photoURL={ photoURL }
-                          value={ note }
-                          Text={Text}
-                          onChange={ this._onChange.bind(this) }
-                          language={language}
-                          onCheck={ () => this._onCheck() }
-                          isChecked={!this.state.isPublic}/>
+              <Grid>
+                <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">
+                  <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
+                              displayName={ displayName }
+                              photoURL={ photoURL }
+                              value={ note }
+                              Text={Text}
+                              onChange={ this._onChange.bind(this) }
+                              language={language}
+                              onCheck={ () => this._onCheck() }
+                              isChecked={!this.state.isPublic}/>
+                </Cell>
+                <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
+                  <ChooseCategory />
+                </Cell>
+              </Grid>
             </Cell>
             <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
-              Choose category section goes here
+              List of Categories as buttons goes here - these buttons would change state of category
             </Cell>
           </Grid>
     );
