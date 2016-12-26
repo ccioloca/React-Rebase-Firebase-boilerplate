@@ -8,16 +8,16 @@ const UserNotesList = ({removeNote, notes, photoURL, displayName, language, Text
 
   return (
     <div>
-      <ul className="message-list">
+      <ul className="user-notes-list">
         { notes.map( (data, index) =>
-          <li className="message-list__item" key={index}>
+          <li className="user-notes-list__item" key={index}>
               <Flag imageSrc={ photoURL } >
-                <h3 className="message-list__display-name">{ displayName }</h3>
-                <p className="message-list__date">{ moment(data.date).locale(language).fromNow() }</p>
-                <button className="message-list__btn-delete" onClick={ () => removeNote(data.key) }>
+                <h3 className="user-notes-list__display-name">{ displayName }</h3>
+                <p className="user-notes-list__date">{ moment(data.date).locale(language).fromNow() }</p>
+                <button className="user-notes-list__btn-delete" onClick={ () => removeNote(data.key) }>
                   {deleteNoteText}
                 </button>
-                <p className="message-list__message">{ data.note }</p>
+                <p className="user-notes-list__message">{ data.note }</p>
               </Flag>
           </li>
         )}

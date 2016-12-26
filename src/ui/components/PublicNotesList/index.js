@@ -8,16 +8,16 @@ const PublicNoteList = ({removeNote, notes, language, Text}) => {
 
   return (
     <div>
-      <ul className="message-list">
+      <ul className="public-notes-list">
         { notes.map( (data, index) =>
-          <li className="message-list__item" key={index}>
+          <li className="public-notes-list__item" key={index}>
               <Flag imageSrc={ data.photoURL } >
-                <h3 className="message-list__display-name">{ data.displayName }</h3>
-                <p className="message-list__date">{ moment(data.date).locale(language).fromNow() }</p>
-                <button className="message-list__btn-delete" onClick={ () => removeNote(data.key) }>
+                <h3 className="public-notes-list__display-name">{ data.displayName }</h3>
+                <p className="public-notes-list__date">{ moment(data.date).locale(language).fromNow() }</p>
+                <button className="public-notes-list__btn-delete" onClick={ () => removeNote(data.key) }>
                   {deleteNoteText}
                 </button>
-                <p className="message-list__message">{ data.note }</p>
+                <p className="public-notes-list__message">{ data.note }</p>
               </Flag>
           </li>
         )}
