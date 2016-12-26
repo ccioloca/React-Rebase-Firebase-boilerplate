@@ -11,25 +11,25 @@ const NewNote = ({onFormSubmit, onChange, onCheck, isChecked, displayName, photo
   const isPrivateText = Text[language].isPrivate
 
   return (
-    <form className="form"
+    <form className="form new-note-form"
           onSubmit={(event) => onFormSubmit(event, {
             note: note.value,
             photoURL,
             displayName,
             date
     })}>
-      <div className="form__row">
-        <label className="form__label">
+      <div className="form__row new-note-form__row">
+        <label className="form__label new-note-form__label">
           {noteText}:
-          <textarea className="form__field form__textarea"
+          <textarea className="form__field form__textarea new-note-form__field new-note-form__textarea"
                  ref={c => (note = c)}
                  value={value}
                  onChange={() => onChange(note.value) }
                  />
         </label>
       </div>
-      <input className="form__submit" type="submit" value={submitText} />
-      <label><input className="form__checkbox" type="checkbox" checked={isChecked} onChange={ () => onCheck() } />{isPrivateText}</label>
+      <input className="form__submit new-note-form__submit" type="submit" value={submitText} />
+      <label><input className="form__checkbox new-note-form__checkbox" type="checkbox" checked={isChecked} onChange={ () => onCheck() } />{isPrivateText}</label>
     </form>
   )
 

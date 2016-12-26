@@ -878,7 +878,9 @@ textarea {
 
 .message-list__date {
   display: inline-block;
-  margin-right: 0.5rem; }
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: #999; }
 
 .message-list__image {
   display: inline-block;
@@ -904,6 +906,103 @@ textarea {
     .message-form__field {
       font-size: 1.15rem;
       line-height: 1.5; } }
+
+.new-note-form__row {
+  display: flex; }
+
+.new-note-form__field {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #b20000; }
+  @media only screen and (max-width: 740px) {
+    .new-note-form__field {
+      font-size: 1.15rem;
+      line-height: 1.5; } }
+
+.public-notes-list__item {
+  margin-bottom: 1rem; }
+
+.public-notes-list__display-name {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: #16161d; }
+
+.public-notes-list__message {
+  display: block;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #005b96;
+  overflow: hidden;
+  clear: both; }
+  @media only screen and (max-width: 740px) {
+    .public-notes-list__message {
+      font-size: 1.15rem;
+      line-height: 1.5; } }
+
+.public-notes-list__date {
+  display: inline-block;
+  margin-right: 0.5rem; }
+
+.public-notes-list__image {
+  display: inline-block;
+  margin-right: 0.5rem;
+  width: 48px; }
+
+.public-notes-list__btn-delete {
+  float: right; }
+
+.user-notes-list__item {
+  margin-bottom: 1rem; }
+
+.user-notes-list__display-name {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: #16161d; }
+
+.user-notes-list__message {
+  display: block;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #005b96;
+  overflow: hidden;
+  clear: both; }
+  @media only screen and (max-width: 740px) {
+    .user-notes-list__message {
+      font-size: 1.15rem;
+      line-height: 1.5; } }
+
+.user-notes-list__date {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: #999; }
+
+.user-notes-list__image {
+  display: inline-block;
+  margin-right: 0.5rem;
+  width: 48px; }
+
+.user-notes-list__btn-delete {
+  float: right; }
 
 .is-visuallyhidden {
   border: 0;

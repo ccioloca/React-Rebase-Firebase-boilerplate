@@ -1,0 +1,40 @@
+$module-name: 'new-note-form';
+
+@include settings((
+  inline: size(inline),
+  padding: size(small),
+
+  message-input-type: default,
+  message-input-color: color(red),
+
+));
+
+.#{$module-name} {
+
+  &__row {
+    display: flex;
+  }
+
+  &__label {
+
+  }
+
+  &__textarea {
+
+  }
+
+  &__field {
+    width: 100%;
+    padding: setting(padding);
+    @include type(setting(message-input-type),(color: setting(message-input-color) ) );
+  }
+
+  &__submit {
+
+  }
+
+  &__checkbox {
+
+  }
+
+}
