@@ -9,6 +9,7 @@ import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
 
 class UserNotesContainer extends Component {
+
   constructor(props){
     super(props);
     this.state = {
@@ -19,19 +20,9 @@ class UserNotesContainer extends Component {
     }
     this.firebaseUser = base.auth().currentUser
   }
-  componentWillMount(){
 
-    /*
-     * We bind the 'notes' firebase endopint to our 'notes' state.
-     * Anytime the firebase updates, it will call 'setState' on this component
-     * with the new state.
-     *
-     * Any time we call 'setState' on our 'notes' state, it will
-     * updated the Firebase '/notes' endpoint. Firebase will then emit the changes,
-     * which causes our local instance (and any other instances) to update
-     * state to reflect those changes.
-     */
-     const uid = this.firebaseUser.uid
+  componentWillMount(){
+    const uid = this.firebaseUser.uid
     this.ref = base.listenTo(`authentication/userReadable/${uid}/notes`, {
       context: this,
       asArray: true,
@@ -45,26 +36,12 @@ class UserNotesContainer extends Component {
        }
     })
   }
-  componentWillUnmount(){
-    /*
-     * When the component unmounts, we remove the binding.
-     * Invoking syncState (or bindToState or listenTo)
-     * will return a reference to that listener (see line 30).
-     * You will use that ref to remove the binding here.
-     */
 
+  componentWillUnmount(){
     base.removeBinding(this.ref);
   }
 
   _removeNote(key){
-
-    /*
-     * Calling setState here will update the '/notes' ref on our Firebase.
-     * Notice that I'm also updating the 'show' state.  Because there is no
-     * binding to our 'show' state, it will update the local 'show' state normally,
-     * without going to Firebase.
-     */
-
      base.push(`authentication/userWritable/notes-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),
@@ -74,12 +51,10 @@ class UserNotesContainer extends Component {
          uid: this.firebaseUser.uid
        }
      }).then(() => this.setState({note: ''})).catch(err => console.log(err));
-
   }
 
   _onFormSubmit(event, newNote) {
     event.preventDefault()
-
     if (newNote.note) {
       newNote.uid = this.firebaseUser.uid
       base.push(`authentication/userWritable/notes-queue/tasks`, {
@@ -92,7 +67,6 @@ class UserNotesContainer extends Component {
         }
       }).then(() => this.setState({note: '', })).catch(err => console.log(err));
     }
-
   }
 
   _onChange(value) {
@@ -120,7 +94,7 @@ class UserNotesContainer extends Component {
                              displayName={displayName}
                              photoURL={photoURL}
                              removeNote={ (key) => this._removeNote(key) }/>
-               </Card>
+              </Card>
               <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
                           displayName={ displayName }
                           photoURL={ photoURL }

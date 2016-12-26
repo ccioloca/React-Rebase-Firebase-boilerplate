@@ -6,6 +6,7 @@ import PublicNotesList from '../components/PublicNotesList'
 import Card from '../layout/Card'
 
 class PublicNotesContainer extends Component {
+
   constructor(props){
     super(props);
     this.state = {
@@ -15,19 +16,8 @@ class PublicNotesContainer extends Component {
     }
     this.firebaseUser = base.auth().currentUser
   }
+
   componentWillMount(){
-
-    /*
-     * We bind the 'notes' firebase endopint to our 'notes' state.
-     * Anytime the firebase updates, it will call 'setState' on this component
-     * with the new state.
-     *
-     * Any time we call 'setState' on our 'notes' state, it will
-     * updated the Firebase '/notes' endpoint. Firebase will then emit the changes,
-     * which causes our local instance (and any other instances) to update
-     * state to reflect those changes.
-     */
-
     this.ref = base.listenTo(`authentication/allMembers/notes/${this.props.language}`, {
       context: this,
       asArray: true,
@@ -41,26 +31,12 @@ class PublicNotesContainer extends Component {
        }
     })
   }
-  componentWillUnmount(){
-    /*
-     * When the component unmounts, we remove the binding.
-     * Invoking syncState (or bindToState or listenTo)
-     * will return a reference to that listener (see line 30).
-     * You will use that ref to remove the binding here.
-     */
 
+  componentWillUnmount(){
     base.removeBinding(this.ref);
   }
 
   _removeNote(key){
-
-    /*
-     * Calling setState here will update the '/notes' ref on our Firebase.
-     * Notice that I'm also updating the 'show' state.  Because there is no
-     * binding to our 'show' state, it will update the local 'show' state normally,
-     * without going to Firebase.
-     */
-
      base.push(`authentication/userWritable/notes-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),
@@ -69,8 +45,7 @@ class PublicNotesContainer extends Component {
          target: key,
          uid: this.firebaseUser.uid
        }
-     }).then(() => this.setState({note: ''})).catch(err => console.log(err));
-
+     }).then(() => this.setState({note: ''})).catch(err => console.log(err))
   }
 
   render() {
