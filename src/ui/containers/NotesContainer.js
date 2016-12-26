@@ -29,7 +29,7 @@ class NotesContainer extends Component {
      * state to reflect those changes.
      */
      console.log(this.firebaseUser.uid)
-    this.ref = base.listenTo(`authentication/userReadable/${this.firebaseUser.uid}/notes`, {
+    this.ref = base.listenTo(`authentication/allMembers/notes`, {
       context: this,
       asArray: true,
       queries: { limitToLast: 10 },
@@ -70,9 +70,9 @@ class NotesContainer extends Component {
     newNote.isPublic = this.state.isPublic
     if (newNote.note) {
       const uid = this.firebaseUser.uid
-	  newNote.isPublic = this.state.isPublic
+      newNote.isPublic = this.state.isPublic
       newNote.uid = uid
-      base.push(`firebase-queue/notes-queue/tasks`, {
+      base.push(`authentication/userWritable/notes-queue/tasks`, {
         data: {
           timestamp: new Date().toString(),
           note: newNote

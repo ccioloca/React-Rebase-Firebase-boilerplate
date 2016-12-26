@@ -8,20 +8,34 @@ admin.initializeApp({
   databaseURL: "https://boilerplate-318f8.firebaseio.com"
 })
 
-const REF = admin.database().ref()
+const AUTH_REF = admin.database().ref('authentication')
 
-const QUEUE_REF = REF.child('firebase-queue')
-const NOTES_REF = QUEUE_REF.child('notes-queue')
-const PRIVATE_NOTES_REF = REF.child('authentication/userReadable')
+const QUEUES_REF = AUTH_REF.child('userWritable')
+const NOTES_QUEUE_REF = QUEUES_REF.child('notes-queue')
+const USER_PRIVATE_REF = AUTH_REF.child('userReadable')
+const PUBLIC_NOTES_REF = AUTH_REF.child('allMembers').child('notes')
 
-const queue = new Queue(NOTES_REF, { 'sanitize': false }, function(data, progress, resolve, reject) {
+const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, progress, resolve, reject) {
   // Read and process task data
   progress(10);
-  return PRIVATE_NOTES_REF.child(data.note.uid).child('notes').push(data.note)
-    .then(function(){
-      progress(20)
-      console.log('success')
-    })
-    .then(resolve)
-    .catch(reject)
+  if (data.note.isPublic === true) {
+    return PUBLIC_NOTES_REF.push(data.note)
+      .then(function(){
+        PUBLIC_NOTES_REF.child('count').transaction(i => i + 1)
+        progress(20)
+        console.log('success')
+        USER_PRIVATE_REF.child(data.note.uid).child('notes').push(data.note)
+
+      })
+      .then(resolve)
+      .catch(reject)
+  } else {
+    return USER_PRIVATE_REF.child(data.note.uid).child('notes').push(data.note)
+      .then(function(){
+        progress(20)
+        console.log('success')
+      })
+      .then(resolve)
+      .catch(reject)
+  }
 })
