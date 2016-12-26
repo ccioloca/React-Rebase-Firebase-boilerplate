@@ -61,7 +61,16 @@ class NotesContainer extends Component {
      * binding to our 'show' state, it will update the local 'show' state normally,
      * without going to Firebase.
      */
-     console.log('key', key)
+
+     base.push(`authentication/userWritable/notes-queue/tasks`, {
+       data: {
+         timestamp: new Date().toString(),
+         action: 'delete',
+         target: key,
+         note: {}
+       }
+     }).then(() => this.setState({note: ''})).catch(err => console.log(err));
+
   }
 
   _onFormSubmit(event, newNote) {
@@ -76,6 +85,7 @@ class NotesContainer extends Component {
       base.push(`authentication/userWritable/notes-queue/tasks`, {
         data: {
           timestamp: new Date().toString(),
+          action: 'add',
           note: newNote
         }
       }).then(() => this.setState({note: ''})).catch(err => console.log(err));
