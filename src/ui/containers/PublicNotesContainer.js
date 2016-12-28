@@ -9,12 +9,14 @@ class PublicNotesContainer extends Component {
 
   constructor(props){
     super(props);
+    let comment = new Array(10)
+    comment.forEach((com) => {com = ''})
     this.state = {
       notes: [],
-      comment: '',
+      comment: comment,
       loading: true,
       newCommentValue: {},
-      showAddNewComment: false
+      showAddNewComment: -1
     }
     this.firebaseUser = base.auth().currentUser
   }
@@ -52,38 +54,48 @@ class PublicNotesContainer extends Component {
 
   _onAddNewCommentFormSubmit(event, newCommentValue, key) {
     event.preventDefault()
-    console.log('onAddNewCommentFormSubmit', newCommentValue)
+    console.log('onAddNewCommentFormSubmit', this.props.language)
     if (newCommentValue) {
       base.push(`authentication/userWritable/comments-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),
          action: 'add',
          note_id: key,
+         language: this.props.language,
          uid: this.firebaseUser.uid,
          comment: newCommentValue.addNewComment
        }
-     }).then(() => this.setState({note: ''})).catch(err => console.log(err))
-      this.setState({customComments: this.state.customComments.concat([newCommentValue.addNewComment])})
-      this.setState({newCommentValue: ''})
-     }
+     }).then(() => {
+       let comment = this.state.comment
+       comment.forEach((com) => {
+         console.log('forEach', newCommentValue.addNewComment)
+         if(com == newCommentValue.addNewComment) {
+           com = ''
+         }
+       })
+       this.setState({note: ''})
+    }).catch(err => console.log(err))}
   }
 
-  _onAddNewCommentChange(value) {
+  _onAddNewCommentChange(value, index) {
     console.log('onAddNewCommentChange', value)
-    var newCommentValueArr = this.state.newCommentValue
-    newCommentValueArr.addNewComment = value
-    this.setState({newCommentValue:newCommentValueArr},() => {console.log('onAddNewCommentChangeSetState', this.state.newCommentValue)})
+    let comment = this.state.comment
+    comment[index] = value
+    this.setState({comment:comment},() => {console.log('onAddNewCommentChangeSetState', this.state.comment)})
   }
 
-  _toggleShowAddNewComment() {
-    this.setState({showAddNewComment: !this.state.showAddNewComment})
+  _toggleShowAddNewComment(index) {
+    if( this.state.showAddNewComment === index ) {
+      this.setState({showAddNewComment: -1})
+    } else {
+      this.setState({showAddNewComment: index})
+    }
   }
 
   render() {
     const { language, Text } = this.props
-    const { notes, comment, newCommentValue } = this.state
+    const { notes, comment, showAddNewComment } = this.state
 
-    console.log('render', newCommentValue)
 
     return (
         this.state.loading
@@ -96,7 +108,8 @@ class PublicNotesContainer extends Component {
                            onAddNewCommentFormSubmit={this._onAddNewCommentFormSubmit.bind(this) }
                            onAddNewCommentChange={ this._onAddNewCommentChange.bind(this) }
                            toggleShowAddNewComment={ this._toggleShowAddNewComment.bind(this) }
-                           value={ newCommentValue.addNewComment } />
+                           value={ comment }
+                           showAddNewComment={ showAddNewComment } />
           </Card>
     );
   }
