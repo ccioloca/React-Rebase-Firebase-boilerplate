@@ -16,6 +16,7 @@ class UserNotesContainer extends Component {
     this.state = {
       notes: [],
       note: '',
+      categories: [],
       category: 'all',
       loading: true,
       isPublic: true
@@ -32,7 +33,7 @@ class UserNotesContainer extends Component {
       userNotesQuery.equalTo = this.state.category
     }
 
-    this.ref = base.listenTo(`authentication/userReadable/${uid}/notes`, {
+    this.notesRef = base.listenTo(`authentication/userReadable/${uid}/notes`, {
       context: this,
       asArray: true,
       queries: userNotesQuery,
@@ -44,10 +45,24 @@ class UserNotesContainer extends Component {
         this.setState({notes: notes, loading: false});
        }
     })
+
+    this.notesCategoriesRef = base.listenTo(`authentication/userReadable/${uid}/notesCategories`, {
+      context: this,
+      asArray: true,
+      onFailure: (err) => {
+        console.log('inside', err)
+        this.setState({loading: false})
+      },
+      then: (categories) => {
+        this.setState({categories: categories});
+       }
+    })
+
   }
 
   componentWillUnmount(){
-    base.removeBinding(this.ref);
+    base.removeBinding(this.notesRef)
+    base.removeBinding(this.notesCategoriesRef)
   }
 
   _removeNote(key){
@@ -66,6 +81,7 @@ class UserNotesContainer extends Component {
     event.preventDefault()
     if (newNote.note) {
       newNote.uid = this.firebaseUser.uid
+      newNote.category = this.state.category
       base.push(`authentication/userWritable/notes-queue/tasks`, {
         data: {
           timestamp: new Date().toString(),
@@ -82,14 +98,20 @@ class UserNotesContainer extends Component {
     this.setState({note:value})
   }
 
+  _onCategoryChange(event) {
+    this.setState({category:event.target.value})
+  }
+
   _onCheck() {
     this.setState({isPublic: !this.state.isPublic})
   }
 
   render() {
     const { language, Text } = this.props
-    const { notes, note } = this.state
+    const { notes, note, categories, category } = this.state
     const { displayName, photoURL } = this.firebaseUser
+    console.log('categories', categories)
+    console.log('category changed', this.state.category)
 
     return (
         this.state.loading
@@ -117,7 +139,13 @@ class UserNotesContainer extends Component {
                               isChecked={!this.state.isPublic}/>
                 </Cell>
                 <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
-                  <ChooseCategory />
+                  <ChooseCategory
+                    categories={categories}
+                    category={category}
+                    value={category}
+                    Text={Text}
+                    language={language}
+                    onChange={ this._onCategoryChange.bind(this) } />
                 </Cell>
               </Grid>
             </Cell>

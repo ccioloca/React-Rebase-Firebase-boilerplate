@@ -11,7 +11,7 @@ class PublicNotesContainer extends Component {
     super(props);
     this.state = {
       notes: [],
-      note: '',
+      comment: '',
       loading: true
     }
     this.firebaseUser = base.auth().currentUser
@@ -50,7 +50,7 @@ class PublicNotesContainer extends Component {
 
   render() {
     const { language, Text } = this.props
-    const { notes, note } = this.state
+    const { notes, comment } = this.state
 
     return (
         this.state.loading
