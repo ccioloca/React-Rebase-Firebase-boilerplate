@@ -12,7 +12,9 @@ class PublicNotesContainer extends Component {
     this.state = {
       notes: [],
       comment: '',
-      loading: true
+      loading: true,
+      newCommentValue: {},
+      showAddNewComment: false
     }
     this.firebaseUser = base.auth().currentUser
   }
@@ -48,9 +50,40 @@ class PublicNotesContainer extends Component {
      }).then(() => this.setState({note: ''})).catch(err => console.log(err))
   }
 
+  _onAddNewCommentFormSubmit(event, newCommentValue, key) {
+    event.preventDefault()
+    console.log('onAddNewCommentFormSubmit', newCommentValue)
+    if (newCommentValue) {
+      base.push(`authentication/userWritable/comments-queue/tasks`, {
+       data: {
+         timestamp: new Date().toString(),
+         action: 'add',
+         note_id: key,
+         uid: this.firebaseUser.uid,
+         comment: newCommentValue.addNewComment
+       }
+     }).then(() => this.setState({note: ''})).catch(err => console.log(err))
+      this.setState({customComments: this.state.customComments.concat([newCommentValue.addNewComment])})
+      this.setState({newCommentValue: ''})
+     }
+  }
+
+  _onAddNewCommentChange(value) {
+    console.log('onAddNewCommentChange', value)
+    var newCommentValueArr = this.state.newCommentValue
+    newCommentValueArr.addNewComment = value
+    this.setState({newCommentValue:newCommentValueArr},() => {console.log('onAddNewCommentChangeSetState', this.state.newCommentValue)})
+  }
+
+  _toggleShowAddNewComment() {
+    this.setState({showAddNewComment: !this.state.showAddNewComment})
+  }
+
   render() {
     const { language, Text } = this.props
-    const { notes, comment } = this.state
+    const { notes, comment, newCommentValue } = this.state
+
+    console.log('render', newCommentValue)
 
     return (
         this.state.loading
@@ -59,7 +92,11 @@ class PublicNotesContainer extends Component {
             <PublicNotesList Text={Text}
                            language={language}
                            notes={notes}
-                           removeNote={ (key) => this._removeNote(key) }/>
+                           removeNote={ (key) => this._removeNote(key) }
+                           onAddNewCommentFormSubmit={this._onAddNewCommentFormSubmit.bind(this) }
+                           onAddNewCommentChange={ this._onAddNewCommentChange.bind(this) }
+                           toggleShowAddNewComment={ this._toggleShowAddNewComment.bind(this) }
+                           value={ newCommentValue.addNewComment } />
           </Card>
     );
   }

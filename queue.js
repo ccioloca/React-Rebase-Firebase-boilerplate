@@ -12,6 +12,8 @@ const AUTH_REF = admin.database().ref('authentication')
 
 const QUEUES_REF = AUTH_REF.child('userWritable')
 const NOTES_QUEUE_REF = QUEUES_REF.child('notes-queue')
+const COMMENTS_QUEUE_REF = QUEUES_REF.child('comments-queue')
+
 const USER_PRIVATE_REF = AUTH_REF.child('userReadable')
 const PUBLIC_NOTES_REF = AUTH_REF.child('allMembers').child('notes')
 
@@ -40,6 +42,29 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
         }
         progress(20)
         NOTES_QUEUE_REF.child(data._id).remove()
+      })
+      .then(resolve)
+      .catch(reject)
+  }
+
+})
+
+const commentsQueue = new Queue(COMMENTS_QUEUE_REF, { 'sanitize': false }, function(data, progress, resolve, reject) {
+  // Read and process task data
+  progress(10);
+
+  if ( data.action === 'delete' ) {
+      PUBLIC_NOTES_REF.child(data.note_id).child('comments').child(data.target).remove()
+      COMMENTS_QUEUE_REF.child(data._id).remove()
+      resolve()
+  }
+
+  if ( data.action === 'add' ) {
+
+    return PUBLIC_NOTES_REF.child(data.note_id).child('comments').child(data._id).set(data.comment)
+      .then(function(){
+        progress(20)
+        COMMENTS_QUEUE_REF.child(data._id).remove()
       })
       .then(resolve)
       .catch(reject)

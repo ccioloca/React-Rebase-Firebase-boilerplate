@@ -5,6 +5,7 @@ import LoadingAnimation from '../components/LoadingAnimation'
 import UserNotesList from '../components/UserNotesList'
 import NewNote from '../components/NewNote'
 import ChooseCategory from '../components/ChooseCategory'
+import CategoryButtons from '../components/CategoryButtons'
 import Card from '../layout/Card'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
@@ -22,7 +23,9 @@ class UserNotesContainer extends Component {
       queryCategory: 'all',
       test: [],
       loading: true,
-      isPublic: true
+      isPublic: true,
+      showAddNewCategory: false,
+      newCategoryValue: ''
     }
     this.firebaseUser = base.auth().currentUser
     this.defaultCategories = ['Category 1', 'Category 2', 'Category 3']
@@ -34,12 +37,10 @@ class UserNotesContainer extends Component {
     const uid = this.firebaseUser.uid
 
     const userNotesQuery = { limitToLast: 10 }
-
     if (this.state.queryCategory !== 'all') {
       userNotesQuery.orderByChild = "category"
       userNotesQuery.equalTo = this.state.queryCategory
     }
-
     base.fetch(`authentication/userReadable/${uid}/notes`, {
       context: this,
       asArray: true,
@@ -69,7 +70,6 @@ class UserNotesContainer extends Component {
   }
 
   _removeNote(key){
-    console.log(key)
      base.push(`authentication/userWritable/notes-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),
@@ -94,7 +94,29 @@ class UserNotesContainer extends Component {
           isPublic: this.state.isPublic,
           language: this.props.language
         }
-      }).then(() => this.setState({note: '', })).catch(err => console.log(err));
+      }).then(() => {
+        this.setState({note: '', })
+        setTimeout(() => {
+          const uid = this.firebaseUser.uid
+          const userNotesQuery = { limitToLast: 10 }
+          if (this.state.queryCategory !== 'all') {
+            userNotesQuery.orderByChild = "category"
+            userNotesQuery.equalTo = this.state.queryCategory
+          }
+          base.fetch(`authentication/userReadable/${uid}/notes`, {
+            context: this,
+            asArray: true,
+            queries: userNotesQuery,
+            onFailure: (err) => {
+              console.log('inside', err)
+              this.setState({loading: false})
+            },
+            then: (notes) => {
+            this.setState({notes: notes, loading: false});
+          }
+        })
+        }, 1000)
+      }).catch(err => console.log(err));
     }
   }
 
@@ -117,14 +139,55 @@ class UserNotesContainer extends Component {
     this.setState({isPublic: !this.state.isPublic})
   }
 
+  _handleChangeCategoryQuery(value) {
+    this.setState({queryCategory: value}, () => {
+      const uid = this.firebaseUser.uid
+      const userNotesQuery = { limitToLast: 10 }
+      if (this.state.queryCategory !== 'all') {
+        userNotesQuery.orderByChild = "category"
+        userNotesQuery.equalTo = this.state.queryCategory
+      }
+      base.fetch(`authentication/userReadable/${uid}/notes`, {
+        context: this,
+        asArray: true,
+        queries: userNotesQuery,
+        onFailure: (err) => {
+          console.log('inside', err)
+          this.setState({loading: false})
+        },
+        then: (notes) => {
+          this.setState({notes: notes, loading: false});
+        }
+      })
+    })
+  }
+
+  _onAddNewCategoryFormSubmit(event, newCategoryValue) {
+    event.preventDefault()
+    console.log('onAddNewCategoryFormSubmit', newCategoryValue)
+    if (newCategoryValue) {
+      this.setState({customCategories: this.state.customCategories.concat([newCategoryValue.addNewCategory])})
+      this.setState({newCategoryValue: ''})
+     }
+  }
+
+  _onAddNewCategoryChange(value) {
+    console.log('onAddNewCategoryChange', value)
+    this.setState({newCategoryValue:value},() => {console.log('onAddNewCategoryChangeSetState', this.state.newCategoryValue)})
+  }
+
+  _toggleShowAddNewCategory() {
+    this.setState({showAddNewCategory: !this.state.showAddNewCategory})
+  }
+
   render() {
     const { language, Text } = this.props
-    const { isPublic, notes, note, customCategories, chooseCategory } = this.state
+    const { isPublic, notes, note, customCategories, chooseCategory, showAddNewCategory, newCategoryValue } = this.state
     const { displayName, photoURL } = this.firebaseUser
     const categories = this.defaultCategories.concat(customCategories)
     const uniqueId = this.uniqueId
-    console.log(uniqueId)
-    console.log('noteRef', this.notesRef)
+
+    console.log('render', newCategoryValue)
 
     return (
         this.state.loading
@@ -158,12 +221,22 @@ class UserNotesContainer extends Component {
                     value={chooseCategory}
                     Text={Text}
                     language={language}
-                    onChange={ this._onCategoryChange.bind(this) } />
+                    onChange={ this._onCategoryChange.bind(this) }
+                    toggleShowAddNewCategory={() => this._toggleShowAddNewCategory() }
+                    showAddNewCategory={ showAddNewCategory }
+                    onAddNewCategoryFormSubmit={ this._onAddNewCategoryFormSubmit.bind(this) }
+                    onAddNewCategoryChange={ this._onAddNewCategoryChange.bind(this) }
+                    value={ newCategoryValue } />
                 </Cell>
               </Grid>
             </Cell>
             <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
               List of Categories as buttons goes here - these buttons would change state of category
+              <CategoryButtons 
+                handleClick={ this._handleChangeCategoryQuery.bind(this) }
+                categories={categories}
+                Text={Text}
+                language={language}/>
             </Cell>
           </Grid>
     );
