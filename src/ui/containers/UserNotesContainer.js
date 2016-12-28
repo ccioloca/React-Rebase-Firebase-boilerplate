@@ -8,6 +8,7 @@ import ChooseCategory from '../components/ChooseCategory'
 import Card from '../layout/Card'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
+import uuidV4 from 'uuid/v4'
 
 class UserNotesContainer extends Component {
 
@@ -16,24 +17,30 @@ class UserNotesContainer extends Component {
     this.state = {
       notes: [],
       note: '',
-      categories: [],
-      category: 'all',
+      customCategories: [],
+      chooseCategory: 'Category 1',
+      queryCategory: 'all',
+      test: [],
       loading: true,
       isPublic: true
     }
     this.firebaseUser = base.auth().currentUser
+    this.defaultCategories = ['Category 1', 'Category 2', 'Category 3']
+    this.uniqueId = uuidV4()
   }
 
   componentWillMount(){
+
     const uid = this.firebaseUser.uid
+
     const userNotesQuery = { limitToLast: 10 }
 
-    if (this.state.category !== 'all') {
+    if (this.state.queryCategory !== 'all') {
       userNotesQuery.orderByChild = "category"
-      userNotesQuery.equalTo = this.state.category
+      userNotesQuery.equalTo = this.state.queryCategory
     }
 
-    this.notesRef = base.listenTo(`authentication/userReadable/${uid}/notes`, {
+    base.fetch(`authentication/userReadable/${uid}/notes`, {
       context: this,
       asArray: true,
       queries: userNotesQuery,
@@ -46,26 +53,23 @@ class UserNotesContainer extends Component {
        }
     })
 
-    this.notesCategoriesRef = base.listenTo(`authentication/userReadable/${uid}/notesCategories`, {
+    this.notesCategoriesRef = base.syncState(`authentication/userOwned/${uid}/notesCategories`, {
       context: this,
+      state: 'customCategories',
       asArray: true,
       onFailure: (err) => {
-        console.log('inside', err)
-        this.setState({loading: false})
-      },
-      then: (categories) => {
-        this.setState({categories: categories});
-       }
+          console.log(err)
+          this.setState({loading: false})
+      }
     })
-
   }
 
-  componentWillUnmount(){
-    base.removeBinding(this.notesRef)
+  componentWillUnmount() {
     base.removeBinding(this.notesCategoriesRef)
   }
 
   _removeNote(key){
+    console.log(key)
      base.push(`authentication/userWritable/notes-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),
@@ -74,14 +78,14 @@ class UserNotesContainer extends Component {
          target: key,
          uid: this.firebaseUser.uid
        }
-     }).then(() => this.setState({note: ''})).catch(err => console.log(err));
+     }).then( () => {this.setState({note: ''}) }).catch(err => console.log(err) )
   }
 
-  _onFormSubmit(event, newNote) {
+  _onNewNoteFormSubmit(event, newNote) {
     event.preventDefault()
     if (newNote.note) {
       newNote.uid = this.firebaseUser.uid
-      newNote.category = this.state.category
+      newNote.category = this.state.chooseCategory
       base.push(`authentication/userWritable/notes-queue/tasks`, {
         data: {
           timestamp: new Date().toString(),
@@ -94,12 +98,19 @@ class UserNotesContainer extends Component {
     }
   }
 
-  _onChange(value) {
+  _onNoteChange(value) {
     this.setState({note:value})
   }
 
   _onCategoryChange(event) {
-    this.setState({category:event.target.value})
+    event.preventDefault()
+    this.setState({chooseCategory:event.target.value, queryCategory:event.target.value})
+    this.uniqueId = uuidV4()
+  }
+
+  _onAddCategory(category) {
+    const newCustomCategories = this.state.customCategories.concat[category]
+    this.setState({customCategories:newCustomCategories})
   }
 
   _onCheck() {
@@ -108,15 +119,17 @@ class UserNotesContainer extends Component {
 
   render() {
     const { language, Text } = this.props
-    const { notes, note, categories, category } = this.state
+    const { isPublic, notes, note, customCategories, chooseCategory } = this.state
     const { displayName, photoURL } = this.firebaseUser
-    console.log('categories', categories)
-    console.log('category changed', this.state.category)
+    const categories = this.defaultCategories.concat(customCategories)
+    const uniqueId = this.uniqueId
+    console.log(uniqueId)
+    console.log('noteRef', this.notesRef)
 
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <Grid>
+        : <Grid key={uniqueId}>
             <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">
               <Card>
                 <UserNotesList Text={Text}
@@ -128,21 +141,21 @@ class UserNotesContainer extends Component {
               </Card>
               <Grid>
                 <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">
-                  <NewNote onFormSubmit={ this._onFormSubmit.bind(this) }
+                  <NewNote onFormSubmit={ this._onNewNoteFormSubmit.bind(this) }
                               displayName={ displayName }
                               photoURL={ photoURL }
                               value={ note }
                               Text={Text}
-                              onChange={ this._onChange.bind(this) }
+                              onChange={ this._onNoteChange.bind(this) }
                               language={language}
                               onCheck={ () => this._onCheck() }
-                              isChecked={!this.state.isPublic}/>
+                              isChecked={!isPublic}/>
                 </Cell>
                 <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
                   <ChooseCategory
                     categories={categories}
-                    category={category}
-                    value={category}
+                    selectedCategory={chooseCategory}
+                    value={chooseCategory}
                     Text={Text}
                     language={language}
                     onChange={ this._onCategoryChange.bind(this) } />
@@ -160,5 +173,6 @@ class UserNotesContainer extends Component {
 export default UserNotesContainer
 
 UserNotesContainer.propTypes = {
-  language: React.PropTypes.string.isRequired
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired
 }
