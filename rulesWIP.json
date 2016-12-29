@@ -1,5 +1,8 @@
 {
   "rules": {
+    "public": {
+      ".read": true
+    },
     "authentication": {
       "admins": {
         "$userID": {
@@ -8,7 +11,9 @@
         },
       },
       "users": {
-        ".read": "auth != null",
+				"$uid": {
+          ".read": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() != null",
+        }
       },
       "allMembers": {
         ".read": "auth != null"
@@ -16,12 +21,20 @@
       "userReadable": {
         "$uid": {
           ".read": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() != null",
+          "notes": {
+            ".indexOn": "category"
+          }
         }
       },
       "userWritable": {
         ".write": "auth != null",
         "notes-queue": {
 					"tasks": {
+            ".indexOn": "_state"
+          }
+        },
+        "comments-queue": {
+          "tasks": {
             ".indexOn": "_state"
           }
         }
