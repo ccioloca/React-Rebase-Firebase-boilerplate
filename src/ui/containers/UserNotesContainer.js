@@ -232,7 +232,7 @@ class UserNotesContainer extends Component {
             </Cell>
             <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
               List of Categories as buttons goes here - these buttons would change state of category
-              <CategoryButtons 
+              <CategoryButtons
                 handleClick={ this._handleChangeCategoryQuery.bind(this) }
                 categories={categories}
                 Text={Text}

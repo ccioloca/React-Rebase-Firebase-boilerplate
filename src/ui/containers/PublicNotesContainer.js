@@ -9,14 +9,12 @@ class PublicNotesContainer extends Component {
 
   constructor(props){
     super(props);
-    let comment = new Array(10)
-    comment.forEach((com) => {com = ''})
     this.state = {
       notes: [],
-      comment: comment,
+      comment: '',
       loading: true,
-      newCommentValue: {},
-      showAddNewComment: -1
+      value: '',
+      selectedNote: ''
     }
     this.firebaseUser = base.auth().currentUser
   }
@@ -52,49 +50,47 @@ class PublicNotesContainer extends Component {
      }).then(() => this.setState({note: ''})).catch(err => console.log(err))
   }
 
-  _onAddNewCommentFormSubmit(event, newCommentValue, key) {
+  _handleSubmit(event, data) {
     event.preventDefault()
-    console.log('onAddNewCommentFormSubmit', this.props.language)
-    if (newCommentValue) {
+    const {uid, photoURL, displayName} = this.firebaseUser
+    const key = this.state.selectedNote
+
+    data.photoURL = photoURL
+    data.displayName = displayName
+    data.uid = uid
+
+    console.log('data', data)
+    console.log('key', key)
+
+    if (data && key) {
       base.push(`authentication/userWritable/comments-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),
          action: 'add',
          note_id: key,
          language: this.props.language,
-         uid: this.firebaseUser.uid,
-         comment: newCommentValue.addNewComment
+         data: data
        }
      }).then(() => {
-       let comment = this.state.comment
-       comment.forEach((com) => {
-         console.log('forEach', newCommentValue.addNewComment)
-         if(com == newCommentValue.addNewComment) {
-           com = ''
-         }
-       })
-       this.setState({note: ''})
+       this.setState({value: ''})
     }).catch(err => console.log(err))}
   }
 
-  _onAddNewCommentChange(value, index) {
-    console.log('onAddNewCommentChange', value)
-    let comment = this.state.comment
-    comment[index] = value
-    this.setState({comment:comment},() => {console.log('onAddNewCommentChangeSetState', this.state.comment)})
+  _handleChange(value) {
+    this.setState({value})
   }
 
-  _toggleShowAddNewComment(index) {
-    if( this.state.showAddNewComment === index ) {
-      this.setState({showAddNewComment: -1})
+  _toggleCommentFormVisibility(key) {
+    if( this.state.selectedNote === key ) {
+      this.setState({selectedNote: ''})
     } else {
-      this.setState({showAddNewComment: index})
+      this.setState({selectedNote: key})
     }
   }
 
   render() {
     const { language, Text } = this.props
-    const { notes, comment, showAddNewComment } = this.state
+    const { notes, value, selectedNote } = this.state
 
 
     return (
@@ -105,11 +101,12 @@ class PublicNotesContainer extends Component {
                            language={language}
                            notes={notes}
                            removeNote={ (key) => this._removeNote(key) }
-                           onAddNewCommentFormSubmit={this._onAddNewCommentFormSubmit.bind(this) }
-                           onAddNewCommentChange={ this._onAddNewCommentChange.bind(this) }
-                           toggleShowAddNewComment={ this._toggleShowAddNewComment.bind(this) }
-                           value={ comment }
-                           showAddNewComment={ showAddNewComment } />
+                           handleSubmit={this._handleSubmit.bind(this) }
+                           handleChange={ this._handleChange.bind(this) }
+                           toggleCommentFormVisibility={ this._toggleCommentFormVisibility.bind(this) }
+                           value={ value }
+                           selectedNote={ selectedNote }
+                           firebaseUser={ this.firebaseUser } />
           </Card>
     );
   }
