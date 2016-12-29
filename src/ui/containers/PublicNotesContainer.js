@@ -69,7 +69,7 @@ class PublicNotesContainer extends Component {
          action: 'add',
          note_id: key,
          language: this.props.language,
-         data: data
+         comment: data
        }
      }).then(() => {
        this.setState({value: ''})

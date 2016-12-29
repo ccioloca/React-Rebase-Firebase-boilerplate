@@ -23,7 +23,13 @@ const NewNote = ({onFormSubmit, onChange, onCheck, isChecked, displayName, photo
                />
       </div>
       <input className="form__submit new-note-form__submit" type="submit" value={Text[language].submit} />
-      <label><input className="form__checkbox new-note-form__checkbox" type="checkbox" checked={isChecked} onChange={ () => onCheck() } />{Text[language].isPrivate}</label>
+      <label>
+        <input  className="form__checkbox new-note-form__checkbox"
+                type="checkbox"
+                checked={isChecked}
+                onChange={ () => onCheck() } />
+        {Text[language].isPrivate}
+      </label>
     </form>
   )
 

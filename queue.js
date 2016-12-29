@@ -53,14 +53,7 @@ const commentsQueue = new Queue(COMMENTS_QUEUE_REF, { 'sanitize': false }, funct
   // Read and process task data
   progress(10);
 
-  if ( data.action === 'delete' ) {
-      PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).remove()
-      COMMENTS_QUEUE_REF.child(data._id).remove()
-      resolve()
-  }
-
   if ( data.action === 'add' ) {
-
     return PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data._id).set(data.comment)
       .then(function(){
         progress(20)
