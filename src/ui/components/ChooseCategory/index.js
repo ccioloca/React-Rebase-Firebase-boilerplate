@@ -3,8 +3,6 @@ import uuidV4 from 'uuid/v4'
 
 const ChooseCategory = ({Text, language, categories, selectedCategory, onChange, toggleShowAddNewCategory, showAddNewCategory, onAddNewCategoryFormSubmit, onAddNewCategoryChange, value}) => {
 
-    console.log('choose Category', categories)
-
     let addNewCategory
 
     return (

@@ -39,7 +39,7 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
       .then(function(){
         if (data.isPublic === true) {
           PUBLIC_NOTES_REF.child(data.language).child(data._id).set(data.note)
-          PUBLIC_NOTES_REF.child(data.language).child('count').transaction(i => i + 1)
+          PUBLIC_NOTES_REF.child(`${data.language}NotesCount`).transaction(i => i + 1)
         }
         progress(20)
         NOTES_QUEUE_REF.child(data._id).remove()

@@ -33,26 +33,9 @@ class UserNotesContainer extends Component {
   }
 
   componentWillMount(){
-
     const uid = this.firebaseUser.uid
 
-    const userNotesQuery = { limitToLast: 10 }
-    if (this.state.queryCategory !== 'all') {
-      userNotesQuery.orderByChild = "category"
-      userNotesQuery.equalTo = this.state.queryCategory
-    }
-    base.fetch(`authentication/userReadable/${uid}/notes`, {
-      context: this,
-      asArray: true,
-      queries: userNotesQuery,
-      onFailure: (err) => {
-        console.log('inside', err)
-        this.setState({loading: false})
-      },
-      then: (notes) => {
-        this.setState({notes: notes, loading: false});
-       }
-    })
+    this._getNotes()
 
     this.notesCategoriesRef = base.syncState(`authentication/userOwned/${uid}/notesCategories`, {
       context: this,
@@ -67,6 +50,36 @@ class UserNotesContainer extends Component {
 
   componentWillUnmount() {
     base.removeBinding(this.notesCategoriesRef)
+    base.removeBinding(this.notesRef)
+  }
+
+  _getNotes(queryCategory = this.state.queryCategory) {
+
+    const uid = this.firebaseUser.uid
+
+    if (this.notesRef) {
+      base.removeBinding(this.notesRef)
+    }
+
+    const userNotesQuery = { limitToLast: 10 }
+
+    if (this.state.queryCategory !== 'all') {
+      userNotesQuery.orderByChild = "category"
+      userNotesQuery.equalTo = this.state.queryCategory
+    }
+
+    this.notesRef = base.listenTo(`authentication/userReadable/${uid}/notes`, {
+      context: this,
+      asArray: true,
+      queries: userNotesQuery,
+      onFailure: (err) => {
+        console.log('inside', err)
+        this.setState({loading: false})
+      },
+      then: (notes) => {
+        this.setState({notes: notes, loading: false});
+       }
+    })
   }
 
   _removeNote(key){
@@ -94,29 +107,9 @@ class UserNotesContainer extends Component {
           isPublic: this.state.isPublic,
           language: this.props.language
         }
-      }).then(() => {
-        this.setState({note: '', })
-        setTimeout(() => {
-          const uid = this.firebaseUser.uid
-          const userNotesQuery = { limitToLast: 10 }
-          if (this.state.queryCategory !== 'all') {
-            userNotesQuery.orderByChild = "category"
-            userNotesQuery.equalTo = this.state.queryCategory
-          }
-          base.fetch(`authentication/userReadable/${uid}/notes`, {
-            context: this,
-            asArray: true,
-            queries: userNotesQuery,
-            onFailure: (err) => {
-              console.log('inside', err)
-              this.setState({loading: false})
-            },
-            then: (notes) => {
-            this.setState({notes: notes, loading: false});
-          }
-        })
-        }, 1000)
-      }).catch(err => console.log(err));
+      })
+      .then(() => {this.setState({note: '', })})
+      .catch(err => console.log(err));
     }
   }
 
@@ -141,24 +134,7 @@ class UserNotesContainer extends Component {
 
   _handleChangeCategoryQuery(value) {
     this.setState({queryCategory: value}, () => {
-      const uid = this.firebaseUser.uid
-      const userNotesQuery = { limitToLast: 10 }
-      if (this.state.queryCategory !== 'all') {
-        userNotesQuery.orderByChild = "category"
-        userNotesQuery.equalTo = this.state.queryCategory
-      }
-      base.fetch(`authentication/userReadable/${uid}/notes`, {
-        context: this,
-        asArray: true,
-        queries: userNotesQuery,
-        onFailure: (err) => {
-          console.log('inside', err)
-          this.setState({loading: false})
-        },
-        then: (notes) => {
-          this.setState({notes: notes, loading: false});
-        }
-      })
+      this._getNotes()
     })
   }
 
@@ -186,8 +162,6 @@ class UserNotesContainer extends Component {
     const { displayName, photoURL } = this.firebaseUser
     const categories = this.defaultCategories.concat(customCategories)
     const uniqueId = this.uniqueId
-
-    console.log('render', newCategoryValue)
 
     return (
         this.state.loading
