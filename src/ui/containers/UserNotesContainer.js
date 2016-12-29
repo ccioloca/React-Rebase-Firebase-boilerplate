@@ -192,7 +192,7 @@ class UserNotesContainer extends Component {
                   <ChooseCategory
                     categories={categories}
                     selectedCategory={chooseCategory}
-                    value={chooseCategory}
+                    selectValue={chooseCategory}
                     Text={Text}
                     language={language}
                     onChange={ this._onCategoryChange.bind(this) }
@@ -200,7 +200,7 @@ class UserNotesContainer extends Component {
                     showAddNewCategory={ showAddNewCategory }
                     onAddNewCategoryFormSubmit={ this._onAddNewCategoryFormSubmit.bind(this) }
                     onAddNewCategoryChange={ this._onAddNewCategoryChange.bind(this) }
-                    value={ newCategoryValue } />
+                    inputTextValue={ newCategoryValue } />
                 </Cell>
               </Grid>
             </Cell>

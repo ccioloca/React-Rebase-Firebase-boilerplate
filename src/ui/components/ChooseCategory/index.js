@@ -1,7 +1,7 @@
 import React from 'react'
 import uuidV4 from 'uuid/v4'
 
-const ChooseCategory = ({Text, language, categories, selectedCategory, onChange, toggleShowAddNewCategory, showAddNewCategory, onAddNewCategoryFormSubmit, onAddNewCategoryChange, value}) => {
+const ChooseCategory = ({Text, language, categories, selectedCategory, onChange, toggleShowAddNewCategory, showAddNewCategory, onAddNewCategoryFormSubmit, onAddNewCategoryChange, selectValue, inputTextValue}) => {
 
     let addNewCategory
 
@@ -22,7 +22,7 @@ const ChooseCategory = ({Text, language, categories, selectedCategory, onChange,
                 <input className="form__field choose-category__add-new-category-form__field"
                       type='text'
                       ref={c => (addNewCategory = c)}
-                      value={value}
+                      value={inputTextValue}
                       placeholder={Text[language].addNewCategory}
                       onChange={() => onAddNewCategoryChange(addNewCategory.value) }
                       />
@@ -44,5 +44,6 @@ ChooseCategory.propTypes = {
   showAddNewCategory: React.PropTypes.bool.isRequired,
   onAddNewCategoryChange: React.PropTypes.func.isRequired,
   onAddNewCategoryFormSubmit: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string.isRequired
+  inputTextValue: React.PropTypes.string.isRequired,
+  selectValue: React.PropTypes.string.isRequired
 }
