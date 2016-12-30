@@ -4,7 +4,9 @@ import Flag from '../../layout/Flag'
 import uuidV4 from 'uuid/v4'
 import CommentsList from '../CommentsList'
 
-const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, selectedNote, language, Text, children}) => {
+const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, selectedNote, language, Text, children, firebaseUser, removeComment}) => {
+
+  console.log('PublicNoteList', notes)
 
   return (
     <div>
@@ -16,16 +18,19 @@ const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, selecte
                 <h3 className="public-notes-list__display-name">{ data.displayName }</h3>
                 <p className="public-notes-list__category">{ data.category }</p>
                 <p className="public-notes-list__date">{ moment(data.date).locale(language).fromNow() }</p>
-                <button className="public-notes-list__btn-delete" onClick={ () => removeNote(data.key) }>
+                { firebaseUser.uid === data.uid ? <button className="public-notes-list__btn-delete" onClick={ () => removeNote(data.key) }>
                   {Text[language].delete}
-                </button>
+                </button> : <div></div> }
                 <p className="public-notes-list__message">{ data.note }</p>
                 <button className="public-notes-list__button" onClick={ () => toggleCommentFormVisibility(data.key) }>Add New Comment</button>
                 {data.key === selectedNote && children}
                 { data.comments &&
                   <CommentsList data={data.comments}
                                 Text={Text}
-                                language={language} />
+                                language={language}
+                                firebaseUser={firebaseUser}
+                                removeComment={ removeComment }
+                                noteKey={ data.key } />
                 }
               </Flag>
         </li> )}

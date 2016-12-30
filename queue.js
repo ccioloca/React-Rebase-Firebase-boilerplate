@@ -22,10 +22,17 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
   progress(10);
 
   if ( data.action === 'delete' ) {
-      USER_PRIVATE_REF.child(data.uid).child('notes').child(data.target).remove()
-      PUBLIC_NOTES_REF.child(data.language).child(data.target).remove()
-      NOTES_QUEUE_REF.child(data._id).remove()
-      resolve()
+    PUBLIC_NOTES_REF.child(data.language).child(data.target).child('uid').once('value').then((snapshot) => { 
+      console.log(snapshot.val())
+      if(snapshot.val() == data.uid) {
+        USER_PRIVATE_REF.child(data.uid).child('notes').child(data.target).remove()
+        PUBLIC_NOTES_REF.child(data.language).child(data.target).remove()
+        NOTES_QUEUE_REF.child(data._id).remove()
+        resolve()
+      } else {
+        resolve()
+      }
+    })
   }
 
   if ( data.action === 'add' ) {
@@ -59,6 +66,19 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
 const commentsQueue = new Queue(COMMENTS_QUEUE_REF, { 'sanitize': false }, function(data, progress, resolve, reject) {
   // Read and process task data
   progress(10);
+
+  if ( data.action === 'delete' ) {
+    PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).child('uid').once('value').then((snapshot) => { 
+      console.log(snapshot.val())
+      if(snapshot.val() == data.uid) {
+        PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).remove()
+        NOTES_QUEUE_REF.child(data._id).remove()
+        resolve()
+      } else {
+        reject()
+      }
+    })
+  }
 
   if ( data.action === 'add' ) {
     return PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data._id).set(data.comment)
