@@ -2,31 +2,12 @@ import React from 'react'
 import moment from 'moment'
 import Flag from '../../layout/Flag'
 import uuidV4 from 'uuid/v4'
+import CommentsList from '../CommentsList'
 
-const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, handleSubmit, handleChange, value, selectedNote, language, Text}) => {
-
-  let comment
-
-  const renderCommentForm = <form className="form public-notes-list__add-new-comment-form"
-            onSubmit={(event) => handleSubmit(event, {
-              comment: comment.value,
-              date: Date.now()
-      })}>
-        <div className="form__row public-notes-list__add-new-comment-form__row">
-            <input className="form__field public-notes-list__add-new-comment-form__field"
-                  type='text'
-                  key={'0'}
-                  ref={c => (comment = c)}
-                  value={value}
-                  placeholder={Text[language].addNewComment}
-                  onChange={ () => handleChange(comment.value) }
-                  />
-        </div>
-      </form>
+const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, selectedNote, language, Text, children}) => {
 
   return (
     <div>
-      {renderCommentForm}
       <ul className="public-notes-list">
         { notes.map( (data, index) => {
           return (
@@ -40,6 +21,12 @@ const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, handleS
                 </button>
                 <p className="public-notes-list__message">{ data.note }</p>
                 <button className="public-notes-list__button" onClick={ () => toggleCommentFormVisibility(data.key) }>Add New Comment</button>
+                {data.key === selectedNote && children}
+                { data.comments &&
+                  <CommentsList data={data.comments}
+                                Text={Text}
+                                language={language} />
+                }
               </Flag>
         </li> )}
         )}
@@ -56,8 +43,6 @@ PublicNoteList.propTypes = {
   language: React.PropTypes.string.isRequired,
   Text: React.PropTypes.object.isRequired,
   toggleCommentFormVisibility: React.PropTypes.func.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired,
-  handleChange: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string.isRequired,
-  selectedNote: React.PropTypes.string.isRequired
+  selectedNote: React.PropTypes.string.isRequired,
+  children: React.PropTypes.node
 }

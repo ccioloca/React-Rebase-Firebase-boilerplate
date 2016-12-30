@@ -4,6 +4,7 @@ import Center from '../layout/Center'
 import LoadingAnimation from '../components/LoadingAnimation'
 import PublicNotesList from '../components/PublicNotesList'
 import Card from '../layout/Card'
+import CommentForm from '../components/CommentForm'
 
 class PublicNotesContainer extends Component {
 
@@ -72,7 +73,7 @@ class PublicNotesContainer extends Component {
          comment: data
        }
      }).then(() => {
-       this.setState({value: ''})
+       this.setState({value: '', selectedNote: ''})
     }).catch(err => console.log(err))}
   }
 
@@ -82,9 +83,9 @@ class PublicNotesContainer extends Component {
 
   _toggleCommentFormVisibility(key) {
     if( this.state.selectedNote === key ) {
-      this.setState({selectedNote: ''})
+      this.setState({selectedNote: '', value: ''})
     } else {
-      this.setState({selectedNote: key})
+      this.setState({selectedNote: key, value: ''})
     }
   }
 
@@ -98,15 +99,19 @@ class PublicNotesContainer extends Component {
         ? <Card><Center height={'300px'}><LoadingAnimation height='auto'/></Center></Card>
         : <Card>
             <PublicNotesList Text={Text}
-                           language={language}
-                           notes={notes}
-                           removeNote={ (key) => this._removeNote(key) }
-                           handleSubmit={this._handleSubmit.bind(this) }
-                           handleChange={ this._handleChange.bind(this) }
-                           toggleCommentFormVisibility={ this._toggleCommentFormVisibility.bind(this) }
-                           value={ value }
-                           selectedNote={ selectedNote }
-                           firebaseUser={ this.firebaseUser } />
+                             language={language}
+                             notes={notes}
+                             removeNote={ (key) => this._removeNote(key) }
+                             toggleCommentFormVisibility={ this._toggleCommentFormVisibility.bind(this) }
+                             selectedNote={ selectedNote }
+                             firebaseUser={ this.firebaseUser } >
+               <CommentForm Text={Text}
+                            language={language}
+                            handleSubmit={this._handleSubmit.bind(this) }
+                            handleChange={ this._handleChange.bind(this) }
+                            value={value} />
+            </PublicNotesList>
+
           </Card>
     );
   }

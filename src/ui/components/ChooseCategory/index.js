@@ -19,13 +19,13 @@ const ChooseCategory = ({Text, language, categories, selectedCategory, onChange,
                   addNewCategory: addNewCategory.value
           })}>
             <div className="form__row choose-category__add-new-category-form__row">
-                <input className="form__field choose-category__add-new-category-form__field"
-                      type='text'
-                      ref={c => (addNewCategory = c)}
-                      value={inputTextValue}
-                      placeholder={Text[language].addNewCategory}
-                      onChange={() => onAddNewCategoryChange(addNewCategory.value) }
-                      />
+              <input className="form__field choose-category__add-new-category-form__field"
+                    type='text'
+                    ref={c => (addNewCategory = c)}
+                    value={inputTextValue}
+                    placeholder={Text[language].addNewCategory}
+                    onChange={() => onAddNewCategoryChange(addNewCategory.value) }
+                    />
             </div>
           </form>
         </div>

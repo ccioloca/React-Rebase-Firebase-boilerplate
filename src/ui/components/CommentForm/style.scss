@@ -1,0 +1,23 @@
+$module-name: 'add-new-comment-form';
+
+@include settings((
+  inline: size(inline),
+
+  comment-input-type: default,
+  comment-input-color: color(red),
+
+  stack-below: size(gutter)
+
+));
+
+.#{$module-name} {
+
+  &__row {
+
+  }
+
+  &__field {
+    @include type(setting(comment-input-type),(color: setting(comment-input-color) ) );
+  }
+
+}
