@@ -90,8 +90,6 @@ class PublicNotesContainer extends Component {
   }
 
   _removeComment(noteKey, commentUid){
-    console.log('removeComment 1', noteKey)
-    console.log('removeCOmment 2', commentUid)
      base.push(`authentication/userWritable/comments-queue/tasks`, {
        data: {
          timestamp: new Date().toString(),

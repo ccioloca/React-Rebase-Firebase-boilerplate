@@ -6,8 +6,6 @@ import CommentsList from '../CommentsList'
 
 const PublicNoteList = ({removeNote, notes, toggleCommentFormVisibility, selectedNote, language, Text, children, firebaseUser, removeComment}) => {
 
-  console.log('PublicNoteList', notes)
-
   return (
     <div>
       <ul className="public-notes-list">

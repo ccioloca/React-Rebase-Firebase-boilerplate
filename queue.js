@@ -23,7 +23,6 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
 
   if ( data.action === 'delete' ) {
     PUBLIC_NOTES_REF.child(data.language).child(data.target).child('uid').once('value').then((snapshot) => { 
-      console.log(snapshot.val())
       if(snapshot.val() == data.uid) {
         USER_PRIVATE_REF.child(data.uid).child('notes').child(data.target).remove()
         PUBLIC_NOTES_REF.child(data.language).child(data.target).remove()
@@ -69,7 +68,6 @@ const commentsQueue = new Queue(COMMENTS_QUEUE_REF, { 'sanitize': false }, funct
 
   if ( data.action === 'delete' ) {
     PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).child('uid').once('value').then((snapshot) => { 
-      console.log(snapshot.val())
       if(snapshot.val() == data.uid) {
         PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).remove()
         NOTES_QUEUE_REF.child(data._id).remove()

@@ -7,8 +7,6 @@ const CommentsList = ({data, language, Text, firebaseUser, removeComment, noteKe
   const comments = Object.values(data)
   const commentsKeys = Object.keys(data)
 
-  console.log('CommentsList', comments)
-
   return (
     <ul className="comments-list">
       { comments.map( (comment, index) => {
