@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import Flag from '../../layout/Flag'
+import uuidV4 from 'uuid/v4'
 
 const UserNotesList = ({removeNote, notes, photoURL, displayName, language, Text}) => {
 
@@ -9,8 +10,8 @@ const UserNotesList = ({removeNote, notes, photoURL, displayName, language, Text
   return (
     <div>
       <ul className="user-notes-list">
-        { notes.map( (data, index) =>
-          <li className="user-notes-list__item" key={index}>
+        { notes.map( (data) =>
+          <li className="user-notes-list__item" key={uuidV4()}>
               <Flag imageSrc={ photoURL } >
                 <h3 className="user-notes-list__display-name">{ displayName }</h3>
                 <p className="user-notes-list__date">{ moment(data.date).locale(language).fromNow() }</p>
