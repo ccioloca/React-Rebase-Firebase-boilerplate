@@ -132,7 +132,8 @@ class UserNotesContainer extends Component {
     this.setState({isPublic: !this.state.isPublic})
   }
 
-  _handleChangeCategoryQuery(value) {
+  _handleChangeCategoryQuery(event, value) {
+    event.preventDefault()
     this.setState({queryCategory: value}, () => {
       this._getNotes()
     })

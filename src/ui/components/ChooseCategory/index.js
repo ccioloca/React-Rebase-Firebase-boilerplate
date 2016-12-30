@@ -14,7 +14,7 @@ const ChooseCategory = ({Text, language, categories, selectedCategory, onChange,
             )}
           </select>
           <button className="choose-category__button" onClick={ () => toggleShowAddNewCategory() }>Add New Category</button>
-          <form className="form choose-category__add-new-category-form"
+          { showAddNewCategory ? <form className="form choose-category__add-new-category-form"
                 onSubmit={(event) => onAddNewCategoryFormSubmit(event, {
                   addNewCategory: addNewCategory.value
           })}>
@@ -27,7 +27,7 @@ const ChooseCategory = ({Text, language, categories, selectedCategory, onChange,
                     onChange={() => onAddNewCategoryChange(addNewCategory.value) }
                     />
             </div>
-          </form>
+          </form> : <div></div> }
         </div>
     )
 

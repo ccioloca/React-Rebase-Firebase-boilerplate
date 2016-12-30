@@ -6,11 +6,8 @@ const CategoryButtons = ({handleClick, categories, Text, language }) => {
   return (
     <div className="category-buttons">
         <h2 className="category-buttons__title" >Categories</h2>
-        <button className="category-buttons__button" onClick={ () => handleClick('all') }>All Notes</button>
-        <button className="category-buttons__button" onClick={ () => handleClick('Category 1') }>Category 1</button>
-        <button className="category-buttons__button" onClick={ () => handleClick('Category 2') }>Category 2</button>
-        <button className="category-buttons__button" onClick={ () => handleClick('Category 3') }>Category 3</button>
-        <button className="category-buttons__button" onClick={ () => handleClick('test category') }>test category</button>
+        <button className="category-buttons__button" onClick={ (event) => handleClick(event, 'all') }>All Notes</button>
+        {categories.map((category) => <button className="category-buttons__button" key={ uuidV4() } onClick={ (event) => handleClick(event, category) }>{category}</button> )}
     </div>
   )
 
@@ -25,4 +22,10 @@ CategoryButtons.propTypes = {
   language: React.PropTypes.string.isRequired
 }
 
-//{categories.map((category) => <button className="category-buttons__button" key={ uuidV4() } onClick={ (category) => handleClick(category) }>{category}</button> )}
+//
+
+/*
+<button className="category-buttons__button" onClick={ () => handleClick('Category 1') }>Category 1</button>
+<button className="category-buttons__button" onClick={ () => handleClick('Category 2') }>Category 2</button>
+<button className="category-buttons__button" onClick={ () => handleClick('Category 3') }>Category 3</button>
+<button className="category-buttons__button" onClick={ () => handleClick('test category') }>test category</button>*/
