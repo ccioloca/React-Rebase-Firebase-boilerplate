@@ -60,9 +60,6 @@ class PublicNotesContainer extends Component {
     data.displayName = displayName
     data.uid = uid
 
-    console.log('data', data)
-    console.log('key', key)
-
     if (data && key) {
       base.push(`authentication/userWritable/comments-queue/tasks`, {
        data: {

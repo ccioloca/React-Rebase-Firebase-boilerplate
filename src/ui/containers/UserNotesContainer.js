@@ -141,7 +141,6 @@ class UserNotesContainer extends Component {
 
   _onAddNewCategoryFormSubmit(event, newCategoryValue) {
     event.preventDefault()
-    console.log('onAddNewCategoryFormSubmit', newCategoryValue)
     if (newCategoryValue) {
       this.setState({customCategories: this.state.customCategories.concat([newCategoryValue.addNewCategory])})
       this.setState({newCategoryValue: ''})
@@ -149,7 +148,6 @@ class UserNotesContainer extends Component {
   }
 
   _onAddNewCategoryChange(value) {
-    console.log('onAddNewCategoryChange', value)
     this.setState({newCategoryValue:value},() => {console.log('onAddNewCategoryChangeSetState', this.state.newCategoryValue)})
   }
 
