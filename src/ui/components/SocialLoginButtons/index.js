@@ -5,7 +5,7 @@ import uuidV4 from 'uuid/v4'
 const SocialLoginButtons = ({providers, language, Text, onClick}) => {
   return (
     <Card>
-      { providers.map( (provider, index) =>
+      { providers.map( (provider) =>
           <div key={uuidV4()}>
             <button key={uuidV4()}
                     onClick={()=>onClick(provider)}
