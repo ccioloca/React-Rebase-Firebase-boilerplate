@@ -87,16 +87,19 @@ class PublicNotesContainer extends Component {
   }
 
   _removeComment(noteKey, commentUid){
-     base.push(`authentication/userWritable/comments-queue/tasks`, {
-       data: {
-         timestamp: new Date().toString(),
-         action: 'delete',
-         language: this.props.language,
-         target: commentUid,
-         note_id: noteKey,
-         uid: this.firebaseUser.uid
-       }
-     }).then(() => this.setState({comment: ''})).catch(err => console.log(err))
+     base.auth().currentUser.getToken(true).then((idToken) => {
+        base.push(`authentication/userWritable/comments-queue/tasks`, {
+            data: {
+                timestamp: new Date().toString(),
+                action: 'delete',
+                language: this.props.language,
+                target: commentUid,
+                note_id: noteKey,
+                uid: this.firebaseUser.uid,
+                idToken: idToken
+            }
+        }).then(() => this.setState({comment: ''})).catch(err => console.log(err))
+     })
   }
 
   render() {

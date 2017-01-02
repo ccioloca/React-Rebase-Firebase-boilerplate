@@ -67,15 +67,21 @@ const commentsQueue = new Queue(COMMENTS_QUEUE_REF, { 'sanitize': false }, funct
   progress(10);
 
   if ( data.action === 'delete' ) {
-    PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).child('uid').once('value').then((snapshot) => { 
-      if(snapshot.val() == data.uid) {
-        PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).remove()
-        NOTES_QUEUE_REF.child(data._id).remove()
-        resolve()
-      } else {
-        reject()
-      }
-    })
+    admin.auth().verifyIdToken(data.idToken)
+      .then((decodedToken) => {
+        var uid = decodedToken.uid;
+        PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).child('uid').once('value').then((snapshot) => {
+          if(snapshot.val() === uid) {
+            PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.target).remove()
+            NOTES_QUEUE_REF.child(data._id).remove()
+            resolve()
+          } else {
+            reject()
+          }
+        })
+      }).catch((error) => {
+        console.log(error);
+      });
   }
 
   if ( data.action === 'add' ) {
