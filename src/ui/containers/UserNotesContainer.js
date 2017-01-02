@@ -29,7 +29,6 @@ class UserNotesContainer extends Component {
     }
     this.firebaseUser = base.auth().currentUser
     this.defaultCategories = ['Category 1', 'Category 2', 'Category 3']
-    this.uniqueId = uuidV4()
   }
 
   componentWillMount(){
@@ -120,7 +119,6 @@ class UserNotesContainer extends Component {
   _onCategoryChange(event) {
     event.preventDefault()
     this.setState({chooseCategory:event.target.value, queryCategory:event.target.value})
-    this.uniqueId = uuidV4()
   }
 
   _onAddCategory(category) {
@@ -160,12 +158,11 @@ class UserNotesContainer extends Component {
     const { isPublic, notes, note, customCategories, chooseCategory, showAddNewCategory, newCategoryValue } = this.state
     const { displayName, photoURL } = this.firebaseUser
     const categories = this.defaultCategories.concat(customCategories)
-    const uniqueId = this.uniqueId
 
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>
-        : <Grid key={uniqueId}>
+        : <Grid>
             <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">
               <Card>
                 <UserNotesList Text={Text}
