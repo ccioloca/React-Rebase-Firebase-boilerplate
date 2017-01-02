@@ -16,7 +16,7 @@ $breakpoint-default     : desktop !default;
 
 $dialog-sizes:
     (0.2rem tiny border-radius ) // size(-1)
-    (0.5rem gutter-narrow inline stack-small)
+    (0.5rem button-bezel gutter-narrow inline stack-small)
     (0.75rem small)
     0.8rem
     (1rem medium isBase gutter stack) // size(0)

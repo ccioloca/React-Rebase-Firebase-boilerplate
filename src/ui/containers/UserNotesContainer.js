@@ -5,7 +5,7 @@ import LoadingAnimation from '../components/LoadingAnimation'
 import UserNotesList from '../components/UserNotesList'
 import NewNote from '../components/NewNote'
 import ChooseCategory from '../components/ChooseCategory'
-import CategoryButtons from '../components/CategoryButtons'
+import NotesCategoriesList from '../components/NotesCategoriesList'
 import Card from '../layout/Card'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
@@ -204,8 +204,7 @@ class UserNotesContainer extends Component {
               </Grid>
             </Cell>
             <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
-              List of Categories as buttons goes here - these buttons would change state of category
-              <CategoryButtons
+              <NotesCategoriesList
                 handleClick={ this._handleChangeCategoryQuery.bind(this) }
                 categories={categories}
                 Text={Text}

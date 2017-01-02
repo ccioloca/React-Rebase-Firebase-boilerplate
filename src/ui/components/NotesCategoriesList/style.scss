@@ -1,0 +1,38 @@
+$module-name: 'notes-categories-list';
+
+@include settings((
+  stack-below: size(stack),
+  bezel: size(button-bezel),
+
+  title-type: h2,
+  title-color: color(black),
+
+  category-type: default,
+  category-color: color(white),
+  category-bgColor: color(blue),
+  category-bgHoverColor: rgba(color(blue), .9)
+
+));
+
+.#{$module-name} {
+
+  &__title {
+    @include type(setting(title-type),(color: setting(title-color) ) );
+    margin-bottom: setting(stack-below);
+  }
+
+  &__button {
+    text-align: center;
+    padding: setting(bezel);
+    width: 100%;
+    margin-bottom: setting(stack-below);
+    display: block;
+    @include type(setting(category-type),(color: setting(category-color) ) );
+    background: setting(category-bgColor);
+    &:hover,
+    &:active {
+      background: setting(category-bgHoverColor);
+    }
+  }
+
+}
