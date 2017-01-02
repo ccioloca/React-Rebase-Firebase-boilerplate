@@ -2,7 +2,14 @@ $module-name: 'new-note-form';
 
 @include settings((
   inline: size(inline),
-  padding: size(small),
+  button-bezel: size(button-bezel),
+  bezel: size(small),
+
+  stack-below: size(stack-small),
+  stack-below-module: size(stack-large),
+
+  title-type: h4,
+  title-color: color(blue-light),
 
   message-input-type: default,
   message-input-color: color(red),
@@ -10,31 +17,34 @@ $module-name: 'new-note-form';
 ));
 
 .#{$module-name} {
-
+  margin-bottom: setting(stack-below-module);
   &__row {
-    display: flex;
+    margin-bottom: setting(stack-below);
+  }
+
+  &__title {
+    @include type(setting(title-type),(color: setting(title-color) ) );
+    margin-bottom: setting(stack-below);
   }
 
   &__label {
-    display: block;
+
   }
 
   &__textarea {
-
-  }
-
-  &__field {
     width: 100%;
-    padding: setting(padding);
+    padding: setting(bezel);
+    margin-bottom: setting(stack-below);
     @include type(setting(message-input-type),(color: setting(message-input-color) ) );
+    box-sizing: border-box;
   }
 
   &__submit {
-
+    padding: size(button-bezel);
   }
 
   &__checkbox {
-
+    margin-right: setting(inline);
   }
 
 }

@@ -850,6 +850,17 @@ textarea {
     height: 20rem;
     width: 20rem; }
 
+.choose-category {
+  margin-bottom: 1.5rem; }
+  .choose-category__title {
+    font-size: 1.125rem;
+    color: #6497b1; }
+  .choose-category__select {
+    margin-bottom: 0.5rem;
+    width: 100%; }
+  .choose-category__button {
+    margin-bottom: 0.5rem; }
+
 .message-list__item {
   margin-bottom: 1rem; }
 
@@ -908,25 +919,33 @@ textarea {
       font-size: 1.15rem;
       line-height: 1.5; } }
 
-.new-note-form__row {
-  display: flex; }
-
-.new-note-form__label {
-  display: block; }
-
-.new-note-form__field {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.5;
-  color: #b20000; }
-  @media only screen and (max-width: 740px) {
-    .new-note-form__field {
-      font-size: 1.15rem;
-      line-height: 1.5; } }
+.new-note-form {
+  margin-bottom: 1.5rem; }
+  .new-note-form__row {
+    margin-bottom: 0.5rem; }
+  .new-note-form__title {
+    font-size: 1.125rem;
+    color: #6497b1;
+    margin-bottom: 0.5rem; }
+  .new-note-form__textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    color: #b20000;
+    box-sizing: border-box; }
+    @media only screen and (max-width: 740px) {
+      .new-note-form__textarea {
+        font-size: 1.15rem;
+        line-height: 1.5; } }
+  .new-note-form__submit {
+    padding: 0.5rem; }
+  .new-note-form__checkbox {
+    margin-right: 0.5rem; }
 
 .notes-categories-list__title {
   font-size: 1.6875rem;
