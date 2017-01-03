@@ -9,7 +9,6 @@ import NotesCategoriesList from '../components/NotesCategoriesList'
 import Card from '../layout/Card'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
-import uuidV4 from 'uuid/v4'
 
 class UserNotesContainer extends Component {
 
