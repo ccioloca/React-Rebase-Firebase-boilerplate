@@ -854,7 +854,8 @@ textarea {
   margin-bottom: 1.5rem; }
   .choose-category__title {
     font-size: 1.125rem;
-    color: #6497b1; }
+    color: #6497b1;
+    margin-bottom: 0.5rem; }
   .choose-category__select {
     margin-bottom: 0.5rem;
     width: 100%; }
@@ -1011,7 +1012,7 @@ textarea {
   margin-right: 0.5rem;
   width: 48px; }
 
-.public-notes-list__btn-delete {
+.public-notes-list__btn-delete, .public-notes-list__btn-edit {
   float: right; }
 
 .user-notes-list__item {

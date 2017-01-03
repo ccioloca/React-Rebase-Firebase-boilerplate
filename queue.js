@@ -34,6 +34,27 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
     })
   }
 
+  if ( data.action === 'edit' ) {
+    admin.auth().verifyIdToken(data.idToken)
+      .then((decodedToken) => {
+        var uid = decodedToken.uid;
+        PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('uid').once('value').then(snapshot => {
+          if ( snapshot.val() === uid ) {
+            USER_PRIVATE_REF.child(uid).child('notes').child(data.note_id).child('note').set(data.data.text);
+            USER_PRIVATE_REF.child(uid).child('notes').child(data.note_id).child('edit_date').set(data.data.edit_date);
+            PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('note').set(data.data.text);
+            PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('edit_date').set(data.data.edit_date);
+            resolve()
+          } else {
+            resolve()
+          }
+        })
+      }).catch(error => {
+        console.log(error)
+        reject()
+      })
+  }
+
   if ( data.action === 'add' ) {
     const newPrivateNote = Object.assign({}, data.note)
     delete newPrivateNote.isPublic

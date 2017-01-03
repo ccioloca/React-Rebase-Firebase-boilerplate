@@ -5,6 +5,7 @@ import LoadingAnimation from '../components/LoadingAnimation'
 import PublicNotesList from '../components/PublicNotesList'
 import Card from '../layout/Card'
 import CommentForm from '../components/CommentForm'
+import EditForm from '../components/EditForm'
 
 class PublicNotesContainer extends Component {
 
@@ -15,7 +16,9 @@ class PublicNotesContainer extends Component {
       comment: '',
       loading: true,
       value: '',
-      selectedNote: ''
+      selectedNote: '',
+      editValue: '',
+      selectedEditNote: ''
     }
     this.firebaseUser = base.auth().currentUser
   }
@@ -79,6 +82,9 @@ class PublicNotesContainer extends Component {
   }
 
   _toggleCommentFormVisibility(key) {
+    if ( this.state.selectedEditNote !== '' ) {
+      this.setState({selectedEditNote: '', editValue: ''})
+    } 
     if( this.state.selectedNote === key ) {
       this.setState({selectedNote: '', value: ''})
     } else {
@@ -102,9 +108,47 @@ class PublicNotesContainer extends Component {
      })
   }
 
+  _toggleEditFormVisibility(key, data) {
+    if ( this.state.selectedNote !== '' ) {
+      this.setState({selectedNote: '', value: ''})
+    } 
+    if ( this.state.selectedEditNote === key ) {
+      this.setState({selectedEditNote: '', editValue: ''})
+    } else {
+      this.setState({selectedEditNote: key, editValue: data})
+    }
+  }
+
+  _handleEditChange(editValue) {
+    this.setState({editValue})
+  }
+
+  _handleEditSubmit(event, data) {
+    event.preventDefault()
+    const {uid, photoURL, displayName} = this.firebaseUser
+    const key = this.state.selectedEditNote
+
+    if (data && key) {
+      base.auth().currentUser.getToken(true).then(idToken => {
+        base.push(`authentication/userWritable/notes-queue/tasks`, {
+          data: {
+            timestamp: new Date().toString(),
+            action: 'edit',
+            note_id: key,
+            language: this.props.language,
+            data: data,
+            idToken: idToken
+          }
+        }).then(() => {
+          this.setState({editValue: '', selectedEditNote: ''})
+        }).catch(err => console.log(err))
+      })
+    }
+  }
+
   render() {
     const { language, Text } = this.props
-    const { notes, value, selectedNote } = this.state
+    const { notes, value, selectedNote, selectedEditNote, editValue } = this.state
 
 
     return (
@@ -118,12 +162,19 @@ class PublicNotesContainer extends Component {
                              toggleCommentFormVisibility={ this._toggleCommentFormVisibility.bind(this) }
                              selectedNote={ selectedNote }
                              firebaseUser={ this.firebaseUser }
-                             removeComment={ this._removeComment.bind(this) } >
+                             removeComment={ this._removeComment.bind(this) }
+                             toggleEditFormVisibility={ this._toggleEditFormVisibility.bind(this) }
+                             selectedEditNote={ selectedEditNote } >
                <CommentForm Text={Text}
                             language={language}
                             handleSubmit={this._handleSubmit.bind(this) }
                             handleChange={ this._handleChange.bind(this) }
                             value={value} />
+               <EditForm    Text={Text}
+                            language={language}
+                            handleSubmit={this._handleEditSubmit.bind(this) }
+                            handleChange={this._handleEditChange.bind(this) }
+                            value={editValue} />
             </PublicNotesList>
 
           </Card>

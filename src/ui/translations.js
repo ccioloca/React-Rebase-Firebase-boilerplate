@@ -14,7 +14,9 @@ const Text = {
     submit: 'submit',
     notLoggedIn: 'You are not loggedin',
     isPrivate: 'Private Note',
-    addNewCategory: 'Add New Category'
+    addNewCategory: 'Add New Category',
+    addNewComment: 'Add New Comment',
+    edit: 'Edit'
   },
   de: {
     brandName: 'Deutsch',
@@ -31,7 +33,9 @@ const Text = {
     submit: 'einsenden',
     notLoggedIn: 'DE You are not loggedin',
     isPrivate: 'DE Private Note',
-    addNewCategory: 'DE Add New Category'
+    addNewCategory: 'DE Add New Category',
+    addNewComment: 'DE Add New Comment',
+    edit: 'DE Edit'
   },
   es: {
     brandName: 'Español',
@@ -48,7 +52,9 @@ const Text = {
     submit: 'enviar',
     notLoggedIn: 'ESP You are not loggedin',
     isPrivate: 'ESP Private Note',
-    addNewCategory: 'ESP Add New Category'
+    addNewCategory: 'ESP Add New Category',
+    addNewComment: 'ESP Add New Comment',
+    edit: 'ESP Edit'
   },
   pl: {
     brandName: 'Polski',
@@ -65,7 +71,9 @@ const Text = {
     submit: 'wyslij',
     notLoggedIn: 'Nie jestes zalogowany',
     isPrivate: 'Prywatna Notatka',
-    addNewCategory: 'PL Add New Category'
+    addNewCategory: 'Dodaj Kategorie',
+    addNewComment: 'Dodaj Komentarz',
+    edit: 'Edytuj'
   }
 }
 

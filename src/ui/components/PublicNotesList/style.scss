@@ -48,7 +48,7 @@ $module-name: 'public-notes-list';
     width: setting(image-size);
   }
 
-  &__btn-delete {
+  &__btn-delete, &__btn-edit {
     float: right;
   }
 }
