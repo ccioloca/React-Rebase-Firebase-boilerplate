@@ -47,6 +47,7 @@ The aim of this repository is the following (But it's a Work in Progress):
 * [haluvibe](https://github.com/haluvibe)
 * [meodai](https://github.com/meodai)
 * [qwales1](https://github.com/qwales1)
+* [LisSkis](https://github.com/LisSkis/)
 
 ## License
 
