@@ -2,33 +2,37 @@ import React from 'react'
 
 const NewNote = ({onFormSubmit, onChange, onCheck, isChecked, displayName, photoURL, value, Text, language }) => {
 
+  const MODULE_NAME = 'new-note-form'
   let note
-  const date = Date.now()
-  const submitText = Text[language].submit
-  const noteText =  Text[language].note
-  const isPrivateText = Text[language].isPrivate
 
   return (
-    <form className="form"
+    <form className={`form ${MODULE_NAME}`}
           onSubmit={(event) => onFormSubmit(event, {
             note: note.value,
             photoURL,
             displayName,
-            date
+            date: Date.now()
     })}>
-      <div className="form__row">
-        <label className="form__label">
-          {noteText}:
-          <input className="form__field"
-                 type='text'
-                 ref={c => (note = c)}
-                 value={value}
-                 onChange={() => onChange(note.value) }
-                 />
+      <div className={`form__row ${MODULE_NAME}__row`}>
+        <label className={`form__label ${MODULE_NAME}__label ${MODULE_NAME}__title`}>
+          {Text[language].addNewNote}
         </label>
+        <textarea className={`form__field form__textarea ${MODULE_NAME}__field ${MODULE_NAME}__textarea`}
+               ref={c => (note = c)}
+               value={value}
+               onChange={() => onChange(note.value) }
+               />
+       <input className={`form__submit ${MODULE_NAME}__submit`} type="submit" value={Text[language].addNewNote} />
       </div>
-      <input className="form__submit" type="submit" value={submitText} />
-      <label><input className="form__checkbox" type="checkbox" checked={isChecked} onChange={ () => onCheck() } />{isPrivateText}</label>
+
+      <label>
+        <input  className={`form__checkbox ${MODULE_NAME}__checkbox`}
+                type="checkbox"
+                checked={isChecked}
+                onChange={ () => onCheck() } />
+        {Text[language].isPrivate}
+      </label>
+
     </form>
   )
 

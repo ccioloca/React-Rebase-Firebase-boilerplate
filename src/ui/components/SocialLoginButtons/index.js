@@ -1,12 +1,13 @@
 import React from 'react'
 import Card from '../../layout/Card'
+import uuidV4 from 'uuid/v4'
 
 const SocialLoginButtons = ({providers, language, Text, onClick}) => {
   return (
     <Card>
-      { providers.map( (provider, index) =>
-          <div key={index}>
-            <button key={index}
+      { providers.map( (provider) =>
+          <div key={uuidV4()}>
+            <button key={uuidV4()}
                     onClick={()=>onClick(provider)}
                     className='btn--unstyled'>Login With {provider}</button>
           </div>

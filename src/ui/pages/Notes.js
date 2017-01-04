@@ -1,15 +1,9 @@
 import React from 'react'
-import NotesContainer from '../containers/NotesContainer'
-import Grid from '../layout/Grid'
-import Cell from '../layout/Cell'
+import UserNotesContainer from '../containers/UserNotesContainer'
 
 const Notes = ({Text, language}) => {
   return (
-    <Grid>
-      <Cell desktop={ 'whole' }>
-        <NotesContainer language={language} Text={Text} />
-      </Cell>
-    </Grid>
+    <UserNotesContainer language={language} Text={Text} />
   )
 }
 

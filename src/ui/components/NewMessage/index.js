@@ -33,5 +33,6 @@ NewMessage.propTypes = {
   photoURL: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  Text: React.PropTypes.object.isRequired
+  Text: React.PropTypes.object.isRequired,
+  language: React.PropTypes.string.isRequired
 }

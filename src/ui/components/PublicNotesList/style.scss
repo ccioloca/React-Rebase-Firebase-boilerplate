@@ -1,4 +1,4 @@
-$module-name: 'message-list';
+$module-name: 'public-notes-list';
 
 @include settings((
   inline: size(inline),
@@ -48,8 +48,7 @@ $module-name: 'message-list';
     width: setting(image-size);
   }
 
-  &__btn-delete {
+  &__btn-delete, &__btn-edit {
     float: right;
   }
-
 }

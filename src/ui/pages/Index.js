@@ -5,7 +5,7 @@ import Cell from '../layout/Cell'
 const Index = ({Text, language}) => {
   return (
     <Grid>
-      <Cell desktop={ 'whole' }>
+      <Cell desktop={ 'one-whole' }>
         I am an example index page, replace me with a component or container
       </Cell>
     </Grid>

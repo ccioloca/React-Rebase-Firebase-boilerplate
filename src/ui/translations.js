@@ -8,11 +8,15 @@ const Text = {
     selectYourLanguage: 'Select Your Language',
     message: 'Message',
     note: 'Note',
+    addNewNote: "Add new note",
     delete: 'Delete',
     language: 'English',
     submit: 'submit',
     notLoggedIn: 'You are not loggedin',
-    isPrivate: 'Private Note'
+    isPrivate: 'Private Note',
+    addNewCategory: 'Add New Category',
+    addNewComment: 'Add New Comment',
+    edit: 'Edit'
   },
   de: {
     brandName: 'Deutsch',
@@ -22,12 +26,16 @@ const Text = {
     myNotes: 'Meine Notizen',
     selectYourLanguage: 'Wähle deine Sprache',
     message: 'Nachricht',
-    note: 'Note',
+    note: 'DE Note',
+    addNewNote: "DE Add new note",
     delete: 'löschen',
     language: 'Deutsch',
     submit: 'einsenden',
     notLoggedIn: 'DE You are not loggedin',
-    isPrivate: 'DE Private Note'
+    isPrivate: 'DE Private Note',
+    addNewCategory: 'DE Add New Category',
+    addNewComment: 'DE Add New Comment',
+    edit: 'DE Edit'
   },
   es: {
     brandName: 'Español',
@@ -38,11 +46,15 @@ const Text = {
     selectYourLanguage: 'Elige tu idioma',
     message: 'Mensaje',
     note: 'Nota',
+    addNewNote: "ES Add new note",
     delete: 'borrar',
     language: 'Español',
     submit: 'enviar',
     notLoggedIn: 'ESP You are not loggedin',
-    isPrivate: 'ESP Private Note'
+    isPrivate: 'ESP Private Note',
+    addNewCategory: 'ESP Add New Category',
+    addNewComment: 'ESP Add New Comment',
+    edit: 'ESP Edit'
   },
   pl: {
     brandName: 'Polski',
@@ -53,11 +65,15 @@ const Text = {
     selectYourLanguage: 'Wybierz jezyk',
     message: 'Wiadomosc',
     note: 'Notatka',
+    addNewNote: "PL Add new note",
     delete: 'Usun',
     language: 'Polski',
     submit: 'wyslij',
     notLoggedIn: 'Nie jestes zalogowany',
-    isPrivate: 'Prywatna Notatka'
+    isPrivate: 'Prywatna Notatka',
+    addNewCategory: 'Dodaj Kategorie',
+    addNewComment: 'Dodaj Komentarz',
+    edit: 'Edytuj'
   }
 }
 

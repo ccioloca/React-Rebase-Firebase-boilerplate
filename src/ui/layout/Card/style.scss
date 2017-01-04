@@ -4,11 +4,13 @@ $module-name: 'card';
   bezel               : size(medium),
   border-color        : color(black),
   shadow-color        : rgba(black,.25),
-  border-radius       : size(border-radius)
+  border-radius       : size(border-radius),
+  stack-below         : size(stack-large)
 ));
 
 .#{$module-name} {
   padding: setting(bezel);
+  margin-bottom: setting(stack-below);
   background: color(white);
   box-shadow: 0 2px 3px setting(shadow-color);
   border: 1px solid setting(border-color);

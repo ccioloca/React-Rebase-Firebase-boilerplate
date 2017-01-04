@@ -31,17 +31,22 @@
   "ui/layout/Card/style",
   "ui/layout/Flag/style";
 
-// your component styles go here
+// your component styles go here, you must manually include each one
 @import
   "ui/Header/style",
   "ui/Header/Dropdown/style",
   "ui/components/Avatar/style",
+  "ui/components/ChooseCategory/style",
   "ui/components/MessageList/style",
   "ui/components/NewMessage/style",
+  "ui/components/NewNote/style",
+  "ui/components/NotesCategoriesList/style",
+  "ui/components/PublicNotesList/style",
   "ui/components/SelectLanguage/style",
-  "ui/components/SocialLoginButtons/style";
+  "ui/components/SocialLoginButtons/style",
+  "ui/components/UserNotesList/style";
 
-// uncomment these when you use them
+// And helpers, states, trumps and print styles goes here
 @import
   "ui/styles/3.helpers",
   "ui/styles/4.states",
