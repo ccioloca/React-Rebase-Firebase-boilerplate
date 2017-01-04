@@ -2,8 +2,8 @@ $module-name: 'social-login-buttons';
 
 @include settings((
   inline: size(inline),
-  bezel: size(gap-small),
-  gap-below: size(gap-small),
+  bezel: size(stack-small),
+  gap-below: size(stack-small),
 
   button-radius: size(border-radius),
   button-type: default,
