@@ -5,8 +5,6 @@ import uuidV4 from 'uuid/v4'
 
 const UserNotesList = ({removeNote, notes, photoURL, displayName, language, Text}) => {
 
-  const deleteNoteText = Text[language].delete
-
   return (
     <div>
       <ul className="user-notes-list">
@@ -16,9 +14,9 @@ const UserNotesList = ({removeNote, notes, photoURL, displayName, language, Text
                 <h3 className="user-notes-list__display-name">{ displayName }</h3>
                 <p className="user-notes-list__date">{ moment(data.date).locale(language).fromNow() }</p>
                 <button className="user-notes-list__btn-delete" onClick={ () => removeNote(data.key) }>
-                  {deleteNoteText}
+                  <i className="fa fa-trash-o public-notes-list__icon public-notes-list__icon--delete" aria-hidden="true"></i>
                 </button>
-                <p className="user-notes-list__message">{ data.note }</p>
+                <p className="user-notes-list__content">{ data.note }</p>
               </Flag>
           </li>
         )}

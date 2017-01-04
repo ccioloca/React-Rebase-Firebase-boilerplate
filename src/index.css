@@ -865,6 +865,40 @@ button {
   .choose-category__button {
     margin-bottom: 0.5rem; }
 
+.comments-list__content {
+  display: block;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #005b96; }
+  @media only screen and (max-width: 740px) {
+    .comments-list__content {
+      font-size: 1.15rem;
+      line-height: 1.5; } }
+
+.comments-list__display-name {
+  display: inline-block;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #b20000; }
+  @media only screen and (max-width: 740px) {
+    .comments-list__display-name {
+      font-size: 1.15rem;
+      line-height: 1.5; } }
+
+.comments-list__btn-delete {
+  float: right; }
+
+.comments-list__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #00B200; }
+
 .message-list__item {
   margin-bottom: 1rem; }
 
@@ -988,25 +1022,25 @@ button {
   line-height: 1.2;
   color: #16161d; }
 
-.public-notes-list__message {
+.public-notes-list__content {
   display: block;
-  margin-right: 0.5rem;
   font-size: 1rem;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
-  color: #005b96;
-  overflow: hidden;
-  clear: both; }
+  color: #005b96; }
   @media only screen and (max-width: 740px) {
-    .public-notes-list__message {
+    .public-notes-list__content {
       font-size: 1.15rem;
       line-height: 1.5; } }
 
+.public-notes-list__category {
+  margin-right: 0.5rem;
+  display: inline-block; }
+
 .public-notes-list__date {
   display: inline-block;
-  margin-right: 0.5rem;
   font-size: 0.8rem;
   color: #999; }
 
@@ -1015,8 +1049,15 @@ button {
   margin-right: 0.5rem;
   width: 48px; }
 
-.public-notes-list__btn-delete, .public-notes-list__btn-edit {
+.public-notes-list__icons-wrapper {
   float: right; }
+
+.public-notes-list__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #00B200; }
+  .public-notes-list__icon--edit {
+    margin-right: 0.5rem; }
 
 .social-login-buttons__icon {
   margin-right: 0.5rem; }
@@ -1068,19 +1109,16 @@ button {
   line-height: 1.2;
   color: #16161d; }
 
-.user-notes-list__message {
+.user-notes-list__content {
   display: block;
-  margin-right: 0.5rem;
   font-size: 1rem;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
-  color: #005b96;
-  overflow: hidden;
-  clear: both; }
+  color: #005b96; }
   @media only screen and (max-width: 740px) {
-    .user-notes-list__message {
+    .user-notes-list__content {
       font-size: 1.15rem;
       line-height: 1.5; } }
 
@@ -1097,6 +1135,11 @@ button {
 
 .user-notes-list__btn-delete {
   float: right; }
+
+.user-notes-list__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #00B200; }
 
 .is-visuallyhidden {
   border: 0;

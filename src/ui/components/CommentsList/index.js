@@ -4,6 +4,7 @@ import Flag from '../../layout/Flag'
 
 const CommentsList = ({data, language, Text, firebaseUser, removeComment, noteKey}) => {
 
+  const MODULE_NAME = 'comments-list';
   const comments = Object.values(data)
   const commentsKeys = Object.keys(data)
 
@@ -11,17 +12,20 @@ const CommentsList = ({data, language, Text, firebaseUser, removeComment, noteKe
     <ul className="comments-list">
       { comments.map( (comment, index) => {
           return (
-            <li key={uuidV4()} className="comments-list__comment-wrapper">
+            <li key={uuidV4()} className={`${MODULE_NAME}__comment-single-wrapper`}>
               <Flag imageSrc={ comment.photoURL } >
-                <div className="comments-list__comment">
-                    {comment.comment}
-                </div>
-                <div className="comments-list__display-name">
+                <div className={`${MODULE_NAME}__display-name`}>
                     {comment.displayName}
                 </div>
-                { firebaseUser.uid === comment.uid ? <button className="public-notes-list__btn-delete" onClick={ () => removeComment(noteKey, commentsKeys[index]) }>
-                  {Text[language].delete}
+
+                { firebaseUser.uid === comment.uid ? <button className={`${MODULE_NAME}__btn-delete`} onClick={ () => removeComment(noteKey, commentsKeys[index]) }>
+                  <i className={`fa fa-trash-o ${MODULE_NAME}__icon ${MODULE_NAME}__icon--delete`} aria-hidden="true"></i>
                 </button> : <div></div> }
+
+                <div className={`${MODULE_NAME}__content`}>
+                    {comment.comment}
+                </div>
+
               </Flag>
             </li>
           )}

@@ -39,6 +39,18 @@ $types: (
     paragraph: (
       font-size         : 1rem
     ),
+    icon-small: (
+      font-size         : 1.1rem,
+      line-height       : 1
+    ),
+    icon-medium: (
+      font-size         : 2rem,
+      line-height       : 1
+    ),
+    icon-large: (
+      font-size         : 3rem,
+      line-height       : 1
+    ),
     h4: (
       font-size         : 1.125rem,
     ),
@@ -51,7 +63,7 @@ $types: (
     ),
     h1: (
       font-size         : 2.5rem,
-    ),
+    )
   ),
   mobile: (
     default: (

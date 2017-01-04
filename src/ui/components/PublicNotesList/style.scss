@@ -5,14 +5,17 @@ $module-name: 'public-notes-list';
   display-name-type: subtitle,
   display-name-color: color(black),
 
-  message-type: default,
-  message-color: color(blue),
+  content-type: default,
+  content-color: color(blue),
 
   date-type: date,
   date-color: color(grey),
 
   stack-below: size(gutter),
-  image-size: size(image-small)
+  image-size: size(image-small),
+
+  icon-type: icon-small,
+  icon-color: color(green)
 
 ));
 
@@ -28,17 +31,18 @@ $module-name: 'public-notes-list';
     @include type(setting(display-name-type),(color: setting(display-name-color) ) );
   }
 
-  &__message {
+  &__content {
     display: block;
+    @include type(setting(content-type),(color: setting(content-color) ) );
+  }
+
+  &__category {
     margin-right: setting(inline);
-    @include type(setting(message-type),(color: setting(message-color) ) );
-    overflow: hidden;
-    clear: both;
+    display: inline-block;
   }
 
   &__date {
     display: inline-block;
-    margin-right: setting(inline);
     @include type(setting(date-type),(color: setting(date-color) ) );
   }
 
@@ -48,7 +52,30 @@ $module-name: 'public-notes-list';
     width: setting(image-size);
   }
 
-  &__btn-delete, &__btn-edit {
+  &__icons-wrapper {
     float: right;
   }
+
+  &__btn-delete {
+
+  }
+
+  &__btn-edit {
+
+  }
+
+  &__icon {
+
+    @include type(setting(icon-type),(color: setting(icon-color) ) );
+
+    &--delete {
+
+    }
+
+    &--edit {
+      margin-right: setting(inline);
+    }
+
+  }
+
 }

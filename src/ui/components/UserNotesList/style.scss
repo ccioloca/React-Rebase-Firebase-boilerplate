@@ -2,6 +2,7 @@ $module-name: 'user-notes-list';
 
 @include settings((
   inline: size(inline),
+
   display-name-type: subtitle,
   display-name-color: color(black),
 
@@ -12,7 +13,10 @@ $module-name: 'user-notes-list';
   date-color: color(grey),
 
   stack-below: size(gutter),
-  image-size: size(image-small)
+  image-size: size(image-small),
+
+  icon-type: icon-small,
+  icon-color: color(green)
 
 ));
 
@@ -28,12 +32,9 @@ $module-name: 'user-notes-list';
     @include type(setting(display-name-type),(color: setting(display-name-color) ) );
   }
 
-  &__message {
+  &__content {
     display: block;
-    margin-right: setting(inline);
     @include type(setting(message-type),(color: setting(message-color) ) );
-    overflow: hidden;
-    clear: both;
   }
 
   &__date {
@@ -50,6 +51,16 @@ $module-name: 'user-notes-list';
 
   &__btn-delete {
     float: right;
+  }
+
+  &__icon {
+
+    @include type(setting(icon-type),(color: setting(icon-color) ) );
+
+    &--delete {
+
+    }
+
   }
 
 }

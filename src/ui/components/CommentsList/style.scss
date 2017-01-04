@@ -1,0 +1,53 @@
+$module-name: 'comments-list';
+
+@include settings((
+  inline: size(inline),
+
+  display-name-type: default,
+  display-name-color: color(red),
+
+  comment-type: default,
+  comment-color: color(blue),
+
+  date-type: date,
+  date-color: color(grey),
+
+  stack-below: size(gutter),
+  image-size: size(image-small),
+
+  icon-type: icon-small,
+  icon-color: color(green)
+
+));
+
+.#{$module-name} {
+
+  &__comment-single-wrapper {
+
+  }
+
+  &__content {
+    display: block;
+    @include type(setting(comment-type),(color: setting(comment-color) ) );
+  }
+
+  &__display-name {
+    display: inline-block;
+    @include type(setting(display-name-type),(color: setting(display-name-color) ) );
+  }
+
+  &__btn-delete {
+    float: right;
+  }
+
+  &__icon {
+
+    @include type(setting(icon-type),(color: setting(icon-color) ) );
+
+    &--delete {
+
+    }
+
+  }
+
+}
