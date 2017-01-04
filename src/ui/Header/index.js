@@ -8,7 +8,7 @@ const Header = ({hasUser, loading, language, Text}) => {
 
     const renderNavigation = hasUser ? <Dropdown language={language} Text={Text} /> : <PublicNavigation language={language} Text={Text} />
     const brandLink = hasUser ? 'dashboard' : 'index'
-    const headerRightHasUserModifier = hasUser ? 'header__right--has-user' : null
+    const headerRightHasUserModifier = hasUser ? 'header__right--has-user' : ''
 
     return (
         loading

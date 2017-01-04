@@ -10,13 +10,26 @@ class Dropdown extends Component {
       this.state = {
         isMenuOpen: false,
         displayName: null,
-        photoURL: null
+        photoURL: null,
+        isAdmin: false
       }
   }
 
   componentWillMount() {
       const authDataCallback = (user) => {
           if (user) {
+              console.log(user)
+              base.fetch(`authentication/admins/${user.uid}`, {
+                context: this,
+                asArray: true,
+                onFailure: (err) => {
+                  console.log(err)
+                  this.setState({isAdmin: false}, console.log(this.state.isAdmin))
+                },
+                then(data){
+                  this.setState({isAdmin: true}, console.log(this.state.isAdmin))
+                }
+              })
               const {displayName, photoURL} = user
               this.setState({displayName, photoURL})
           }
