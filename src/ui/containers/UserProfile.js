@@ -18,7 +18,7 @@ class UserProfile extends Component {
 
   componentWillMount(){
     const uid = base.auth().currentUser.uid || ''
-    this.ref = base.syncState(`users/${uid}` , {
+    this.ref = base.syncState(`authentication/userOwned/${uid}/preferences` , {
       context: this,
       state: 'userProfile',
       asArray: false,

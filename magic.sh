@@ -1,8 +1,8 @@
 #!/bin/sh
 git pull
 yarn install
-ttab yarn start
-ttab yarn test
-ttab yarn watch
 yarn compile-sass
+ttab yarn watch
+ttab yarn server
 atom .
+yarn start

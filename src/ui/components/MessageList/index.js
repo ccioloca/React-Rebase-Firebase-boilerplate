@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import Flag from '../../layout/Flag'
+import uuidV4 from 'uuid/v4'
 
 const MessageList = ({removeMessage, messages, language, Text}) => {
 
@@ -10,7 +11,7 @@ const MessageList = ({removeMessage, messages, language, Text}) => {
     <div>
       <ul className="message-list">
         { messages.map( (data, index) =>
-          <li className="message-list__item" key={index}>
+          <li className="message-list__item" key={uuidV4()}>
               <Flag imageSrc={ data.photoURL } >
                 <h3 className="message-list__display-name">{ data.displayName }</h3>
                 <p className="message-list__date">{ moment(data.date).locale(language).fromNow() }</p>

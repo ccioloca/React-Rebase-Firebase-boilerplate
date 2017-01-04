@@ -1,0 +1,62 @@
+{
+  "rules": {
+    "public": {
+      ".read": true
+    },
+    "authentication": {
+      "admins": {
+        "$userID": {
+          ".read": "auth != null",
+          ".write": "newData.parent().parent().parent().child('authentication').child('admins').child(auth.uid).val() == null"
+        }
+      },
+      "users": {
+				"$uid": {
+          ".read": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() != null"
+        }
+      },
+      "allMembers": {
+        ".read": "auth != null"
+      },
+      "userReadable": {
+        "$uid": {
+          ".read": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() != null",
+          "notes": {
+            ".indexOn": "category"
+          }
+        }
+      },
+      "userWritable": {
+        ".write": "auth != null",
+        "notes-queue": {
+					"tasks": {
+            ".indexOn": "_state"
+          }
+        },
+        "comments-queue": {
+          "tasks": {
+            ".indexOn": "_state"
+          }
+        }
+      },
+      "userOwned": {
+        "$uid": {
+          ".read": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() != null",
+          ".write": "auth.uid == $uid || root.child('authentication').child('admins').child(auth.uid).val() != null"
+        }
+      }
+    },
+   	"notes": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "messages": {
+      ".read": "auth != null",
+  		".write": "auth != null"
+    },
+    "users": {
+      ".read": "auth != null",
+  		".write": "auth != null"
+    }
+  }
+}

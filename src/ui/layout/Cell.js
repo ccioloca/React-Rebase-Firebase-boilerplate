@@ -2,11 +2,11 @@ import React from 'react'
 
 const Cell = ({ children, desktop, mobile, tablet }) => {
 
-  const mobileClass = mobile ? `l-one-${mobile}--mobile` : null
-  const tabletClass = mobile ? `l-one-${tablet}--tablet` : null
+  const mobileClass = mobile ? `l-${mobile}--mobile` : ''
+  const tabletClass = tablet ? `l-${tablet}--tablet` : ''
 
   return (
-    <div className={`l-grid-cell l-one-${desktop} ${mobileClass} ${tabletClass}`}>
+    <div className={`l-grid-cell l-${desktop} ${mobileClass} ${tabletClass}`}>
         {children}
     </div>
   )

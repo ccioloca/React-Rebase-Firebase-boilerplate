@@ -1,0 +1,43 @@
+$module-name: 'choose-category';
+
+@include settings((
+  inline: size(inline),
+
+  stack-below: size(stack-small),
+  stack-below-module: size(stack-large),
+
+  title-type: h4,
+  title-color: color(blue-light),
+
+));
+
+.#{$module-name} {
+  margin-bottom: setting(stack-below-module);
+
+  &__title {
+    @include type(setting(title-type),(color: setting(title-color) ) );
+    margin-bottom: setting(stack-below);
+  }
+
+  &__select {
+    margin-bottom: setting(stack-below);
+    width: 100%;
+  }
+
+  &__button {
+    margin-bottom: setting(stack-below);
+  }
+
+  &__add-new-category-form {
+
+    &__row {
+
+    }
+
+    &__field {
+
+    }
+
+  }
+
+}

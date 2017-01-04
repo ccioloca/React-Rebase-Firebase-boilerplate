@@ -1,0 +1,13 @@
+isAdmin(auth) { root.child("authentication").child("admins").child(auth.uid).val() == true }
+isCurrentUser(auth, userKey) { return auth.uid == userKey; }
+isAuthenticated(auth) { auth != null }
+
+path /authentication/admins/{uid} {
+    read() { isAdmin(auth) }
+    write() { isAdmin(auth) }
+}
+
+path /authentication/userReadable/{objectType}/{uid} {
+    read() { isCurrentUser(auth, uid) || isAdmin(auth) }
+    write() { isAdmin(auth) }
+}

@@ -84,6 +84,7 @@ class Messages extends Component {
     const { messages, message } = this.state
     const { displayName, photoURL } = this.firebaseUser
 
+    console.log(this.state.messages)
     return (
         this.state.loading
         ? <Center height={'300px'}><LoadingAnimation height='auto'/></Center>

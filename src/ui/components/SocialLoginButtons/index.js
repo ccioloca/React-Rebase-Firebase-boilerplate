@@ -1,21 +1,18 @@
 import React from 'react'
 import Card from '../../layout/Card'
+import uuidV4 from 'uuid/v4'
 
 const SocialLoginButtons = ({providers, language, Text, onClick}) => {
   return (
     <Card>
-      <div className="social-login-buttons">
-        { providers.map( (provider, index) =>
-          <button key={index}
-                  onClick={()=>onClick(provider)}
-                  className={`social-login-buttons__button social-login-buttons__button--${provider}`}>
-                  <i className={`fa fa-${provider} social-login-buttons__icon`}></i>
-                  Login With {provider}
-          </button>
-        )}
-      </div>
+      { providers.map( (provider) =>
+          <div key={uuidV4()}>
+            <button key={uuidV4()}
+                    onClick={()=>onClick(provider)}
+                    className='btn--unstyled'>Login With {provider}</button>
+          </div>
+      )}
     </Card>
-
   )
 }
 
