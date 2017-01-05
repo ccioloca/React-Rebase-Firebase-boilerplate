@@ -6,7 +6,7 @@ const NewArticle = ({Text, language}) => {
   return (
     <Grid>
       <Cell desktop={'half'}>
-        hello world
+        Placeholder for the article creation page Paul is working on
       </Cell>
     </Grid>
   )
