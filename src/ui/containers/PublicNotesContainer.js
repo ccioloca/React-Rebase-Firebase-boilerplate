@@ -84,7 +84,7 @@ class PublicNotesContainer extends Component {
   _toggleCommentFormVisibility(key) {
     if ( this.state.selectedEditNote !== '' ) {
       this.setState({selectedEditNote: '', editValue: ''})
-    } 
+    }
     if( this.state.selectedNote === key ) {
       this.setState({selectedNote: '', value: ''})
     } else {
@@ -111,7 +111,7 @@ class PublicNotesContainer extends Component {
   _toggleEditFormVisibility(key, data) {
     if ( this.state.selectedNote !== '' ) {
       this.setState({selectedNote: '', value: ''})
-    } 
+    }
     if ( this.state.selectedEditNote === key ) {
       this.setState({selectedEditNote: '', editValue: ''})
     } else {
@@ -125,7 +125,7 @@ class PublicNotesContainer extends Component {
 
   _handleEditSubmit(event, data) {
     event.preventDefault()
-    const {uid, photoURL, displayName} = this.firebaseUser
+
     const key = this.state.selectedEditNote
 
     if (data && key) {
