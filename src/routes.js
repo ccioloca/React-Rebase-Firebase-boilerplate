@@ -7,6 +7,7 @@ import Login from "./ui/pages/Login"
 import Dashboard from './ui/pages/Dashboard'
 import Profile from './ui/pages/Profile'
 import Notes from './ui/pages/Notes'
+import NewArticle from './ui/pages/NewArticle'
 
 import { requireAuth } from './utils/authenticated'
 
@@ -18,6 +19,7 @@ const Routes = (props) => {
                 <Route path="login" component={Login} name="Login" />
                 <Route path="dashboard" component={Dashboard} onEnter={requireAuth} name="Dashboard"/>
                 <Route path="profile" component={Profile} onEnter={requireAuth} name="Profile"/>
+                <Route path="new-article" component={NewArticle} onEnter={requireAuth} name="New Article"/>
                 <Route path="notes" component={Notes} onEnter={requireAuth} name="Notes"/>
                 <Route path="*" component={Index} name="404: No Match for route" />
             </Route>

@@ -16,7 +16,8 @@ const Text = {
     isPrivate: 'Private Note',
     addNewCategory: 'Add New Category',
     addNewComment: 'Add New Comment',
-    edit: 'Edit'
+    edit: 'Edit',
+    newArticle: 'New Article'
   },
   de: {
     brandName: 'Deutsch',
@@ -35,7 +36,8 @@ const Text = {
     isPrivate: 'DE Private Note',
     addNewCategory: 'DE Add New Category',
     addNewComment: 'DE Add New Comment',
-    edit: 'DE Edit'
+    edit: 'DE Edit',
+    newArticle: 'DE New Article'
   },
   es: {
     brandName: 'Español',
@@ -54,7 +56,8 @@ const Text = {
     isPrivate: 'ESP Private Note',
     addNewCategory: 'ESP Add New Category',
     addNewComment: 'ESP Add New Comment',
-    edit: 'ESP Edit'
+    edit: 'ESP Edit',
+    newArticle: 'ESP New Article'
   },
   pl: {
     brandName: 'Polski',
@@ -73,7 +76,8 @@ const Text = {
     isPrivate: 'Prywatna Notatka',
     addNewCategory: 'Dodaj Kategorie',
     addNewComment: 'Dodaj Komentarz',
-    edit: 'Edytuj'
+    edit: 'Edytuj',
+    newArticle: 'PL New Article'
   }
 }
 

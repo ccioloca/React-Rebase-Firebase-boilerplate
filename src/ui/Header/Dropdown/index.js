@@ -9,38 +9,7 @@ class Dropdown extends Component {
       super(props)
       this.state = {
         isMenuOpen: false,
-        displayName: null,
-        photoURL: null,
-        isAdmin: false
       }
-  }
-
-  componentWillMount() {
-      const authDataCallback = (user) => {
-          if (user) {
-              console.log(user)
-              base.fetch(`authentication/admins/${user.uid}`, {
-                context: this,
-                asArray: true,
-                onFailure: (err) => {
-                  console.log(err)
-                  this.setState({isAdmin: false}, console.log(this.state.isAdmin))
-                },
-                then(data){
-                  this.setState({isAdmin: true}, console.log(this.state.isAdmin))
-                }
-              })
-              const {displayName, photoURL} = user
-              this.setState({displayName, photoURL})
-          }
-      }
-      // Listen to authentication
-      this.unsubscribeToAuthListener = base.onAuth(authDataCallback)
-  }
-
-  componentWillUnmount() {
-      //to remove auth listener
-      this.unsubscribeToAuthListener()
   }
 
   toggle() {
@@ -57,10 +26,11 @@ class Dropdown extends Component {
   }
 
   render() {
-    const { isMenuOpen, displayName, photoURL } = this.state
-    const { language, Text } = this.props
+    const MODULE_NAME = 'user-dropdown'
+    const { isMenuOpen } = this.state
+    const { language, Text, displayName, photoURL, isAdmin } = this.props
 
-    let menuOptions = {
+    const menuOptions = {
       isOpen: isMenuOpen,
       close: this.close.bind(this),
       toggle: <UserButton onClick={this.toggle.bind(this)}
@@ -71,16 +41,23 @@ class Dropdown extends Component {
     }
 
     return (
-      <DropdownMenu {...menuOptions} className="user-dropdown">
-        <li className="user-dropdown__item">
-          <Link to="profile">{Text[language].myProfile || 'My Profile'}</Link>
+      <DropdownMenu {...menuOptions} className={`${MODULE_NAME}`}>
+        <li className={`${MODULE_NAME}__item`}>
+          <Link to="profile">{Text[language].myProfile}</Link>
         </li>
-        <li className="user-dropdown__item">
-          <Link to="notes">{Text[language].myNotes || 'My Notes'}</Link>
+        {isAdmin &&
+        <li className={`${MODULE_NAME}__item`}>
+          <Link to="new-article">{Text[language].newArticle}</Link>
         </li>
-        <li className="user-dropdown__item-logout">
-          <button className="user-dropdown__btn-logout btn--unstyled"
-                  onClick={() => this.logout()}>{Text[language].logout || 'Logout'}</button>
+        }
+        <li className={`${MODULE_NAME}__item`}>
+          <Link to="notes">{Text[language].myNotes}</Link>
+        </li>
+        <li className={`${MODULE_NAME}__item-logout`}>
+          <button className={`${MODULE_NAME}__btn-logout btn--unstyled`}
+                  onClick={() => this.logout()}>
+            {Text[language].logout}
+          </button>
         </li>
       </DropdownMenu>
     );
@@ -88,3 +65,11 @@ class Dropdown extends Component {
 }
 
 export default Dropdown
+
+Dropdown.propTypes = {
+  isAdmin: React.PropTypes.bool,
+  displayName: React.PropTypes.string,
+  photoURL: React.PropTypes.string,
+  language: React.PropTypes.string.isRequired,
+  Text: React.PropTypes.object.isRequired
+}

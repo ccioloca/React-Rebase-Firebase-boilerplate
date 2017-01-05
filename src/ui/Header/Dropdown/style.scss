@@ -1,4 +1,4 @@
-$module-name: 'header';
+$module-name: 'user-dropdown';
 
 @include settings((
   dropdown-color: color(blue),
@@ -13,7 +13,7 @@ $module-name: 'header';
 
 ));
 
-.user-dropdown {
+.#{$module-name} {
     position: relative;
     @include breakpoint(mobile) {
       position: initial;
