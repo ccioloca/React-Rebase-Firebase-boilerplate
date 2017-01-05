@@ -994,7 +994,7 @@ button {
 .notes-categories-list__button {
   text-align: center;
   padding: 0.5rem;
-  width: 100%;
+  width: 80%;
   margin-bottom: 1rem;
   display: block;
   font-size: 1rem;
@@ -1003,13 +1003,22 @@ button {
   font-style: normal;
   line-height: 1.5;
   color: #fcfcfa;
-  background: #005b96; }
+  background: #005b96;
+  float: left; }
   @media only screen and (max-width: 740px) {
     .notes-categories-list__button {
       font-size: 1.15rem;
       line-height: 1.5; } }
   .notes-categories-list__button:hover, .notes-categories-list__button:active {
     background: rgba(0, 91, 150, 0.9); }
+
+.notes-categories-list__delete-button {
+  text-align: center;
+  padding: 0.5rem;
+  width: 20%;
+  margin-bottom: 1rem;
+  display: block;
+  float: left; }
 
 .public-notes-list__item {
   margin-bottom: 1rem; }

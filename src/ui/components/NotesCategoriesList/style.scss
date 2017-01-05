@@ -24,15 +24,25 @@ $module-name: 'notes-categories-list';
   &__button {
     text-align: center;
     padding: setting(bezel);
-    width: 100%;
+    width: 80%;
     margin-bottom: setting(stack-below);
     display: block;
     @include type(setting(category-type),(color: setting(category-color) ) );
     background: setting(category-bgColor);
+    float: left;
     &:hover,
     &:active {
       background: setting(category-bgHoverColor);
     }
+  }
+
+  &__delete-button {
+    text-align: center;
+    padding: setting(bezel);
+    width: 20%;
+    margin-bottom: setting(stack-below);
+    display: block;
+    float: left;
   }
 
 }

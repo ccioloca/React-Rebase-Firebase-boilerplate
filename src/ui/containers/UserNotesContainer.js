@@ -152,6 +152,17 @@ class UserNotesContainer extends Component {
     this.setState({showAddNewCategory: !this.state.showAddNewCategory})
   }
 
+  _removeCategory(event, category) {
+    event.preventDefault()
+    var customCategories = this.state.customCategories
+    for(var i = 0; i < customCategories.length; i++) {
+      if(customCategories[i] === category) {
+        customCategories[i] = []
+      }
+    }
+    this.setState({customCategories: customCategories})
+  }
+
   render() {
     const { language, Text } = this.props
     const { isPublic, notes, note, customCategories, chooseCategory, showAddNewCategory, newCategoryValue } = this.state
@@ -169,7 +180,7 @@ class UserNotesContainer extends Component {
                              notes={notes}
                              displayName={displayName}
                              photoURL={photoURL}
-                             removeNote={ (key) => this._removeNote(key) }/>
+                             removeNote={ (key) => this._removeNote(key) } />
               </Card>
               <Grid>
                 <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">
@@ -202,9 +213,10 @@ class UserNotesContainer extends Component {
             <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
               <NotesCategoriesList
                 handleClick={ this._handleChangeCategoryQuery.bind(this) }
-                categories={categories}
+                categories={customCategories}
                 Text={Text}
-                language={language}/>
+                language={language}
+                removeCategory={ this._removeCategory.bind(this) } />
             </Cell>
           </Grid>
     );
