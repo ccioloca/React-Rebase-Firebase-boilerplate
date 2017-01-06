@@ -105,6 +105,27 @@ const commentsQueue = new Queue(COMMENTS_QUEUE_REF, { 'sanitize': false }, funct
       });
   }
 
+  if ( data.action === 'edit' ) {
+    admin.auth().verifyIdToken(data.idToken)
+      .then((decodedToken) => {
+        var uid = decodedToken.uid;
+        PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.comment_id).child('uid').once('value').then(snapshot => {
+          if ( snapshot.val() === uid ) {
+            USER_PRIVATE_REF.child(uid).child('notes').child(data.note_id).child('comments').child(data.comment_id).child('comment').set(data.data.text);
+            USER_PRIVATE_REF.child(uid).child('notes').child(data.note_id).child('comments').child(data.comment_id).child('edit_date').set(data.data.edit_date);
+            PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.comment_id).child('comment').set(data.data.text);
+            PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data.comment_id).child('edit_date').set(data.data.edit_date);
+            resolve()
+          } else {
+            reject()
+          }
+        })
+      }).catch(error => {
+        console.log(error)
+        reject()
+      })
+  }
+
   if ( data.action === 'add' ) {
     return PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('comments').child(data._id).set(data.comment)
       .then(function(){
