@@ -49,8 +49,12 @@ $module-name: 'user-notes-list';
     width: setting(image-size);
   }
 
-  &__btn-delete {
+   &__icons-wrapper {
     float: right;
+  }
+
+  &__btn-delete {
+    
   }
 
   &__icon {
@@ -59,6 +63,10 @@ $module-name: 'user-notes-list';
 
     &--delete {
 
+    }
+
+    &--edit {
+      margin-right: setting(inline);
     }
 
   }

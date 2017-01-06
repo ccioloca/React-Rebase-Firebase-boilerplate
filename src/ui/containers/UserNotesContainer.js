@@ -6,6 +6,7 @@ import UserNotesList from '../components/UserNotesList'
 import NewNote from '../components/NewNote'
 import ChooseCategory from '../components/ChooseCategory'
 import NotesCategoriesList from '../components/NotesCategoriesList'
+import EditForm from '../components/EditForm'
 import Card from '../layout/Card'
 import Grid from '../layout/Grid'
 import Cell from '../layout/Cell'
@@ -24,7 +25,9 @@ class UserNotesContainer extends Component {
       loading: true,
       isPublic: true,
       showAddNewCategory: false,
-      newCategoryValue: ''
+      newCategoryValue: '',
+      selectedEditNote: '',
+      editValue: ''
     }
     this.firebaseUser = base.auth().currentUser
     this.defaultCategories = ['Category 1', 'Category 2', 'Category 3']
@@ -163,9 +166,46 @@ class UserNotesContainer extends Component {
     this.setState({customCategories: customCategories})
   }
 
+  _toggleEditFormVisibility(key, data) {
+    console.log('toggleEdit...key', key)
+    console.log('toggleEdit...data', data)
+    if ( this.state.selectedEditNote === key ) {
+      this.setState({selectedEditNote: '', editValue: ''})
+    } else {
+      this.setState({selectedEditNote: key, editValue: data})
+    }
+  }
+
+  _handleEditChange(editValue) {
+    this.setState({editValue})
+  }
+
+  _handleEditSubmit(event, data) {
+    console.log(data)
+    event.preventDefault()
+    const key = this.state.selectedEditNote
+
+    if (data && key) {
+      base.auth().currentUser.getToken(true).then(idToken => {
+        base.push(`authentication/userWritable/notes-queue/tasks`, {
+          data: {
+            timestamp: new Date().toString(),
+            action: 'edit',
+            note_id: key,
+            language: this.props.language,
+            data: data,
+            idToken: idToken
+          }
+        }).then(() => {
+          this.setState({editValue: '', selectedEditNote: ''})
+        }).catch(err => console.log(err))
+      })
+    }
+  }
+
   render() {
     const { language, Text } = this.props
-    const { isPublic, notes, note, customCategories, chooseCategory, showAddNewCategory, newCategoryValue } = this.state
+    const { isPublic, notes, note, customCategories, chooseCategory, showAddNewCategory, newCategoryValue, editValue, selectedEditNote } = this.state
     const { displayName, photoURL } = this.firebaseUser
     const categories = this.defaultCategories.concat(customCategories)
 
@@ -180,7 +220,16 @@ class UserNotesContainer extends Component {
                              notes={notes}
                              displayName={displayName}
                              photoURL={photoURL}
-                             removeNote={ (key) => this._removeNote(key) } />
+                             removeNote={ (key) => this._removeNote(key) }
+                             toggleEditFormVisibility={ this._toggleEditFormVisibility.bind(this) }
+                             selectedEditNote={ selectedEditNote } >
+                             
+                  <EditForm Text={Text}
+                            language={language}
+                            handleSubmit={this._handleEditSubmit.bind(this) }
+                            handleChange={this._handleEditChange.bind(this) }
+                            value={editValue} />
+                </UserNotesList>
               </Card>
               <Grid>
                 <Cell desktop='three-quarters' tablet='two-thirds' mobile="one-whole">

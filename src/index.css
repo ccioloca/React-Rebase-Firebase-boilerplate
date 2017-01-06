@@ -1142,13 +1142,15 @@ button {
   margin-right: 0.5rem;
   width: 48px; }
 
-.user-notes-list__btn-delete {
+.user-notes-list__icons-wrapper {
   float: right; }
 
 .user-notes-list__icon {
   font-size: 1.1rem;
   line-height: 1;
   color: #00B200; }
+  .user-notes-list__icon--edit {
+    margin-right: 0.5rem; }
 
 .is-visuallyhidden {
   border: 0;

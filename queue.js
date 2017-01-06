@@ -46,7 +46,7 @@ const queue = new Queue(NOTES_QUEUE_REF, { 'sanitize': false }, function(data, p
             PUBLIC_NOTES_REF.child(data.language).child(data.note_id).child('edit_date').set(data.data.edit_date);
             resolve()
           } else {
-            resolve()
+            reject()
           }
         })
       }).catch(error => {
