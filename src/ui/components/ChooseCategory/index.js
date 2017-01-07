@@ -3,24 +3,23 @@ import uuidV4 from 'uuid/v4'
 
 const ChooseCategory = ({Text, language, categories, selectedCategory, onChange, toggleShowAddNewCategory, showAddNewCategory, onAddNewCategoryFormSubmit, onAddNewCategoryChange, selectValue, inputTextValue}) => {
 
-    const MODULE_NAME = 'choose-category'
     let addNewCategory
 
     return (
-        <div className={`${MODULE_NAME}`}>
-          <h2 className={`${MODULE_NAME}__title`}>Choose Category</h2>
-          <select className={`${MODULE_NAME}__select`} value={selectedCategory} onChange={(event) => onChange(event) }>
+        <div className={`choose-category`}>
+          <h2 className={`choose-category__title`}>Choose Category</h2>
+          <select className={`choose-category__select`} value={selectedCategory} onChange={(event) => onChange(event) }>
             {categories.map( value =>
               <option key={uuidV4()}>{value}</option>
             )}
           </select>
-          <button className={`${MODULE_NAME}__button`} onClick={ () => toggleShowAddNewCategory() }>{Text[language].addNewCategory}</button>
-          { showAddNewCategory ? <form className={`form ${MODULE_NAME}__add-new-category-form`}
+          <button className={`choose-category__button`} onClick={ () => toggleShowAddNewCategory() }>{Text[language].addNewCategory}</button>
+          { showAddNewCategory ? <form className={`form choose-category__add-new-category-form`}
                 onSubmit={(event) => onAddNewCategoryFormSubmit(event, {
                   addNewCategory: addNewCategory.value
           })}>
-            <div className={`form__row ${MODULE_NAME}__add-new-category-form__row`}>
-              <input className={`form__field ${MODULE_NAME}__add-new-category-form__field`}
+            <div className={`form__row choose-category__add-new-category-form__row`}>
+              <input className={`form__field choose-category__add-new-category-form__field`}
                     type='text'
                     ref={c => (addNewCategory = c)}
                     value={inputTextValue}

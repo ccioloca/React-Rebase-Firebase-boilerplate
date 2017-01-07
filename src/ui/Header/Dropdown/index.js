@@ -26,7 +26,7 @@ class Dropdown extends Component {
   }
 
   render() {
-    const MODULE_NAME = 'user-dropdown'
+
     const { isMenuOpen } = this.state
     const { language, Text, displayName, photoURL, isAdmin } = this.props
 
@@ -41,20 +41,20 @@ class Dropdown extends Component {
     }
 
     return (
-      <DropdownMenu {...menuOptions} className={`${MODULE_NAME}`}>
-        <li className={`${MODULE_NAME}__item`}>
+      <DropdownMenu {...menuOptions} className={`user-dropdown`}>
+        <li className={`user-dropdown__item`}>
           <Link to="profile">{Text[language].myProfile}</Link>
         </li>
         {isAdmin &&
-        <li className={`${MODULE_NAME}__item`}>
+        <li className={`user-dropdown__item`}>
           <Link to="new-article">{Text[language].newArticle}</Link>
         </li>
         }
-        <li className={`${MODULE_NAME}__item`}>
+        <li className={`user-dropdown__item`}>
           <Link to="notes">{Text[language].myNotes}</Link>
         </li>
-        <li className={`${MODULE_NAME}__item-logout`}>
-          <button className={`${MODULE_NAME}__btn-logout btn--unstyled`}
+        <li className={`user-dropdown__item-logout`}>
+          <button className={`user-dropdown__btn-logout btn--unstyled`}
                   onClick={() => this.logout()}>
             {Text[language].logout}
           </button>

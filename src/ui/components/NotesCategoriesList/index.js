@@ -3,13 +3,11 @@ import uuidV4 from 'uuid/v4'
 
 const NotesCategoriesList = ({handleClick, categories, Text, language }) => {
 
-  const MODULE_NAME = 'notes-categories-list'
-
   return (
-    <div className={MODULE_NAME}>
-        <h2 className={`${MODULE_NAME}__title`} >Categories</h2>
-        <button className={`${MODULE_NAME}__button`} onClick={ (event) => handleClick(event, 'all') }>All Notes</button>
-        {categories.map((category) => <button className={`${MODULE_NAME}__button`} key={ uuidV4() } onClick={ (event) => handleClick(event, category) }>{category}</button> )}
+    <div className={'notes-categories-list'}>
+        <h2 className={`notes-categories-list__title`} >Categories</h2>
+        <button className={`notes-categories-list__button`} onClick={ (event) => handleClick(event, 'all') }>All Notes</button>
+        {categories.map((category) => <button className={`notes-categories-list__button`} key={ uuidV4() } onClick={ (event) => handleClick(event, category) }>{category}</button> )}
     </div>
   )
 
