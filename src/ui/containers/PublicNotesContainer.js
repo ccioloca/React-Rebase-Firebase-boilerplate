@@ -139,9 +139,11 @@ class PublicNotesContainer extends Component {
             data: data,
             idToken: idToken
           }
-        }).then(() => {
+        })
+        .then(() => {
           this.setState({editValue: '', selectedEditNote: ''})
-        }).catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
       })
     }
   }
