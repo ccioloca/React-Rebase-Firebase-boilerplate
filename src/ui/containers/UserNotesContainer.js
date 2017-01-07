@@ -157,13 +157,9 @@ class UserNotesContainer extends Component {
 
   _removeCategory(event, category) {
     event.preventDefault()
-    var customCategories = this.state.customCategories
-    for(var i = 0; i < customCategories.length; i++) {
-      if(customCategories[i] === category) {
-        customCategories[i] = []
-      }
-    }
-    this.setState({customCategories: customCategories})
+    const newCustomCategories = this.state.customCategories.filter(c => c !== category)
+    console.log(newCustomCategories)
+    this.setState({customCategories: newCustomCategories})
   }
 
   _toggleEditFormVisibility(key, data) {
@@ -223,7 +219,7 @@ class UserNotesContainer extends Component {
                              removeNote={ (key) => this._removeNote(key) }
                              toggleEditFormVisibility={ this._toggleEditFormVisibility.bind(this) }
                              selectedEditNote={ selectedEditNote } >
-                             
+
                   <EditForm Text={Text}
                             language={language}
                             handleSubmit={this._handleEditSubmit.bind(this) }
