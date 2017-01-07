@@ -17,7 +17,8 @@ const Text = {
     addNewCategory: 'Add New Category',
     addNewComment: 'Add New Comment',
     edit: 'Edit',
-    newArticle: 'New Article'
+    newArticle: 'New Article',
+    allNotes: 'All Notes'
   },
   de: {
     brandName: 'Deutsch',
@@ -37,7 +38,8 @@ const Text = {
     addNewCategory: 'DE Add New Category',
     addNewComment: 'DE Add New Comment',
     edit: 'DE Edit',
-    newArticle: 'DE New Article'
+    newArticle: 'DE New Article',
+    allNotes: 'DE All Notes'
   },
   es: {
     brandName: 'Español',
@@ -57,7 +59,8 @@ const Text = {
     addNewCategory: 'ESP Add New Category',
     addNewComment: 'ESP Add New Comment',
     edit: 'ESP Edit',
-    newArticle: 'ESP New Article'
+    newArticle: 'ESP New Article',
+    allNotes: 'ESP All Notes'
   },
   pl: {
     brandName: 'Polski',
@@ -77,7 +80,8 @@ const Text = {
     addNewCategory: 'Dodaj Kategorie',
     addNewComment: 'Dodaj Komentarz',
     edit: 'Edytuj',
-    newArticle: 'PL New Article'
+    newArticle: 'PL New Article',
+    allNotes: 'PL All Notes'
   }
 }
 

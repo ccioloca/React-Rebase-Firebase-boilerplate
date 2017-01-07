@@ -30,7 +30,21 @@ class UserNotesContainer extends Component {
       editValue: ''
     }
     this.firebaseUser = base.auth().currentUser
-    this.defaultCategories = ['Category 1', 'Category 2', 'Category 3']
+    const { Text, language } = props
+    this.defaultCategories = [
+      {
+        name: 'all',
+        label: Text[language].allNotes
+      },
+      {
+        name: 'Category 1',
+        label: 'Category 1',
+      },
+      {
+        name: 'Category 2',
+        label: 'Category 2',
+      }
+    ]
   }
 
   componentWillMount(){
@@ -148,7 +162,7 @@ class UserNotesContainer extends Component {
   }
 
   _onAddNewCategoryChange(value) {
-    this.setState({newCategoryValue:value},() => {console.log('onAddNewCategoryChangeSetState', this.state.newCategoryValue)})
+    this.setState({newCategoryValue:value})
   }
 
   _toggleShowAddNewCategory() {
@@ -158,7 +172,6 @@ class UserNotesContainer extends Component {
   _removeCategory(event, category) {
     event.preventDefault()
     const newCustomCategories = this.state.customCategories.filter(c => c !== category)
-    console.log(newCustomCategories)
     this.setState({customCategories: newCustomCategories})
   }
 
@@ -203,7 +216,10 @@ class UserNotesContainer extends Component {
     const { language, Text } = this.props
     const { isPublic, notes, note, customCategories, chooseCategory, showAddNewCategory, newCategoryValue, editValue, selectedEditNote } = this.state
     const { displayName, photoURL } = this.firebaseUser
-    const categories = this.defaultCategories.concat(customCategories)
+
+    const filteredDefaultCategories = this.defaultCategories.filter(x => x.name !== 'all')
+                                                            .map(x => x.label)
+    const categories = filteredDefaultCategories.concat(customCategories)
 
     return (
         this.state.loading
@@ -258,7 +274,8 @@ class UserNotesContainer extends Component {
             <Cell desktop='one-quarter' tablet='one-third' mobile='one-whole'>
               <NotesCategoriesList
                 handleClick={ this._handleChangeCategoryQuery.bind(this) }
-                categories={customCategories}
+                customCategories={customCategories}
+                defaultCategories={this.defaultCategories}
                 Text={Text}
                 language={language}
                 removeCategory={ this._removeCategory.bind(this) } />
